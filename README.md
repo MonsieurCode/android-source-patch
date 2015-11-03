@@ -4,7 +4,10 @@ This repository contains any modifications to the original Udoo Android source c
 You will need to download the [complete source code archive](http://udoo.org/download/files/Sources/), unzip it, and merge the changes here at build time.
 
 ## Compilation Guide
-http://elinux.org/UDOO_compile_Android_4.2.2_from_sources
+
+1. Download [VirtualBox](https://www.virtualbox.org/wiki/Downloads)
+2. Download [Ubuntu](http://www.ubuntu.com/download)
+3. http://elinux.org/UDOO_compile_Android_4.2.2_from_sources
 
 ## Known Issues
 If you attempt to push the complete source code to this repository, you will get the following error.
