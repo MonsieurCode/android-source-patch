@@ -7,7 +7,9 @@ You will need to download the [complete source code archive](http://udoo.org/dow
 
 1. Download [VirtualBox](https://www.virtualbox.org/wiki/Downloads)
 2. Download [Ubuntu](http://www.ubuntu.com/download)
-3. http://elinux.org/UDOO_compile_Android_4.2.2_from_sources
+3. Add touchscreen [drivers](http://www.chalk-elec.com/?p=2028) (optional)  
+4. [Build](http://elinux.org/UDOO_compile_Android_4.2.2_from_sources) source 
+5. [Flash](http://www.tweaking4all.com/hardware/raspberry-pi/macosx-apple-pi-baker/) SD Card
 
 ## Known Issues
 If you attempt to push the complete source code to this repository, you will get the following error.
