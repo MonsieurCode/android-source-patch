@@ -611,6 +611,10 @@ static const struct hid_device_id mt_devices[] = {
 	{ .driver_data = MT_CLS_DEFAULT,
 		HID_USB_DEVICE(USB_VENDOR_ID_ACTIONSTAR,
 			USB_DEVICE_ID_ACTIONSTAR_1011) },
+			
+	/* AUO panels */
+    	{ .driver_data = MT_CLS_DEFAULT, HID_USB_DEVICE(USB_VENDOR_ID_AUO,
+    		USB_DEVICE_ID_G101EVN01_0) },
 
 	/* Cando panels */
 	{ .driver_data = MT_CLS_DUAL_INRANGE_CONTACTNUMBER,
