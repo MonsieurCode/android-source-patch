@@ -7,9 +7,10 @@ You will need to download the [complete source code archive](http://udoo.org/dow
 
 1. [Download VirtualBox](https://www.virtualbox.org/wiki/Downloads)
 2. [Download Ubuntu](http://www.ubuntu.com/download)
-3. [Add Touchscreen Drivers](http://www.chalk-elec.com/?p=2028) (optional)  
-4. [Build Source](http://elinux.org/UDOO_compile_Android_4.2.2_from_sources) 
-5. [Flash SD Card](http://www.tweaking4all.com/hardware/raspberry-pi/macosx-apple-pi-baker/) 
+3. [Download Udoo Android Source](http://udoo.org/download/files/Sources/)
+4. [Add Touchscreen Drivers](http://www.chalk-elec.com/?p=2028) (optional)  
+5. [Build Source](http://elinux.org/UDOO_compile_Android_4.2.2_from_sources) 
+6. [Flash SD Card](http://www.tweaking4all.com/hardware/raspberry-pi/macosx-apple-pi-baker/) 
 
 ## Known Issues
 If you attempt to push the complete source code to this repository, you will get the following error.
