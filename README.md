@@ -9,7 +9,7 @@ You will need to download the [complete source code archive](http://udoo.org/dow
 
 2.Install Java 6
 
-    sudo apt-get install oracle-java8-installer
+    sudo apt-get install oracle-java6-installer
 
 3.[Download Udoo Android Source](http://udoo.org/download/files/Sources/)
 
