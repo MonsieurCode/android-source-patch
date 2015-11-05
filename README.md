@@ -10,7 +10,7 @@ You will need to download the [complete source code archive](http://udoo.org/dow
 
 -Install Java 6
 
-    compressing objects: 100% (3963/3963), done.
+    sudo apt-get install oracle-java8-installer
 
 -[Download Udoo Android Source](http://udoo.org/download/files/Sources/)
 -[Add Touchscreen Drivers](http://www.chalk-elec.com/?p=2028) (optional)  
