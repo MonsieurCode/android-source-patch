@@ -17,6 +17,8 @@ You will need to download the [complete source code archive](http://udoo.org/dow
 
 5.[Build Source](http://elinux.org/UDOO_compile_Android_4.2.2_from_sources)
 
+    android-source/Udoo/4.4.2/out/target/product/generic/system.img
+
 6.[Flash SD Card](http://www.tweaking4all.com/hardware/raspberry-pi/macosx-apple-pi-baker/) 
 
 ## Known Issues
