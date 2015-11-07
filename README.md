@@ -31,6 +31,7 @@ You will need to download the [complete source code archive](http://udoo.org/dow
 
     setenv bootargs console=ttymxc1,115200 init=/init video=mxcfb0:dev=ldb,1366x768M@60,if=RGB24,bpp=32 video=mxcfb1:off video=mxcfb2:off fbmem=28M vmalloc=400M androidboot.console=ttymxc1 androidboot.hardware=freescale mem=1024M
 
+A video tutorial of this step can be found [here](https://www.youtube.com/watch?v=7CYsKJ1kqsk)
 
 ## Known Issues
 If you attempt to push the complete source code to this repository, you will get the following error.
