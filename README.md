@@ -23,6 +23,8 @@ You will need to download the [complete source code archive](http://udoo.org/dow
 
 7) [Set Environment Boot Arguments](http://elinux.org/UDOO_setup_lvds_panels)
 
+Connect a serial cable to the Udoo and your computer. (Establish a connection)[http://www.udoo.org/tutorial/connecting-via-serial-cable/].
+
 10" Screen
 
     setenv bootargs console=ttymxc1,115200 init=/init video=mxcfb0:dev=hdmi,1280x800M@60,if=RGB24,bpp=32 video=mxcfb1:off video=mxcfb2:off fbmem=28M vmalloc=400M androidboot.console=ttymxc1 androidboot.hardware=freescale mem=1024M
