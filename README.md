@@ -21,9 +21,9 @@ You will need to download the [complete source code archive](http://udoo.org/dow
 
 6) [Flash SD Card](http://www.tweaking4all.com/hardware/raspberry-pi/macosx-apple-pi-baker/) 
 
-7) (Set Environment Boot Arguments)[http://elinux.org/UDOO_setup_lvds_panels]
+7) [Set Environment Boot Arguments](http://elinux.org/UDOO_setup_lvds_panels)
 
-Connect a serial cable to the Udoo and your computer. (Establish a connection)[http://www.udoo.org/tutorial/connecting-via-serial-cable/].
+Connect a serial cable to the Udoo and your computer. [Establish a connection](http://www.udoo.org/tutorial/connecting-via-serial-cable/).
 
 10" Screen
 
