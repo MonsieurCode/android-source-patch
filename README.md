@@ -5,23 +5,36 @@ You will need to download the [complete source code archive](http://udoo.org/dow
 
 ## Compilation Guide
 
-1) [Download Ubuntu](http://www.ubuntu.com/download)
+[Download Ubuntu](http://www.ubuntu.com/download)
 
-2) Install Java 6
+Install Required Packages
+
+    sudo apt-get install git gnupg flex bison gperf build-essential \
+    zip curl libc6-dev libncurses5-dev:i386 x11proto-core-dev \
+    libx11-dev:i386 libreadline6-dev:i386 libgl1-mesa-glx:i386 \
+    libgl1-mesa-dev g++-multilib mingw32 tofrodos \
+    python-markdown libxml2-utils xsltproc zlib1g-dev:i386 \
+    lib32z1 lib32ncurses5 lib32bz2-1.0 u-boot-tools minicom libncurses5-dev \
+    uuid-dev:i386    liblzo2-dev:i386
+
+
+    sudo ln -s /usr/lib/i386-linux-gnu/mesa/libGL.so.1 /usr/lib/i386-linux-gnu/libGL.so
+
+Install Java 6
 
     sudo apt-get install oracle-java6-installer
 
-3) [Download Udoo Android Source](http://udoo.org/download/files/Sources/)
+[Download Udoo Android Source](http://udoo.org/download/files/Sources/)
 
-4) [Add Touchscreen Drivers](http://www.chalk-elec.com/?p=2028)
+[Add Touchscreen Drivers](http://www.chalk-elec.com/?p=2028)
 
-5) [Build Source](http://elinux.org/UDOO_compile_Android_4.2.2_from_sources)
+[Build Source](http://elinux.org/UDOO_compile_Android_4.2.2_from_sources)
 
     android-source/Udoo/4.4.2/out/target/product/udoo/system.img
 
-6) [Flash SD Card](http://www.tweaking4all.com/hardware/raspberry-pi/macosx-apple-pi-baker/) 
+[Flash SD Card](http://www.tweaking4all.com/hardware/raspberry-pi/macosx-apple-pi-baker/) 
 
-7) [Set Environment Boot Arguments](http://elinux.org/UDOO_setup_lvds_panels)
+[Set Environment Boot Arguments](http://elinux.org/UDOO_setup_lvds_panels)
 
 Connect a serial cable to the Udoo and your computer. [Establish a connection](http://www.udoo.org/tutorial/connecting-via-serial-cable/).
 
