@@ -48,7 +48,7 @@ Download and install [libuuid](http://sourceforge.net/projects/libuuid/?source=t
     ./compile.sh
     make
 
-[Flash SD Card](http://www.tweaking4all.com/hardware/raspberry-pi/macosx-apple-pi-baker/)
+Flash SD Card
 
     croot
     sudo -E ./make_sd.sh /dev/sdc
