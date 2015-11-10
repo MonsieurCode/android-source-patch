@@ -31,6 +31,16 @@ Download and install [libuuid](http://sourceforge.net/projects/libuuid/?source=t
 
 [Add Touchscreen Drivers](http://www.chalk-elec.com/?p=2028)
 
+    static const struct hid_device_id mt_devices[] = {
+        
+        /* Chalkboard Electronics 7" and 10" */
+        { .driver_data = MT_CLS_DEFAULT, HID_USB_DEVICE(0x04D8,0xF724) },
+        
+        /* Chalkboard Electronics 14" */
+        { .driver_data = MT_CLS_DEFAULT, HID_USB_DEVICE(0x0EEF,0xA107) },
+        
+        // here the rest of definitions comes
+
 [Build Source](http://elinux.org/UDOO_compile_Android_4.2.2_from_sources)
 
     android-source/Udoo/4.4.2/out/target/product/udoo/system.img
