@@ -19,11 +19,13 @@ Install Required Packages
     libgl1-mesa-dev g++-multilib mingw32 tofrodos \
     python-markdown libxml2-utils xsltproc zlib1g-dev:i386 \
     lib32z1 lib32ncurses5 lib32bz2-1.0 u-boot-tools minicom libncurses5-dev \
-    uuid-dev:i386    liblzo2-dev:i386
-
-    sudo ln -s /usr/lib/i386-linux-gnu/mesa/libGL.so.1 /usr/lib/i386-linux-gnu/libGL.so
+    liblzo2-dev:i386
 
 Download and install [libuuid](http://sourceforge.net/projects/libuuid/?source=typ_redirect)
+
+    ./configure
+    make
+    make install
 
 [Download Udoo Android Source](http://udoo.org/download/files/Sources/)
 
