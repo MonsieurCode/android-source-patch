@@ -7,6 +7,10 @@ You will need to download the [complete source code archive](http://udoo.org/dow
 
 [Download Ubuntu](http://www.ubuntu.com/download)
 
+Install Java 6
+
+    sudo apt-get install oracle-java6-installer
+
 Install Required Packages
 
     sudo apt-get install git gnupg flex bison gperf build-essential \
@@ -17,12 +21,9 @@ Install Required Packages
     lib32z1 lib32ncurses5 lib32bz2-1.0 u-boot-tools minicom libncurses5-dev \
     uuid-dev:i386    liblzo2-dev:i386
 
-
     sudo ln -s /usr/lib/i386-linux-gnu/mesa/libGL.so.1 /usr/lib/i386-linux-gnu/libGL.so
 
-Install Java 6
-
-    sudo apt-get install oracle-java6-installer
+Download and install [libuuid](http://sourceforge.net/projects/libuuid/?source=typ_redirect)
 
 [Download Udoo Android Source](http://udoo.org/download/files/Sources/)
 
