@@ -43,7 +43,10 @@ Download and install [libuuid](http://sourceforge.net/projects/libuuid/?source=t
 
 [Build Source](http://elinux.org/UDOO_compile_Android_4.2.2_from_sources)
 
-    android-source/Udoo/4.4.2/out/target/product/udoo/system.img
+    . setup udoo-eng
+    cd [udoo-android-dev]/bootable/bootloader/uboot-imx
+    ./compile.sh
+    make
 
 [Flash SD Card](http://www.tweaking4all.com/hardware/raspberry-pi/macosx-apple-pi-baker/) 
 
