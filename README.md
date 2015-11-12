@@ -3,7 +3,7 @@
 This repository contains any modifications to the original Udoo Android source code. 
 You will need to download the [complete source code archive](http://udoo.org/download/files/Sources/), unzip it, and merge the changes here at build time. For generic Android Source building instructions, click [here](http://source.android.com/source/building.html).
 
-## Compilation Guide
+## Installing required packages (Ubuntu 14.04)
 
 [Download Ubuntu](http://www.ubuntu.com/download)
 
@@ -23,11 +23,19 @@ Install Required Packages
 
 Download and install [libuuid](http://sourceforge.net/projects/libuuid/?source=typ_redirect)
 
-    ./configure
-    make
-    make install
+    ./configure && make && sudo make install
 
 [Download Udoo Android Source](http://udoo.org/download/files/Sources/)
+
+## Setting up a Mac OS build environment
+
+You can create a case-sensitive filesystem within your existing Mac OS environment using a disk image. To create the image, launch Disk Utility and select "New Image". A size of 25GB is the minimum to complete the build; larger numbers are more future-proof. Using sparse images saves space while allowing to grow later as the need arises. Be sure to select "case sensitive, journaled" as the volume format.
+
+You can also create it from a shell with the following command:
+
+    hdiutil create -type SPARSE -fs 'Case-sensitive Journaled HFS+' -size 40g ~/android.dmg
+    
+## Kernel Modification
 
 [Add Touchscreen Drivers](http://www.chalk-elec.com/?p=2028)
 
