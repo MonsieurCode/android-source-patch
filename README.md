@@ -25,24 +25,6 @@ Download and install [libuuid](http://sourceforge.net/projects/libuuid/?source=t
     ./configure && make && sudo make install
 
 [Download Udoo Android Source](http://udoo.org/download/files/Sources/)
-
-## Setting up a Mac OS build environment
-
-You can create a case-sensitive filesystem within your existing Mac OS environment using a disk image. To create the image, launch Disk Utility and select "New Image". A size of 25GB is the minimum to complete the build; larger numbers are more future-proof. Using sparse images saves space while allowing to grow later as the need arises. Be sure to select "case sensitive, journaled" as the volume format.
-
-You can also create it from a shell with the following command:
-
-    hdiutil create -type SPARSE -fs 'Case-sensitive Journaled HFS+' -size 40g ~/android.dmg
-
-Go to https://github.com/phracker/MacOSX-SDKs, get MacOSX10.10.sdk and MacOSX10.9.sdk folders and copy them into
-
-    /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs
-    
-Setup [JENV](http://www.jenv.be/) to use multiple Java Versions
-
-    brew install jenv
-    
-Additional help should be found [here](http://tryge.com/2013/06/15/build-android-from-source-macosx/).
     
 ## Kernel Modification
 
@@ -58,11 +40,21 @@ Additional help should be found [here](http://tryge.com/2013/06/15/build-android
         
         // here the rest of definitions comes
 
-[Build Source](http://elinux.org/UDOO_compile_Android_4.2.2_from_sources)
+Build Kernel
+
+    cd udoo-kitkat/kernel_imx
+    ./compile.sh
+
+Build UBoot
 
     . setup udoo-eng
-    cd [udoo-android-dev]/bootable/bootloader/uboot-imx
+    cd udoo-kitkat/bootable/bootloader/uboot-imx
     ./compile.sh
+    make
+
+[Build Source](http://elinux.org/UDOO_compile_Android_4.2.2_from_sources)
+
+    cd udoo-kitkat
     make
 
 Flash SD Card
@@ -81,9 +73,33 @@ Connect a serial cable to the Udoo and your computer. [Establish a connection](h
 
 A video tutorial of this step can be found [here](https://www.youtube.com/watch?v=7CYsKJ1kqsk).
 
+Push System Files to Android Filesystem
+
+    adb remount
+    adb push udoo-kitkat-diff/system /system
+    adb reboot
+
 ## Known Issues
 If you attempt to push the complete source code to this repository, you will get the following error.
 
     compressing objects: 100% (3963/3963), done.
     error: pack-objects died of signal 13
     error: failed to push some refs to 'git@github.com:MonsieurCode/udoo-source.git' 
+
+## Bonus: Setting up a Mac OS build environment
+
+You can create a case-sensitive filesystem within your existing Mac OS environment using a disk image. To create the image, launch Disk Utility and select "New Image". A size of 25GB is the minimum to complete the build; larger numbers are more future-proof. Using sparse images saves space while allowing to grow later as the need arises. Be sure to select "case sensitive, journaled" as the volume format.
+
+You can also create it from a shell with the following command:
+
+    hdiutil create -type SPARSE -fs 'Case-sensitive Journaled HFS+' -size 40g ~/android.dmg
+
+Go to https://github.com/phracker/MacOSX-SDKs, get MacOSX10.10.sdk and MacOSX10.9.sdk folders and copy them into
+
+    /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs
+    
+Setup [JENV](http://www.jenv.be/) to use multiple Java Versions
+
+    brew install jenv
+    
+Additional help should be found [here](http://tryge.com/2013/06/15/build-android-from-source-macosx/).
