@@ -34,6 +34,10 @@ You can create a case-sensitive filesystem within your existing Mac OS environme
 You can also create it from a shell with the following command:
 
     hdiutil create -type SPARSE -fs 'Case-sensitive Journaled HFS+' -size 40g ~/android.dmg
+
+Go to https://github.com/phracker/MacOSX-SDKs, get MacOSX10.10.sdk and MacOSX10.9.sdk folders and copy them into
+
+    /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs
     
 ## Kernel Modification
 
