@@ -39,6 +39,10 @@ Go to https://github.com/phracker/MacOSX-SDKs, get MacOSX10.10.sdk and MacOSX10.
 
     /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs
     
+Setup [JENV](http://www.jenv.be/) to use multiple Java Versions
+
+    brew install jenv
+    
 ## Kernel Modification
 
 [Add Touchscreen Drivers](http://www.chalk-elec.com/?p=2028)
