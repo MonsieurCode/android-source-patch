@@ -104,6 +104,11 @@ Connect a serial cable to the Udoo and your computer. [Establish a connection](h
 
     setenv bootargs console=ttymxc1,115200 init=/init video=mxcfb0:dev=hdmi,1280x800M@60,if=RGB24,bpp=32 video=mxcfb1:off video=mxcfb2:off fbmem=28M vmalloc=400M androidboot.console=ttymxc1 androidboot.hardware=freescale mem=1024M
     saveenv
+    
+15" Screen
+
+    setenv bootargs console=ttymxc1,115200 init=/init video=mxcfb0:dev=ldb,1366x768M@60,if=RGB24,bpp=32 video=mxcfb1:off video=mxcfb2:off fbmem=28M vmalloc=400M androidboot.console=ttymxc1 androidboot.hardware=freescale mem=1024M
+    saveenv
 
 A video tutorial of this step can be found [here](https://www.youtube.com/watch?v=7CYsKJ1kqsk).
 
