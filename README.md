@@ -58,6 +58,19 @@ The Android source code is located in an [archive](http://udoo.org/download/file
         { .driver_data = MT_CLS_DEFAULT, HID_USB_DEVICE(0x0EEF,0xA107) },
         
         // here the rest of definitions comes
+        
+
+Create IDC
+
+    touch.deviceType = touchScreen
+    touch.orientationAware = 1
+    device.internal = 1
+    keyboard.layout = qwerty
+    keyboard.characterMap = qwerty2
+    keyboard.orientationAware = 1
+    keyboard.builtIn = 1
+    cursor.mode = navigation
+    cursor.orientationAware = 1
 
 ## Build Kernel
 
