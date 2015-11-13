@@ -51,6 +51,9 @@ The Android source code is located in an [archive](http://udoo.org/download/file
 
     static const struct hid_device_id mt_devices[] = {
         
+        /* AUO 10" */
+        { .driver_data = MT_CLS_DEFAULT, HID_USB_DEVICE(0x27C6,0x07D3) }, 
+        
         /* Chalkboard Electronics 7" and 10" */
         { .driver_data = MT_CLS_DEFAULT, HID_USB_DEVICE(0x04D8,0xF724) },
         
