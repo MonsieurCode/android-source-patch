@@ -40,9 +40,10 @@ Download and install [libuuid](http://sourceforge.net/projects/libuuid/?source=t
 
 ## Downloading the Source
 
-The Android source code is located in an archive hosted by Udoo.
+The Android source code is located in an [archive](http://udoo.org/download/files/Sources/) hosted by Udoo.
 
-[Download Udoo Android Source](http://udoo.org/download/files/Sources/)
+    cd ~/Downloads
+    wget http://udoo.org/download/files/Sources/UDOO_Android_4.4.2_Source_v1.0.tar.gz
     
 ## Modify Kernel
 
