@@ -103,3 +103,7 @@ Setup [JENV](http://www.jenv.be/) to use multiple Java Versions
     brew install jenv
     
 Additional help should be found [here](http://tryge.com/2013/06/15/build-android-from-source-macosx/).
+
+## References 
+
+1. [Android Open Source Project](https://source.android.com/source/requirements.html)
