@@ -16,7 +16,7 @@ GNU Make 3.81 -- 3.82, which you can download from gnu.org,
 JDK 7 to build the master branch of Android in the Android Open Source Project (AOSP); JDK 6 to build Gingerbread through KitKat; JDK 5 for Cupcake through Froyo. See Initializing a Build Environment for installation instructions by operating system.
 Git 1.7 or newer. You can find it at git-scm.com.
 
-## Installing required packages (Ubuntu 14.04)
+## Install Required Packages (Ubuntu 14.04)
 
 [Download Ubuntu](http://www.ubuntu.com/download)
 
@@ -44,7 +44,7 @@ The Android source code is located in an archive hosted by Udoo.
 
 [Download Udoo Android Source](http://udoo.org/download/files/Sources/)
     
-## Kernel Modification
+## Modify Kernel
 
 [Add Touchscreen Drivers](http://www.chalk-elec.com/?p=2028)
 
@@ -58,24 +58,26 @@ The Android source code is located in an archive hosted by Udoo.
         
         // here the rest of definitions comes
 
-Build Kernel
+## Build Kernel
 
+    . setup udoo-eng
     cd udoo-kitkat/kernel_imx
     ./compile.sh
 
-Build UBoot
+## Build UBoot
 
     . setup udoo-eng
     cd udoo-kitkat/bootable/bootloader/uboot-imx
     ./compile.sh
     make
 
-[Build Source](http://elinux.org/UDOO_compile_Android_4.2.2_from_sources)
+## Build System Image
 
+    . setup udoo-eng
     cd udoo-kitkat
     make
 
-Flash SD Card
+## Flash SD Card
 
     croot
     sudo -E ./make_sd.sh /dev/sdc
@@ -91,11 +93,15 @@ Connect a serial cable to the Udoo and your computer. [Establish a connection](h
 
 A video tutorial of this step can be found [here](https://www.youtube.com/watch?v=7CYsKJ1kqsk).
 
-Push System Files to Android Filesystem
+## Push System Files to Android Filesystem
 
     adb remount
     adb push udoo-kitkat-diff/system /system
     adb reboot
+
+## Congratulations
+
+If all steps were followed correctly, you should have successfully built an Udoo Android Kitkat system image with multi-touch capabilities.
 
 ## Known Issues
 If you attempt to push the complete source code to this repository, you will get the following error.
@@ -104,7 +110,7 @@ If you attempt to push the complete source code to this repository, you will get
     error: pack-objects died of signal 13
     error: failed to push some refs to 'git@github.com:MonsieurCode/udoo-source.git' 
 
-## Bonus: Setting up a Mac OS build environment
+## Bonus: Setup a Mac OS build environment
 
 You can create a case-sensitive filesystem within your existing Mac OS environment using a disk image. To create the image, launch Disk Utility and select "New Image". A size of 25GB is the minimum to complete the build; larger numbers are more future-proof. Using sparse images saves space while allowing to grow later as the need arises. Be sure to select "case sensitive, journaled" as the volume format.
 
