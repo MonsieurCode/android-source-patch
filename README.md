@@ -63,18 +63,6 @@ The Android source code is located in an [archive](http://udoo.org/download/file
         // here the rest of definitions comes
         
 
-Create IDC
-
-    touch.deviceType = touchScreen
-    touch.orientationAware = 1
-    device.internal = 1
-    keyboard.layout = qwerty
-    keyboard.characterMap = qwerty2
-    keyboard.orientationAware = 1
-    keyboard.builtIn = 1
-    cursor.mode = navigation
-    cursor.orientationAware = 1
-
 ## Build Kernel
 
     . setup udoo-eng
