@@ -2,6 +2,20 @@
 
 This repository contains any modifications to the original Udoo Android source code. **This repository does NOT include the entire UDOO Android KitKat source code.** You will need to download the [complete source code archive](http://udoo.org/download/files/Sources/), unzip it, and merge the changes here at build time. For generic Android Source building instructions, click [here](http://source.android.com/source/building.html).
 
+## Requirements
+
+The Android build is routinely tested in-house on recent versions of [Ubuntu](http://www.ubuntu.com/download) LTS (14.04), but most distributions should have the required build tools available.
+
+Before you download and build the Android source, ensure your system meets the following requirements:
+
+A Linux or Mac OS system. It is also possible to build Android in a virtual machine on unsupported systems such as Windows. If you are running Linux in a virtual machine, you need at least 16GB of RAM/swap and 100GB or more of disk space in order to build the Android tree. See disk size requirements below.
+A 64-bit environment is required for Gingerbread (2.3.x) and newer versions, including the master branch. You can compile older versions on 32-bit systems.
+At least 100GB of free disk space for a checkout, 150GB for a single build, and 200GB or more for multiple builds. If you employ ccache, you will need even more space.
+Python 2.6 -- 2.7, which you can download from python.org.
+GNU Make 3.81 -- 3.82, which you can download from gnu.org,
+JDK 7 to build the master branch of Android in the Android Open Source Project (AOSP); JDK 6 to build Gingerbread through KitKat; JDK 5 for Cupcake through Froyo. See Initializing a Build Environment for installation instructions by operating system.
+Git 1.7 or newer. You can find it at git-scm.com.
+
 ## Installing required packages (Ubuntu 14.04)
 
 [Download Ubuntu](http://www.ubuntu.com/download)
