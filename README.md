@@ -22,6 +22,8 @@ Git 1.7 or newer. You can find it at git-scm.com.
 
 Install Java 6
 
+    sudo add-apt-repository ppa:webupd8team/java
+    sudo apt-get update
     sudo apt-get install oracle-java6-installer
 
 Install Required Packages
