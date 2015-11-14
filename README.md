@@ -20,7 +20,7 @@ Git 1.7 or newer. You can find it at git-scm.com.
 
 ## Download and Install Ubuntu
 
-    [Ubuntu 14.04](http://www.ubuntu.com/download)
+[Ubuntu 14.04](http://www.ubuntu.com/download)
 
 ## Install Tweak Tools
 
