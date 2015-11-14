@@ -32,6 +32,8 @@ Then, install rEFInd and Ubuntu.
 
     sudo apt-get install unity-tweak-tool gnome-tweak-tool
 
+If you have a Retina display, open Tweak Tool, navigate to Fonts, and set the scaling factor to 2.0.
+
 ## Install Guake
 
     sudo apt-get install guake
