@@ -83,13 +83,13 @@ The Android source code is located in an [archive](http://udoo.org/download/file
         // here the rest of definitions comes
         
 
-## Configure Kernel (This is very important)
-
-Device Drivers > HID > Special Drivers > HID Multitouch panels (*)
+## Configure Kernel (This is very important!)
 
     . setup udoo-eng
     cd udoo-source/kernel_imx
     make menuconfig
+
+Device Drivers > HID > Special Drivers > HID Multitouch panels (*)
     
 ![Kernel Configuration](https://slack-files.com/files-tmb/T02FPMKLD-F0EH0P1UH-7b67cf73f9/kernel_configuration_special_hid_drivers_720.png)
 
