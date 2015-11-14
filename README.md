@@ -120,11 +120,12 @@ Run Minicom
 
 ## Push System Files to Android Filesystem
 
+You'll know this step has succeed when the Monsieur logo shows on reboot.
+
     adb remount
     adb push udoo-kitkat-diff/system /system
     adb reboot
 
-You'll know this step has succeed when the Monsieur logo shows on reboot.
 ![Monsieur Logo on Boot](https://slack-files.com/files-tmb/T02FPMKLD-F06RGJJ6L-b4bb3dab55/boot_1024.png)
 
 ## Boot Udoo on 10" Screen
