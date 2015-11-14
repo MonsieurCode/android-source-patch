@@ -113,7 +113,7 @@ Run Minicom
 
     sudo minicom -w
 
-15" Screen
+## 15" Screen
 
     setenv bootargs console=ttymxc1,115200 init=/init video=mxcfb0:dev=ldb,1366x768M@60,if=RGB24,bpp=32 video=mxcfb1:off video=mxcfb2:off fbmem=28M vmalloc=400M androidboot.console=ttymxc1 androidboot.hardware=freescale mem=1024M
     saveenv
@@ -124,7 +124,9 @@ Run Minicom
     adb push udoo-kitkat-diff/system /system
     adb reboot
 
-10" Screen
+You'll know this has succeed when the Monsieur logo shows on reboot.
+
+## 10" Screen
 
     setenv bootargs console=ttymxc1,115200 init=/init video=mxcfb0:dev=hdmi,1280x800M@60,if=RGB24,bpp=32 video=mxcfb1:off video=mxcfb2:off fbmem=28M vmalloc=400M androidboot.console=ttymxc1 androidboot.hardware=freescale mem=1024M
     saveenv
