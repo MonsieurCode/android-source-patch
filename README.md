@@ -200,7 +200,7 @@ You'll know this step has succeed when the Monsieur logo shows on reboot.
     
 ## Fix Resolution
 
-You may run into a 640 x 480 resolution. Changing kernel resolution and setting the environment boot arguments may not be not enough. There is a problem in reading the EDID code from HDMI monitor. Follow this [guide](http://www.udoo.org/docs/Troubleshooting/How_Can_I_Solve_My_HDMI_Issues) to resolve the issue. Namely, you need to find a valid /etc/edid.txt file and copy it to the filesystem.
+You may run into a 640 x 480 resolution. Changing the kernel resolution and setting the environment boot arguments may not be not enough. There is a problem in reading the EDID code from HDMI monitor. Follow this [guide](http://www.udoo.org/docs/Troubleshooting/How_Can_I_Solve_My_HDMI_Issues) to resolve the issue. Namely, you need to find a valid /etc/edid.txt file and copy it to the filesystem.
 
 ## Congratulations
 
