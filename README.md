@@ -102,7 +102,7 @@ The Android source code is located in an [archive](http://udoo.org/download/file
     cd udoo-source/kernel_imx
     make menuconfig
 
-Navigate to Device Drivers > HID > Special Drivers. Make sure HID Multitouch panels are included(*).
+Navigate to Device Drivers > HID > Special Drivers. **Make sure HID Multitouch panels are included which corresponds to device.internal = 1 in your Input Device Configuration (IDC).** Alternatively, a modularized feature would correspond to device.internal = 0. IDCs will be explained in detail later. 
     
 ![Kernel Configuration](https://slack-files.com/files-tmb/T02FPMKLD-F0EH0P1UH-7b67cf73f9/kernel_configuration_special_hid_drivers_720.png)
 
