@@ -132,17 +132,25 @@ Run Minicom
 
 ## Push System Files to Android Filesystem
 
-**All built-in touch devices should have input device configuration files.** It is important to ensure that the value of the device.internal property is set correctly for all internal input devices.
+**All built-in touch devices should have input device configuration files.** 
 
-Definition: device.internal = 0 | 1
+Touch screens are touch devices that are associated with a display such that the user has the impression of directly manipulating items on screen.
 
-Specifies whether the input device is an internal built-in component as opposed to an externally attached (most likely removable) peripheral.
+It is important to ensure that the value of the device.internal property is set correctly for all internal input devices.
+
+    touch.deviceType = touchScreen
+
+This property specifies whether the input device is an internal built-in component as opposed to an externally attached (most likely removable) peripheral.
 
 If the value is 0, the device is external.
 If the value is 1, the device is internal.
 If the value is not specified, the default value is 0 for all devices on the USB (BUS_USB) or Bluetooth (BUS_BLUETOOTH) bus, 1 otherwise.
 
-**We set our screen to be included/internal in the kernel configuration step. The property device.internal should be set to 1.**
+**We set our screen to be included/internal in the kernel configuration step.**
+
+    device.internal = 1
+
+Here is the complete IDC.
 
     touch.deviceType = touchScreen
     touch.orientationAware = 1
