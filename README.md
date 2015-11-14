@@ -35,7 +35,7 @@ Git 1.7 or newer. You can find it at git-scm.com.
 
     sudo apt-get install git gnupg flex bison gperf build-essential \
     zip curl libc6-dev libncurses5-dev:i386 x11proto-core-dev \
-    libx11-dev:i386 libreadline6-dev:i386 libgl1-mesa-glx:i386 \
+    libx11-dev:i386 libreadline6-dev:i386 libglapi-mesa:i386 libgl1-mesa-glx:i386 \
     libgl1-mesa-dev g++-multilib mingw32 tofrodos \
     python-markdown libxml2-utils xsltproc zlib1g-dev:i386 \
     lib32z1 lib32ncurses5 lib32bz2-1.0 u-boot-tools minicom libncurses5-dev \
