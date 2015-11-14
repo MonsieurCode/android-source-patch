@@ -82,7 +82,19 @@ The Android source code is located in an [archive](http://udoo.org/download/file
         
         // here the rest of definitions comes
         
+        Benedikt Dietrich
 
+    I instead replaced the generic 720p entry in kernel/drivers/video/omap2/displays/panel-generic-dpi.c with the following entry.
+
+/* Chalkboard LCD 10″ 1280×800*/
+{
+    {
+        .x_res = 1280,
+        .y_res = 800,
+    },
+    .name = “generic_720p”,
+},
+        
 ## Configure Kernel (This is very important!)
 
     . setup udoo-eng
