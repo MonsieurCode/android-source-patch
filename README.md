@@ -24,7 +24,7 @@ Git 1.7 or newer. You can find it at git-scm.com.
 
     sudo add-apt-repository ppa:webupd8team/java
     sudo apt-get update
-    sudo apt-get install openjdk-6-jdk
+    sudo apt-get install oracle-java6-installer
 
 ## Select Oracle Java 6 as the Primary Alternative 
 
@@ -147,5 +147,6 @@ Additional help should be found [here](http://tryge.com/2013/06/15/build-android
 
 ## References 
 
-1. [Android Open Source Project](https://source.android.com/source/requirements.html)
-2. [UDOO compile Android 4.2.2 from sources](http://elinux.org/UDOO_compile_Android_4.2.2_from_sources)
+1. [UDOO compile Android 4.2.2 from sources](http://elinux.org/UDOO_compile_Android_4.2.2_from_sources)
+2. [Android Open Source Project](https://source.android.com/source/requirements.html)
+3. [How To Install Java on Ubuntu with Apt-Get](https://www.digitalocean.com/community/tutorials/how-to-install-java-on-ubuntu-with-apt-get)
