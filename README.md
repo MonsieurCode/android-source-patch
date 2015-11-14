@@ -91,7 +91,7 @@ The Android source code is located in an [archive](http://udoo.org/download/file
 
 Device Drivers > HID > Special Drivers > HID Multitouch panels (*)
     
-![Kernel Configuration](https://files.slack.com/files-pri/T02FPMKLD-F0EH0P1UH/kernel_configuration_special_hid_drivers.png)
+![Kernel Configuration](https://slack-files.com/files-tmb/T02FPMKLD-F0EH0P1UH-7b67cf73f9/kernel_configuration_special_hid_drivers_720.png)
 
 ## Build UBoot
 
