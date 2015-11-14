@@ -156,7 +156,18 @@ If you attempt to push the complete source code to this repository, you will get
     error: pack-objects died of signal 13
     error: failed to push some refs to 'git@github.com:MonsieurCode/udoo-source.git' 
 
-## Bonus: Setup a Mac OS build environment
+## Helpful Links 
+
+1. [UDOO compile Android 4.2.2 from sources](http://elinux.org/UDOO_compile_Android_4.2.2_from_sources)
+2. [Android Open Source Project](https://source.android.com/source/requirements.html)
+3. [How To Install Java on Ubuntu with Apt-Get](https://www.digitalocean.com/community/tutorials/how-to-install-java-on-ubuntu-with-apt-get)
+4. [UDOO Setup LVDS Panels](http://elinux.org/UDOO_setup_lvds_panels)
+5. [Input Device Configuration Files](https://source.android.com/devices/input/input-device-configuration-files.html)
+5. [Touch Devices | Android Open Source Project](https://source.android.com/devices/input/touch-devices.html)
+6. [How to setup correct LCD resolution](http://www.chalk-elec.com/?p=1420)
+7. [How to use our new 10-inch integrated LCD](http://www.chalk-elec.com/?p=2060)
+
+## Addendum: Setup a Mac OS build environment
 
 You can create a case-sensitive filesystem within your existing Mac OS environment using a disk image. To create the image, launch Disk Utility and select "New Image". A size of 25GB is the minimum to complete the build; larger numbers are more future-proof. Using sparse images saves space while allowing to grow later as the need arises. Be sure to select "case sensitive, journaled" as the volume format.
 
@@ -173,15 +184,3 @@ Setup [JENV](http://www.jenv.be/) to use multiple Java Versions
     brew install jenv
     
 Additional help should be found [here](http://tryge.com/2013/06/15/build-android-from-source-macosx/).
-
-## Helpful Links 
-
-1. [UDOO compile Android 4.2.2 from sources](http://elinux.org/UDOO_compile_Android_4.2.2_from_sources)
-2. [Android Open Source Project](https://source.android.com/source/requirements.html)
-3. [How To Install Java on Ubuntu with Apt-Get](https://www.digitalocean.com/community/tutorials/how-to-install-java-on-ubuntu-with-apt-get)
-4. [UDOO Setup LVDS Panels](http://elinux.org/UDOO_setup_lvds_panels)
-5. [Input Device Configuration Files](https://source.android.com/devices/input/input-device-configuration-files.html)
-5. [Touch Devices | Android Open Source Project](https://source.android.com/devices/input/touch-devices.html)
-6. [How to setup correct LCD resolution](http://www.chalk-elec.com/?p=1420)
-7. [How to use our new 10-inch integrated LCD](http://www.chalk-elec.com/?p=2060)
-
