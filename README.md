@@ -127,6 +127,8 @@ Run Minicom
 
 ## Boot Udoo on 15" Screen
 
+1366×768 sets resolution, “M” indicates the kernel will calculate a VESA mode on-the-fly instead of using modedb look-up, “@60” is the # of frames per second.
+
     setenv bootargs console=ttymxc1,115200 init=/init video=mxcfb0:dev=ldb,1366x768M@60,if=RGB24,bpp=32 video=mxcfb1:off video=mxcfb2:off fbmem=28M vmalloc=400M androidboot.console=ttymxc1 androidboot.hardware=freescale mem=1024M
     saveenv
 
