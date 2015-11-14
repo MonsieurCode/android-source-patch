@@ -16,8 +16,6 @@ GNU Make 3.81 -- 3.82, which you can download from gnu.org,
 JDK 7 to build the master branch of Android in the Android Open Source Project (AOSP); JDK 6 to build Gingerbread through KitKat; JDK 5 for Cupcake through Froyo. See Initializing a Build Environment for installation instructions by operating system.
 Git 1.7 or newer. You can find it at git-scm.com.
 
-## Install Required Packages (Ubuntu 14.04)
-
 ## Download and Install Ubuntu
 
 [Ubuntu 14.04](http://www.ubuntu.com/download)
@@ -85,12 +83,15 @@ The Android source code is located in an [archive](http://udoo.org/download/file
         // here the rest of definitions comes
         
 
-## Build Kernel
+## Configure Kernel (This is very important)
+
+Device Drivers > HID > Special Drivers > HID Multitouch panels (*)
 
     . setup udoo-eng
-    cd udoo-kitkat/kernel_imx
+    cd udoo-source/kernel_imx
     make menuconfig
-    make
+    
+[https://slack-files.com/files-tmb/T02FPMKLD-F0EH0P1UH-7b67cf73f9/kernel_configuration_special_hid_drivers_720.png
 
 ## Build UBoot
 
