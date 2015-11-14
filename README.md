@@ -78,14 +78,15 @@ The Android source code is located in an [archive](http://udoo.org/download/file
 
     . setup udoo-eng
     cd udoo-kitkat/kernel_imx
-    ./compile.sh
+    make menuconfig
+    make
 
 ## Build UBoot
 
     . setup udoo-eng
     cd udoo-kitkat/bootable/bootloader/uboot-imx
+    ./compile.sh -c
     ./compile.sh
-    make
 
 ## Build Android System Image
 
