@@ -113,7 +113,7 @@ Run Minicom
 
     sudo minicom -w
 
-## 15" Screen
+## Boot Udoo on 15" Screen
 
     setenv bootargs console=ttymxc1,115200 init=/init video=mxcfb0:dev=ldb,1366x768M@60,if=RGB24,bpp=32 video=mxcfb1:off video=mxcfb2:off fbmem=28M vmalloc=400M androidboot.console=ttymxc1 androidboot.hardware=freescale mem=1024M
     saveenv
@@ -124,9 +124,10 @@ Run Minicom
     adb push udoo-kitkat-diff/system /system
     adb reboot
 
-You'll know this has succeed when the Monsieur logo shows on reboot.
+You'll know this step has succeed when the Monsieur logo shows on reboot.
+![Monsieur Logo on Boot](https://slack-files.com/files-tmb/T02FPMKLD-F06RGJJ6L-b4bb3dab55/boot_1024.png)
 
-## 10" Screen
+## Boot Udoo on 10" Screen
 
     setenv bootargs console=ttymxc1,115200 init=/init video=mxcfb0:dev=hdmi,1280x800M@60,if=RGB24,bpp=32 video=mxcfb1:off video=mxcfb2:off fbmem=28M vmalloc=400M androidboot.console=ttymxc1 androidboot.hardware=freescale mem=1024M
     saveenv
