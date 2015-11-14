@@ -22,6 +22,10 @@ Git 1.7 or newer. You can find it at git-scm.com.
 
     [Ubuntu 14.04](http://www.ubuntu.com/download)
 
+## Install Tweak Tools
+
+    sudo apt-get install unity-tweak-tool gnome-tweak-tool
+
 ## Install Guake
 
     sudo apt-get install guake
