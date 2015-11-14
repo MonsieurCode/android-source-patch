@@ -83,7 +83,9 @@ The Android source code is located in an [archive](http://udoo.org/download/file
     ./compile.sh
     make
 
-## Build System Image
+## Build Android System Image
+
+Build everything with make. GNU make can handle parallel tasks with a -jN argument, and it's common to use a number of tasks N that's between 1 and 2 times the number of hardware threads on the computer being used for the build. For example, on a dual-E5520 machine (2 CPUs, 4 cores per CPU, 2 threads per core), the fastest builds are made with commands between make -j16 and make -j32.
 
     . setup udoo-eng
     cd udoo-kitkat
