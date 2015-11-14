@@ -1,4 +1,4 @@
-# udoo-source-patch
+# android-source-patch
 
 This repository contains any modifications to the original Udoo Android source code. **This repository does NOT include the entire UDOO Android KitKat source code.** You will need to download the [complete source code archive](http://udoo.org/download/files/Sources/), unzip it, and merge the changes here at build time. For generic Android Source building instructions, click [here](http://source.android.com/source/building.html).
 
@@ -15,6 +15,14 @@ Python 2.6 -- 2.7, which you can download from python.org.
 GNU Make 3.81 -- 3.82, which you can download from gnu.org,
 JDK 7 to build the master branch of Android in the Android Open Source Project (AOSP); JDK 6 to build Gingerbread through KitKat; JDK 5 for Cupcake through Froyo. See Initializing a Build Environment for installation instructions by operating system.
 Git 1.7 or newer. You can find it at git-scm.com.
+
+## Create Ubuntu Partition on Mac
+
+Boot into Recovery. In the following in the terminal...
+
+   csrutil disable
+   
+Then, install rEFInd and Ubuntu.
 
 ## Download and Install Ubuntu
 
@@ -99,7 +107,7 @@ The Android source code is located in an [archive](http://udoo.org/download/file
 ## Configure Kernel (This is very important!)
 
     . setup udoo-eng
-    cd udoo-source/kernel_imx
+    cd android-source/udoo/4.4.2/kernel_imx
     make menuconfig
 
 Navigate to Device Drivers > HID > Special Drivers. **Make sure HID Multitouch panels are included which corresponds to device.internal = 1 in your Input Device Configuration (IDC).** Alternatively, a modularized feature would correspond to device.internal = 0. IDCs will be explained in detail later. 
@@ -109,7 +117,7 @@ Navigate to Device Drivers > HID > Special Drivers. **Make sure HID Multitouch p
 ## Build UBoot
 
     . setup udoo-eng
-    cd udoo-kitkat/bootable/bootloader/uboot-imx
+    cd android-source/udoo/4.4.2/bootable/bootloader/uboot-imx
     ./compile.sh -c
     ./compile.sh
 
@@ -192,7 +200,7 @@ You'll know this step has succeed when the Monsieur logo shows on reboot.
     
 ## Fix Resolution
 
-You may run into a 640 x 480 resolution. Changing the setting the environment boot arguments is not enough. There is a problem in reading the EDID code from HDMI monitor. Follow this [guide](http://www.udoo.org/docs/Troubleshooting/How_Can_I_Solve_My_HDMI_Issues) to resolve the issue. Namely, you need to find a valid /etc/edid.txt file and copy it to the filesystem.
+You may run into a 640 x 480 resolution. Changing kernel resolution and setting the environment boot arguments may not be not enough. There is a problem in reading the EDID code from HDMI monitor. Follow this [guide](http://www.udoo.org/docs/Troubleshooting/How_Can_I_Solve_My_HDMI_Issues) to resolve the issue. Namely, you need to find a valid /etc/edid.txt file and copy it to the filesystem.
 
 ## Congratulations
 
@@ -216,7 +224,7 @@ If you attempt to push the complete source code to this repository, you will get
 6. [How to setup correct LCD resolution](http://www.chalk-elec.com/?p=1420)
 7. [How to use our new 10-inch integrated LCD](http://www.chalk-elec.com/?p=2060)
 
-## Addendum: Setup a Mac OS build environment
+## Addendum: Setup a native Mac OS build environment
 
 You can create a case-sensitive filesystem within your existing Mac OS environment using a disk image. To create the image, launch Disk Utility and select "New Image". A size of 25GB is the minimum to complete the build; larger numbers are more future-proof. Using sparse images saves space while allowing to grow later as the need arises. Be sure to select "case sensitive, journaled" as the volume format.
 
