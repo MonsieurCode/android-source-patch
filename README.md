@@ -44,6 +44,10 @@ Git 1.7 or newer. You can find it at git-scm.com.
 Download and install [libuuid](http://sourceforge.net/projects/libuuid/?source=typ_redirect)
 
     ./configure && make && sudo make install
+    
+Download and install [zlib](https://launchpad.net/ubuntu/+source/zlib/1:1.2.8.dfsg-1ubuntu1)
+
+    ./configure && make && sudo make install
 
 ## Downloading the Source
 
