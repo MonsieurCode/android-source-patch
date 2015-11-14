@@ -174,7 +174,7 @@ Setup [JENV](http://www.jenv.be/) to use multiple Java Versions
     
 Additional help should be found [here](http://tryge.com/2013/06/15/build-android-from-source-macosx/).
 
-## References 
+## Helpful Links 
 
 1. [UDOO compile Android 4.2.2 from sources](http://elinux.org/UDOO_compile_Android_4.2.2_from_sources)
 2. [Android Open Source Project](https://source.android.com/source/requirements.html)
