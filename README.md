@@ -172,10 +172,14 @@ You'll know this step has succeed when the Monsieur logo shows on reboot.
 
 ![Monsieur Logo on Boot](https://slack-files.com/files-tmb/T02FPMKLD-F06RGJJ6L-b4bb3dab55/boot_1024.png)
 
-## Boot Udoo on 10" Screen
+## Boot Udoo on 10" 1280x800 HDMI Screen
 
     setenv bootargs console=ttymxc1,115200 init=/init video=mxcfb0:dev=hdmi,1280x800M@60,if=RGB24,bpp=32 video=mxcfb1:off video=mxcfb2:off fbmem=28M vmalloc=400M androidboot.console=ttymxc1 androidboot.hardware=freescale mem=1024M
     saveenv
+    
+## Fix Resolution
+
+You may run into a 640 x 480 resolution. Changing the setting the environment boot arguments is not enough. There is a problem in reading the EDID code from HDMI monitor. Follow this [guide](http://www.udoo.org/docs/Troubleshooting/How_Can_I_Solve_My_HDMI_Issues) to resolve the issue. Namely, you need to find a valid /etc/edid.txt file and copy it to the filesystem.
 
 ## Congratulations
 
