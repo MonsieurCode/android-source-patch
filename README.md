@@ -89,7 +89,7 @@ The Android source code is located in an [archive](http://udoo.org/download/file
     cd udoo-source/kernel_imx
     make menuconfig
 
-Navigate to Device Drivers > HID > Special Drivers. Make sure HID Multitouch panels are modularized or included.
+Navigate to Device Drivers > HID > Special Drivers. Make sure HID Multitouch panels are included(*).
     
 ![Kernel Configuration](https://slack-files.com/files-tmb/T02FPMKLD-F0EH0P1UH-7b67cf73f9/kernel_configuration_special_hid_drivers_720.png)
 
@@ -131,6 +131,28 @@ Run Minicom
     saveenv
 
 ## Push System Files to Android Filesystem
+
+**All built-in touch devices should have input device configuration files.** It is important to ensure that the value of the device.internal property is set correctly for all internal input devices.
+
+Definition: device.internal = 0 | 1
+
+Specifies whether the input device is an internal built-in component as opposed to an externally attached (most likely removable) peripheral.
+
+If the value is 0, the device is external.
+If the value is 1, the device is internal.
+If the value is not specified, the default value is 0 for all devices on the USB (BUS_USB) or Bluetooth (BUS_BLUETOOTH) bus, 1 otherwise.
+
+**We set our screen to be included/internal in the kernel configuration step. device.internal = 1**
+
+    touch.deviceType = touchScreen
+    touch.orientationAware = 1
+    device.internal = 1
+    keyboard.layout = qwerty
+    keyboard.characterMap = qwerty2
+    keyboard.orientationAware = 1
+    keyboard.builtIn = 1
+    cursor.mode = navigation
+    cursor.orientationAware = 1
 
 You'll know this step has succeed when the Monsieur logo shows on reboot.
 
