@@ -20,13 +20,13 @@ Git 1.7 or newer. You can find it at git-scm.com.
 
 [Download Ubuntu](http://www.ubuntu.com/download)
 
-Install Java 6
+## Install Java 6
 
     sudo add-apt-repository ppa:webupd8team/java
     sudo apt-get update
     sudo apt-get install oracle-java6-installer
 
-Install Required Packages
+## Install Required Packages
 
     sudo apt-get install git gnupg flex bison gperf build-essential \
     zip curl libc6-dev libncurses5-dev:i386 x11proto-core-dev \
