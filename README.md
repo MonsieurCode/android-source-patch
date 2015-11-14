@@ -20,7 +20,7 @@ Git 1.7 or newer. You can find it at git-scm.com.
 
 Boot into Recovery. In the following in the terminal...
 
-   csrutil disable
+    csrutil disable
    
 Then, install rEFInd and Ubuntu.
 
