@@ -101,27 +101,33 @@ Build everything with make. GNU make can handle parallel tasks with a -jN argume
     croot
     sudo -E ./make_sd.sh /dev/sdc
 
-[Set Environment Boot Arguments](http://elinux.org/UDOO_setup_lvds_panels)
-
 Connect a serial cable to the Udoo and your computer. [Establish a connection](http://www.udoo.org/tutorial/connecting-via-serial-cable/).
 
-10" Screen
+A video tutorial of this step can be found [here](https://www.youtube.com/watch?v=7CYsKJ1kqsk).
 
-    setenv bootargs console=ttymxc1,115200 init=/init video=mxcfb0:dev=hdmi,1280x800M@60,if=RGB24,bpp=32 video=mxcfb1:off video=mxcfb2:off fbmem=28M vmalloc=400M androidboot.console=ttymxc1 androidboot.hardware=freescale mem=1024M
-    saveenv
-    
+Configure Minicom
+
+    sudo minicom -sw
+
+Run Minicom
+
+    sudo minicom -w
+
 15" Screen
 
     setenv bootargs console=ttymxc1,115200 init=/init video=mxcfb0:dev=ldb,1366x768M@60,if=RGB24,bpp=32 video=mxcfb1:off video=mxcfb2:off fbmem=28M vmalloc=400M androidboot.console=ttymxc1 androidboot.hardware=freescale mem=1024M
     saveenv
-
-A video tutorial of this step can be found [here](https://www.youtube.com/watch?v=7CYsKJ1kqsk).
 
 ## Push System Files to Android Filesystem
 
     adb remount
     adb push udoo-kitkat-diff/system /system
     adb reboot
+
+10" Screen
+
+    setenv bootargs console=ttymxc1,115200 init=/init video=mxcfb0:dev=hdmi,1280x800M@60,if=RGB24,bpp=32 video=mxcfb1:off video=mxcfb2:off fbmem=28M vmalloc=400M androidboot.console=ttymxc1 androidboot.hardware=freescale mem=1024M
+    saveenv
 
 ## Congratulations
 
@@ -157,3 +163,4 @@ Additional help should be found [here](http://tryge.com/2013/06/15/build-android
 1. [UDOO compile Android 4.2.2 from sources](http://elinux.org/UDOO_compile_Android_4.2.2_from_sources)
 2. [Android Open Source Project](https://source.android.com/source/requirements.html)
 3. [How To Install Java on Ubuntu with Apt-Get](https://www.digitalocean.com/community/tutorials/how-to-install-java-on-ubuntu-with-apt-get)
+4. [UDOO Setup LVDS Panels](http://elinux.org/UDOO_setup_lvds_panels)
