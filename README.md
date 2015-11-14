@@ -94,14 +94,13 @@ The Android source code is located in an [archive](http://udoo.org/download/file
 
     I instead replaced the generic 720p entry in kernel/drivers/video/omap2/displays/panel-generic-dpi.c with the following entry.
 
-/* Chalkboard LCD 10″ 1280×800*/
-
     {
        {
            .x_res = 1280,
            .y_res = 800,
+           ...
         },
-        .name = “generic_720p”,
+        .name = “generic”,
     },
         
 ## Configure Kernel (This is very important!)
@@ -114,7 +113,7 @@ Navigate to Device Drivers > HID > Special Drivers. **Make sure HID Multitouch p
     
 ![Kernel Configuration](https://slack-files.com/files-tmb/T02FPMKLD-F0EH0P1UH-7b67cf73f9/kernel_configuration_special_hid_drivers_720.png)
 
-## Build UBoot
+## Build U-Boot
 
     . setup udoo-eng
     cd android-source/udoo/4.4.2/bootable/bootloader/uboot-imx
