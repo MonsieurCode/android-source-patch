@@ -87,7 +87,7 @@ The Android source code is located in an [archive](http://udoo.org/download/file
 
     . setup udoo-eng
     cd udoo-kitkat
-    make
+    time make -j2
 
 ## Flash SD Card
 
