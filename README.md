@@ -168,3 +168,5 @@ Additional help should be found [here](http://tryge.com/2013/06/15/build-android
 2. [Android Open Source Project](https://source.android.com/source/requirements.html)
 3. [How To Install Java on Ubuntu with Apt-Get](https://www.digitalocean.com/community/tutorials/how-to-install-java-on-ubuntu-with-apt-get)
 4. [UDOO Setup LVDS Panels](http://elinux.org/UDOO_setup_lvds_panels)
+5. [Input Device Configuration Files](https://source.android.com/devices/input/input-device-configuration-files.html)
+5. [Touch Devices | Android Open Source Project](https://source.android.com/devices/input/touch-devices.html)
