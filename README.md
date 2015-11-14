@@ -183,3 +183,5 @@ Additional help should be found [here](http://tryge.com/2013/06/15/build-android
 5. [Input Device Configuration Files](https://source.android.com/devices/input/input-device-configuration-files.html)
 5. [Touch Devices | Android Open Source Project](https://source.android.com/devices/input/touch-devices.html)
 6. [How to setup correct LCD resolution](http://www.chalk-elec.com/?p=1420)
+7. [How to use our new 10-inch integrated LCD](http://www.chalk-elec.com/?p=2060)
+
