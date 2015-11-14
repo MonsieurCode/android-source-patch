@@ -91,7 +91,7 @@ Device Drivers > HID > Special Drivers > HID Multitouch panels (*)
     cd udoo-source/kernel_imx
     make menuconfig
     
-[https://slack-files.com/files-tmb/T02FPMKLD-F0EH0P1UH-7b67cf73f9/kernel_configuration_special_hid_drivers_720.png
+![Kernel Configuration](https://slack-files.com/files-tmb/T02FPMKLD-F0EH0P1UH-7b67cf73f9/kernel_configuration_special_hid_drivers_720.png)
 
 ## Build UBoot
 
