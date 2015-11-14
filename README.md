@@ -39,7 +39,7 @@ Git 1.7 or newer. You can find it at git-scm.com.
     libgl1-mesa-dev g++-multilib mingw32 tofrodos \
     python-markdown libxml2-utils xsltproc zlib1g-dev:i386 \
     lib32z1 lib32ncurses5 lib32bz2-1.0 u-boot-tools minicom libncurses5-dev \
-    liblzo2-dev:i386
+    liblzo2-dev:i386 libswitch-perl libtool
 
 Download and install [libuuid](http://sourceforge.net/projects/libuuid/?source=typ_redirect)
 
