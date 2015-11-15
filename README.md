@@ -72,7 +72,7 @@ Apply the patch
 
     rsync -a -P android-source-patch/ android-source
     
-## Modify Kernel
+## Modify Kernel Source
 
 [Add Touchscreen Drivers](http://www.chalk-elec.com/?p=2028)
 
