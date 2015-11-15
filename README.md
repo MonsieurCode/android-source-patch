@@ -101,7 +101,7 @@ Apply the patch
         
         Benedikt Dietrich
 
-    I instead replaced the generic 720p entry in kernel/drivers/video/omap2/displays/panel-generic-dpi.c with the following entry.
+I instead replaced the generic 720p entry in kernel/drivers/video/omap2/displays/panel-generic-dpi.c with the following entry.
 
     {
        {
