@@ -72,7 +72,7 @@ Apply the patch
 
     rsync -a -P android-source-patch/ android-source
     
-## Modify Kernel Source
+## Modify Kernel Human Interaction Device (HID) Source to Enable Touch
 
 [Add Touchscreen Drivers](http://www.chalk-elec.com/?p=2028)
 
@@ -90,6 +90,8 @@ Apply the patch
         // here the rest of definitions comes
         
         Benedikt Dietrich
+
+## Modify Kernel Video Source to Achieve 720p
 
 I instead replaced the generic 720p entry in kernel/drivers/video/omap2/displays/panel-generic-dpi.c with the following entry.
 
