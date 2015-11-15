@@ -61,6 +61,10 @@ Download and install [libuuid](http://sourceforge.net/projects/libuuid/?source=t
 Download and install [zlib](https://launchpad.net/ubuntu/+source/zlib/1:1.2.8.dfsg-1ubuntu1)
 
     ./configure && make && sudo make install
+    
+## Install ADB
+
+    sudo apt-get install android-tools-adb
 
 ## Downloading the Source
 
