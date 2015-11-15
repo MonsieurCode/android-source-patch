@@ -72,7 +72,7 @@ Apply the patch
 
     rsync -a -P android-source-patch/ android-source
     
-## Modify Kernel Human Interaction Device (HID) Source to Enable Touch
+## Modify Kernel [HID](http://lii-enac.fr/en/architecture/linux-input/multitouch-devices.html) Source to Enable Touch
 
 [Add Touchscreen Drivers](http://www.chalk-elec.com/?p=2028)
 
@@ -93,7 +93,7 @@ Apply the patch
 
 ## Modify Kernel Video Source to Achieve 720p
 
-I instead replaced the generic 720p entry in kernel/drivers/video/omap2/displays/panel-generic-dpi.c with the following entry.
+Place the generic 720p entry in kernel/drivers/video/omap2/displays/panel-generic-dpi.c with the following...
 
     {
        {
@@ -233,3 +233,4 @@ If you attempt to push the complete source code to this repository, you will get
 7. [Touch Devices | Android Open Source Project](https://source.android.com/devices/input/touch-devices.html)
 8. [How to setup correct LCD resolution](http://www.chalk-elec.com/?p=1420)
 9. [How to use our new 10-inch integrated LCD](http://www.chalk-elec.com/?p=2060)
+10. [Multitouch Compatibility Table][http://lii-enac.fr/en/architecture/linux-input/multitouch-devices.html]
