@@ -71,7 +71,11 @@ Dowload the patch
 Apply the patch
 
     rsync -a -P android-source-patch/ android-source
-    
+
+## Develop Driver (If Necessary)
+
+Here is a comprehensive guide to (HID driver development)[http://lii-enac.fr/en/architecture/linux-input/multitouch-howto.html].
+
 ## Modify Kernel [HID](http://lii-enac.fr/en/architecture/linux-input/multitouch-devices.html) Source to Enable Touch
 
 [Add Touchscreen Drivers](http://www.chalk-elec.com/?p=2028)
