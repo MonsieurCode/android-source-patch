@@ -203,6 +203,15 @@ You'll know this step has succeed when the Monsieur logo shows on reboot.
 
 You may run into a 640 x 480 resolution. Changing the kernel resolution and setting the environment boot arguments may not be not enough. There is a problem in reading the EDID code from HDMI monitor. Follow this [guide](http://www.udoo.org/docs/Troubleshooting/How_Can_I_Solve_My_HDMI_Issues) to resolve the issue. Namely, you need to find a valid /etc/edid.txt file and copy it to the filesystem.
 
+Interestingly, you can override the screen's size and density.
+
+    adb shell wm size 1280x800
+    adb shell wm size reset
+    adb shell wm density 160
+    adb shell wm reset
+    
+Unfortunately, this doesn't address the physical size issue. That's a kernel issue.
+
 ## Congratulations
 
 If all steps were followed correctly, you should have successfully built an Udoo Android Kitkat system image with multi-touch capabilities.
