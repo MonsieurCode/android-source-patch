@@ -44,24 +44,22 @@ Then, install rEFInd and Ubuntu.
     sudo update-alternatives --config java
     sudo update-alternatives --config javac
 
-## Install Required Packages
+Install required packages - ubuntu 13.10 and 14.04
 
-    sudo apt-get install git gnupg flex bison gperf build-essential \
-    zip curl libc6-dev libncurses5-dev:i386 x11proto-core-dev \
-    libx11-dev:i386 libreadline6-dev:i386 libglapi-mesa:i386 libgl1-mesa-glx:i386 \
-    libgl1-mesa-dev g++-multilib mingw32 tofrodos \
-    python-markdown libxml2-utils xsltproc zlib1g-dev:i386 \
-    lib32z1 lib32ncurses5 lib32bz2-1.0 u-boot-tools minicom libncurses5-dev \
-    liblzo2-dev:i386 libswitch-perl libtool
+    sudo apt-get install git-core gnupg flex bison gperf libsdl1.2-dev\
+    libesd0-dev libwxgtk2.8-dev squashfs-tools build-essential zip curl\
+    libncurses5-dev zlib1g-dev pngcrush schedtool libxml2 libxml2-utils\
+    xsltproc lzop libc6-dev schedtool g++-multilib lib32z1-dev lib32ncurses5-dev\
+    lib32readline-gplv2-dev gcc-multilib libswitch-perl
+   
+Install ARM toolchain and building kernel related pacakges
 
-Download and install [libuuid](http://sourceforge.net/projects/libuuid/?source=typ_redirect)
+    sudo apt-get install lzop libncurses5-dev
+   
+Install libraries for other tools
 
-    ./configure && make && sudo make install
-    
-Download and install [zlib](https://launchpad.net/ubuntu/+source/zlib/1:1.2.8.dfsg-1ubuntu1)
-
-    ./configure && make && sudo make install
-    
+    sudo apt-get install libssl1.0.0 libssl-dev u-boot-tools uuid-dev liblzo2-dev
+   
 ## Install ADB
 
     sudo apt-get install android-tools-adb
