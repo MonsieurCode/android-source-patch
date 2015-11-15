@@ -28,12 +28,6 @@ Then, install rEFInd and Ubuntu.
 
 [Ubuntu 14.04](http://www.ubuntu.com/download)
 
-## Install Tweak Tools
-
-    sudo apt-get install unity-tweak-tool gnome-tweak-tool
-
-If you have a Retina display, open Tweak Tool, navigate to Fonts, and set the scaling factor to 2.0.
-
 ## Install Guake
 
     sudo apt-get install guake
@@ -74,6 +68,15 @@ The Android source code is located in an [archive](http://udoo.org/download/file
 
     cd ~/Downloads
     wget http://udoo.org/download/files/Sources/UDOO_Android_4.4.2_Source_v1.0.tar.gz
+    mkdir ~/Documents/android-source
+    
+Dowload the patch
+
+    git clone git@github.com:MonsieurCode/android-source-patch.git
+
+Apply the patch
+
+    rsync -a -P android-source-patch/ android-source
     
 ## Modify Kernel
 
