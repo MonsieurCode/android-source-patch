@@ -229,13 +229,14 @@ If you attempt to push the complete source code to this repository, you will get
 ## Helpful Links 
 
 1. [UDOO compile Android 4.2.2 from sources](http://elinux.org/UDOO_compile_Android_4.2.2_from_sources)
-2. [Android Open Source Project](https://source.android.com/source/requirements.html)
-3. [How To Install Java on Ubuntu with Apt-Get](https://www.digitalocean.com/community/tutorials/how-to-install-java-on-ubuntu-with-apt-get)
-4. [UDOO Setup LVDS Panels](http://elinux.org/UDOO_setup_lvds_panels)
-5. [Input Device Configuration Files](https://source.android.com/devices/input/input-device-configuration-files.html)
-5. [Touch Devices | Android Open Source Project](https://source.android.com/devices/input/touch-devices.html)
-6. [How to setup correct LCD resolution](http://www.chalk-elec.com/?p=1420)
-7. [How to use our new 10-inch integrated LCD](http://www.chalk-elec.com/?p=2060)
+2. [Build Android for Radxa Rock Pro](http://radxa.com/Rock/Android_Build)
+3. [Android Open Source Project](https://source.android.com/source/requirements.html)
+4. [How To Install Java on Ubuntu with Apt-Get](https://www.digitalocean.com/community/tutorials/how-to-install-java-on-ubuntu-with-apt-get)
+5. [UDOO Setup LVDS Panels](http://elinux.org/UDOO_setup_lvds_panels)
+6. [Input Device Configuration Files](https://source.android.com/devices/input/input-device-configuration-files.html)
+7. [Touch Devices | Android Open Source Project](https://source.android.com/devices/input/touch-devices.html)
+8. [How to setup correct LCD resolution](http://www.chalk-elec.com/?p=1420)
+9. [How to use our new 10-inch integrated LCD](http://www.chalk-elec.com/?p=2060)
 
 ## Addendum: Setup a native Mac OS build environment
 
