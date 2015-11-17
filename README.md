@@ -75,7 +75,7 @@ Apply the patch
 
 ## Develop Driver (If Necessary)
 
-Here is a comprehensive guide to (HID driver development)[http://lii-enac.fr/en/architecture/linux-input/multitouch-howto.html].
+Here is a comprehensive guide to [HID driver development](http://lii-enac.fr/en/architecture/linux-input/multitouch-howto.html).
 
 ## Modify Kernel [HID](http://lii-enac.fr/en/architecture/linux-input/multitouch-devices.html) Source to Enable Touch
 
