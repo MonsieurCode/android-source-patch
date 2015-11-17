@@ -50,7 +50,7 @@ Install ARM toolchain and building kernel related pacakges
    
 Install libraries for other tools
 
-    sudo apt-get install libssl1.0.0 libssl-dev u-boot-tools uuid-dev liblzo2-dev
+    sudo apt-get install libssl1.0.0 libssl-dev u-boot-tools uuid-dev liblzo2-dev libswitch-perl
    
 ## Install ADB
 
