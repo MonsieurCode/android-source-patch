@@ -61,6 +61,7 @@ Install libraries for other tools
 The Android source code is located in an [archive](http://udoo.org/download/files/Sources/) hosted by Udoo.
 
     cd ~/Downloads
+    wget http://download.udoo.org/files/Sources/UDOO_Android_4.3_Source_v2.0.tar.gz
     wget http://udoo.org/download/files/Sources/UDOO_Android_4.4.2_Source_v1.0.tar.gz
     mkdir ~/Documents/android-source
     
