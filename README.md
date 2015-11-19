@@ -38,7 +38,7 @@ Git 1.7 or newer. You can find it at git-scm.com.
 
 Install required packages - ubuntu 13.10 and 14.04
 
-    sudo apt-get install git-core gnupg flex bison gperf libsdl1.2-dev\
+    sudo apt-get -y install git-core gnupg flex bison gperf libsdl1.2-dev\
     libesd0-dev libwxgtk2.8-dev squashfs-tools build-essential zip curl\
     libncurses5-dev zlib1g-dev pngcrush schedtool libxml2 libxml2-utils\
     xsltproc lzop libc6-dev schedtool g++-multilib lib32z1-dev lib32ncurses5-dev\
