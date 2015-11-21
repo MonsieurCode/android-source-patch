@@ -239,3 +239,4 @@ If you attempt to push the complete source code to this repository, you will get
 8. [How to setup correct LCD resolution](http://www.chalk-elec.com/?p=1420)
 9. [How to use our new 10-inch integrated LCD](http://www.chalk-elec.com/?p=2060)
 10. [Multitouch Compatibility Table](http://lii-enac.fr/en/architecture/linux-input/multitouch-devices.html)
+11. [The Linux Kernel](https://www.youtube.com/watch?v=XAo1QCQXODo)
