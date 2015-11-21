@@ -231,13 +231,9 @@ Unfortunately, this doesn't address the physical size issue. That's a kernel iss
     hub 2-1:1.0: unable to enumerate USB device on port 2
 
 
-## Prepare a Distro
+## Build Kernel
 
-It is sometimes useful to prepare a new Distro to be stored. To do this, once the new images are built following the procedures described in the previous Sections, it is sufficient to call the command
-
-    HOST$ ./prepare_distro.sh [distro_name]
-
-Called without arguments, the script creates a new folder UDOO_Android_4.2_Distro, containing the freshly built Android system images, and the scripts to use them. An archive UDOO_Android_4.2_Distro.tar.gz is also prepared for distribution. The optional parameter [distro_name] can be used to customize the folder and archive name. Once the archive is ready, its use is described in Run Android section.
+    make bootimage
 
 ## Congratulations
 
