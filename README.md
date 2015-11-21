@@ -98,16 +98,15 @@ Here is a comprehensive guide to [HID driver development](http://lii-enac.fr/en/
 
 ## Modify Kernel Video Source to Achieve 720p
 
-Place the generic 720p entry in kernel/drivers/video/omap2/displays/panel-generic-dpi.c with the following...
+Add an entry to kernel/drivers/video/mxc_edid.c.
 
-    {
-       {
-           .x_res = 1280,
-           .y_res = 800,
-           ...
+    const struct fb_videomode mxc_cea_mode[64] = {
+    /* #48: 1280x800p@60Hz 16:10 */
+        [48] = {
+                NULL, 60, 1280, 800, 14430, 80, 48, 15, 2, 32, 47, 0,
+                FB_VMODE_NONINTERLACED, 0
         },
-        .name = “generic”,
-    },
+    }
         
 ## Configure Kernel (This is very important!)
 
