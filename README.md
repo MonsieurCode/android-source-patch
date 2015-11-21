@@ -216,6 +216,12 @@ Interestingly, you can override the screen's size and density.
     
 Unfortunately, this doesn't address the physical size issue. That's a kernel issue.
 
+## Fix Pixel Density
+
+Here's the DPI setting from Udoo's init.rc file. Set the density to 160dpi, default 128dpi is not good.
+
+    setprop ro.sf.lcd_density 160
+
 ## Fix Touch
 
     usb 2-1.2: new full speed USB device number 11 using fsl-ehci
@@ -229,7 +235,6 @@ Unfortunately, this doesn't address the physical size issue. That's a kernel iss
     usb 2-1.2: new full speed USB device number 14 using fsl-ehci
     usb 2-1.2: device not accepting address 14, error -32
     hub 2-1:1.0: unable to enumerate USB device on port 2
-
 
 ## Build Kernel
 
