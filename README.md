@@ -134,7 +134,7 @@ Build everything with make. GNU make can handle parallel tasks with a -jN argume
     cd udoo-kitkat
     time make -j2
 
-## Flash SD Card
+## Make SD Card
 
     croot
     sudo -E ./make_sd.sh /dev/sdc
