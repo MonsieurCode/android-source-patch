@@ -216,6 +216,20 @@ Interestingly, you can override the screen's size and density.
     
 Unfortunately, this doesn't address the physical size issue. That's a kernel issue.
 
+## Fix Touch
+
+    usb 2-1.2: new full speed USB device number 11 using fsl-ehci
+    usb 2-1.2: device descriptor read/64, error -32
+    usb 2-1.2: device descriptor read/64, error -32
+    usb 2-1.2: new full speed USB device number 12 using fsl-ehci
+    usb 2-1.2: device descriptor read/64, error -32
+    usb 2-1.2: device descriptor read/64, error -32
+    usb 2-1.2: new full speed USB device number 13 using fsl-ehci
+    usb 2-1.2: device not accepting address 13, error -32
+    usb 2-1.2: new full speed USB device number 14 using fsl-ehci
+    usb 2-1.2: device not accepting address 14, error -32
+    hub 2-1:1.0: unable to enumerate USB device on port 2
+
 ## Congratulations
 
 If all steps were followed correctly, you should have successfully built an Udoo Android Kitkat system image with multi-touch capabilities.
