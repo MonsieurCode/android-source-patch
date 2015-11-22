@@ -107,6 +107,14 @@ Add an entry to kernel/drivers/video/mxc_edid.c.
                 FB_VMODE_NONINTERLACED, 0
         },
     }
+
+Replace the 640x800 entry kernel/drivers/video/mxc_hdmi.c.
+
+    static const struct fb_videomode vga_mode = {
+        /* 1280x800 @ 60 Hz, 31.5 kHz hsync */
+        NULL, 60, 1280, 800, 14430, 80, 48, 15, 2, 32, 47, 0,
+        FB_VMODE_NONINTERLACED, FB_MODE_IS_DETAILED,
+    };
         
 ## Configure Kernel (This is very important!)
 
