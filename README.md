@@ -71,7 +71,7 @@ Dowload the patch
 
 Apply the patch
 
-    rsync -a -P android-source-patch/ android-source
+    rsync -a -P ~/Documents/android-source-patch/ ~/Documents/android-source/
 
 ## Develop Driver (If Necessary)
 
