@@ -71,6 +71,16 @@ struct joydev_client {
 	struct list_head node;
 };
 
+static struct input_device_id evdev_blacklist[] = {
+	{/* Added by EETI*/}
+	{
+	.flags = INPUT_DEVICE_ID_MATCH_BUS | INPUT_DEVICE_ID_MATCH_VENDOR,
+	.bustype = BUS_USB,
+	.vendor = 0x0EEF,
+	},
+	{}, /* Terminating entry */
+}	
+
 static struct joydev *joydev_table[JOYDEV_MINORS];
 static DEFINE_MUTEX(joydev_table_mutex);
 

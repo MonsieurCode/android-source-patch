@@ -54,6 +54,16 @@ struct evdev_client {
 	struct input_event buffer[];
 };
 
+static struct input_device_id evdev_blacklist[] = {
+	{/* Added by EETI*/}
+	{
+	.flags = INPUT_DEVICE_ID_MATCH_BUS | INPUT_DEVICE_ID_MATCH_VENDOR,
+	.bustype = BUS_USB,
+	.vendor = 0x0EEF,
+	},
+	{}, /* Terminating entry */
+}	
+
 static struct evdev *evdev_table[EVDEV_MINORS];
 static DEFINE_MUTEX(evdev_table_mutex);
 
@@ -1049,6 +1059,7 @@ static struct input_handler evdev_handler = {
 	.minor		= EVDEV_MINOR_BASE,
 	.name		= "evdev",
 	.id_table	= evdev_ids,
+	.blacklist	= evdev_blacklist, /* Added by EETI */
 };
 
 static int __init evdev_init(void)
