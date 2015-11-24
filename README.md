@@ -29,7 +29,7 @@ Git 1.7 or newer. You can find it at git-scm.com.
 
     sudo add-apt-repository ppa:webupd8team/java
     sudo apt-get update
-    sudo apt-get install oracle-java6-installer
+    sudo apt-get -y install oracle-java6-installer
 
 ## Select Oracle Java 6 as the Primary Alternative 
 
@@ -38,15 +38,11 @@ Git 1.7 or newer. You can find it at git-scm.com.
 
 Install required packages - ubuntu 13.10 and 14.04
 
-    sudo apt-get -y install git-core gnupg flex bison gperf libsdl1.2-dev\
-    libesd0-dev libwxgtk2.8-dev squashfs-tools build-essential zip curl\
-    libncurses5-dev zlib1g-dev pngcrush schedtool libxml2 libxml2-utils\
-    xsltproc lzop libc6-dev schedtool g++-multilib lib32z1-dev lib32ncurses5-dev\
-    lib32readline-gplv2-dev gcc-multilib libswitch-perl
+    sudo apt-get -y install git-core gnupg flex bison gperf libsdl1.2-dev libesd0-dev libwxgtk2.8-dev squashfs-tools build-essential zip curl libncurses5-dev zlib1g-dev pngcrush schedtool libxml2 libxml2-utils xsltproc lzop libc6-dev schedtool g++-multilib lib32z1-dev lib32ncurses5-dev lib32readline-gplv2-dev gcc-multilib libswitch-perl
    
 Install ARM toolchain and building kernel related pacakges
 
-    sudo apt-get install lzop libncurses5-dev
+    sudo apt-get -y install lzop libncurses5-dev
    
 Install libraries for other tools
 
