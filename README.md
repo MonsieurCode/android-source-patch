@@ -22,7 +22,7 @@ Git 1.7 or newer. You can find it at git-scm.com.
 
 ## Install Guake (Optional)
 
-    sudo apt-get install guake
+    sudo apt-get -y install guake
     sudo ln -s /usr/share/applications/guake.desktop /etc/xdg/autostart/
 
 ## Install Java 6
