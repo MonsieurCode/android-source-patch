@@ -1059,7 +1059,7 @@ static struct input_handler evdev_handler = {
 	.minor		= EVDEV_MINOR_BASE,
 	.name		= "evdev",
 	.id_table	= evdev_ids,
-	.blacklist	= evdev_blacklist, /* Added by EETI */
+//	.blacklist	= evdev_blacklist, /* Added by EETI */
 };
 
 static int __init evdev_init(void)
