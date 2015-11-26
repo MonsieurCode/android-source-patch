@@ -82,8 +82,11 @@ Here is a comprehensive guide to [HID driver development](http://lii-enac.fr/en/
         /* AUO 10" */
         { .driver_data = MT_CLS_DEFAULT, HID_USB_DEVICE(0x27C6,0x07D3) }, 
         
-        /* Chalkboard Electronics 7" and 10" */
+        /* Chalkboard Electronics 7" */
         { .driver_data = MT_CLS_DEFAULT, HID_USB_DEVICE(0x04D8,0xF724) },
+        
+        /* Chalkboard Electronics 10" */
+        { .driver_data = MT_CLS_DEFAULT, HID_USB_DEVICE(0x1B96,0x07D3) },
         
         /* Chalkboard Electronics 14" */
         { .driver_data = MT_CLS_DEFAULT, HID_USB_DEVICE(0x0EEF,0xA107) },
