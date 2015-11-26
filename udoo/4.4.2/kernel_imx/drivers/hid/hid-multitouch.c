@@ -630,8 +630,11 @@ static const struct hid_device_id mt_devices[] = {
 		HID_USB_DEVICE(USB_VENDOR_ID_CANDO,
 			USB_DEVICE_ID_CANDO_MULTI_TOUCH_15_6) },
 			
-	/* Chalkboard Electronics 7" and 10" */
+	/* Chalkboard Electronics 7" */
     	{ .driver_data = MT_CLS_DEFAULT, HID_USB_DEVICE(USB_VENDOR_ID_MICROCHIP,0xF724) },
+    	
+    	/* Chalkboard Electronics 10" */
+    	{ .driver_data = MT_CLS_DEFAULT, HID_USB_DEVICE(USB_VENDOR_ID_NTRIG,0x07D3) },
 
     	/* Chalkboard Electronics 14" */
     	{ .driver_data = MT_CLS_DEFAULT, HID_USB_DEVICE(USB_VENDOR_ID_DWAV,0xA107) },
