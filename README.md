@@ -91,9 +91,9 @@ Here is a comprehensive guide to [HID driver development](http://lii-enac.fr/en/
         /* Chalkboard Electronics 14" */
         { .driver_data = MT_CLS_DEFAULT, HID_USB_DEVICE(0x0EEF,0xA107) },
         
-        // here the rest of definitions comes
+        // ...
         
-        Benedikt Dietrich
+    }
 
 ## Modify Kernel Video Source to Achieve 720p
 
