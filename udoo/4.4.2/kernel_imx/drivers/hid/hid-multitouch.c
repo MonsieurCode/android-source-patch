@@ -611,7 +611,15 @@ static const struct hid_device_id mt_devices[] = {
 	{ .driver_data = MT_CLS_DEFAULT,
 		HID_USB_DEVICE(USB_VENDOR_ID_ACTIONSTAR,
 			USB_DEVICE_ID_ACTIONSTAR_1011) },
-			
+
+	/* ATMEL panels */
+	{ .driver_data = MT_CLS_DEFAULT, HID_USB_DEVICE(USB_VENDOR_ID_ATMEL,
+    		0x07d3) },
+    	{ .driver_data = MT_CLS_DEFAULT, HID_USB_DEVICE(USB_VENDOR_ID_ATMEL,
+    		0x07d4) },
+	{ .driver_data = MT_CLS_DEFAULT, HID_USB_DEVICE(USB_VENDOR_ID_ATMEL,
+    		0x07d6) },			
+
 	/* AUO panels */
     	{ .driver_data = MT_CLS_DEFAULT, HID_USB_DEVICE(USB_VENDOR_ID_AUO,
     		USB_DEVICE_ID_G101EVN01_0) },
