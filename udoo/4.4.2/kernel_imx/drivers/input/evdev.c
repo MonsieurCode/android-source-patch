@@ -1043,11 +1043,30 @@ MODULE_DEVICE_TABLE(input, evdev_ids);
 
 bool static evdev_match(struct input_handler *handler, struct input_dev *dev) 
 {
+	/* Avoid ATMEL USB touchscreens */
+	#define VID_ATMEL 0x03EB
+	if ((BUS_USB == dev->id.bustype)&&(VID_ATMEL==dev->id.vendor))
+		return false;
+
+	/* Avoid AU0 USB touchscreens */
+	#define VID_AUO 0x27C6
+	if ((BUS_USB == dev->id.bustype)&&(VID_AUO==dev->id.vendor))
+		return false;
+
 	/* Avoid EETI USB touchscreens */
 	#define VID_EETI 0x0EEF
-	if ((BUS_USB == dev->id.bustype)&&(VID_EETI==dev->id.vendor)) {
+	if ((BUS_USB == dev->id.bustype)&&(VID_EETI==dev->id.vendor))
 		return false;
-	}
+	
+	/* Avoid Microchip USB touchscreens */
+	#define VID_MICROCHIP 0x048F
+	if ((BUS_USB == dev->id.bustype)&&(VID_MICROCHIP==dev->id.vendor))
+		return false;
+
+	/* Avoid N-trig USB touchscreens */
+	#define VID_NTRIG 0x1B96
+	if ((BUS_USB == dev->id.bustype)&&(VID_NTRIG==dev->id.vendor))
+		return false;
 	
 	return true;
 }
