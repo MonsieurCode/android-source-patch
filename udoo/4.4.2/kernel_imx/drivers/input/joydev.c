@@ -802,6 +802,11 @@ static bool joydev_match(struct input_handler *handler, struct input_dev *dev)
 	if (test_bit(EV_KEY, dev->evbit) && test_bit(BTN_DIGI, dev->keybit))
 		return false;
 
+	/* Avoid EETI USB touchscreens */
+	#define VID_EETI 0x0EEF
+	if ((BUS_USB == dev->id.bustype)&&(VID_EETI==dev->id.vendor)) {
+		return false;
+
 	return true;
 }
 
