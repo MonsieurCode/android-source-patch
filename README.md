@@ -247,6 +247,11 @@ Here's the DPI setting from Udoo's init.rc file. Set the density to 160dpi, defa
 
     make bootimage
 
+## Pull Kernel Configuration
+
+    adb remount
+    adb pull /proc/config.gz
+
 ## Congratulations
 
 If all steps were followed correctly, you should have successfully built an Udoo Android Kitkat system image with multi-touch capabilities.
