@@ -1,0 +1,918 @@
+diff --git a/bootable/bootloader/uboot-imx/board/freescale/mx6_udoo/mx6_udoo.c b/bootable/bootloader/uboot-imx/board/freescale/mx6_udoo/mx6_udoo.c
+index 60683a5..0d85042 100644
+--- a/bootable/bootloader/uboot-imx/board/freescale/mx6_udoo/mx6_udoo.c
++++ b/bootable/bootloader/uboot-imx/board/freescale/mx6_udoo/mx6_udoo.c
+@@ -1734,8 +1734,8 @@ void configure_arduino_serial_programming(void)
+        u32 reg;
+        
+ #ifdef CONFIG_MX6Q
+-       mxc_iomux_v3_setup_pad(MX6Q_PAD_GPIO_0__GPIO_1_0);
+-       mxc_iomux_v3_setup_pad(MX6Q_PAD_DISP0_DAT0__GPIO_4_21);
++       //mxc_iomux_v3_setup_pad(MX6Q_PAD_GPIO_0__GPIO_1_0);
++       //mxc_iomux_v3_setup_pad(MX6Q_PAD_DISP0_DAT0__GPIO_4_21);
+        mxc_iomux_v3_setup_pad(MX6Q_PAD_KEY_COL0__GPIO_4_6);
+        mxc_iomux_v3_setup_pad(MX6Q_PAD_KEY_ROW0__GPIO_4_7);
+        mxc_iomux_v3_setup_pad(MX6Q_PAD_CSI0_DAT11__GPIO_5_29);
+diff --git a/bootable/bootloader/uboot-imx/include/configs/mx6q_udoo.h b/bootable/bootloader/uboot-imx/include/configs/mx6q_udoo.h
+index f11e8c7..876fdd8 100644
+--- a/bootable/bootloader/uboot-imx/include/configs/mx6q_udoo.h
++++ b/bootable/bootloader/uboot-imx/include/configs/mx6q_udoo.h
+@@ -166,7 +166,7 @@
+                "splashimage=0x30000000\0"                              \
+                "splashpos=m,m\0"                                       \
+                "lvds_num=1\0"                   \
+-               "bootargs=console=ttymxc1,115200 init=/init video=mxcfb0:dev=hdmi,1920x1080M@60,if=RGB24,bpp=32 video=mxcfb1:off video=mxcfb2:off fbmem=28M vmalloc=400M androidboot.consol
++               "bootargs=console=ttymxc1,115200 init=/init video=mxcfb0:dev=hdmi,1280x720M@60,if=RGB24,bpp=32 video=mxcfb1:off video=mxcfb2:off fbmem=28M vmalloc=400M androidboot.console
+ #endif
+ 
+ #ifdef OS_TYPE_LINUX
+diff --git a/kernel_imx/arch/arm/configs/imx6_udoo_android_defconfig b/kernel_imx/arch/arm/configs/imx6_udoo_android_defconfig
+index 246309a..89954eb 100644
+--- a/kernel_imx/arch/arm/configs/imx6_udoo_android_defconfig
++++ b/kernel_imx/arch/arm/configs/imx6_udoo_android_defconfig
+@@ -2347,8 +2347,8 @@ CONFIG_HID_LOGITECH=m
+ # CONFIG_LOGIWII_FF is not set
+ CONFIG_HID_MICROSOFT=m
+ CONFIG_HID_MONTEREY=m
+-# CONFIG_HID_MULTITOUCH is not set
+-# CONFIG_HID_NTRIG is not set
++CONFIG_HID_MULTITOUCH=y
++CONFIG_HID_NTRIG=y
+ # CONFIG_HID_ORTEK is not set
+ CONFIG_HID_PANTHERLORD=m
+ # CONFIG_PANTHERLORD_FF is not set
+diff --git a/kernel_imx/arch/arm/mach-mx6/board-mx6_udoo.c b/kernel_imx/arch/arm/mach-mx6/board-mx6_udoo.c
+index 684437f..97aeaf8 100644
+--- a/kernel_imx/arch/arm/mach-mx6/board-mx6_udoo.c
++++ b/kernel_imx/arch/arm/mach-mx6/board-mx6_udoo.c
+@@ -363,7 +363,7 @@ static struct ahci_platform_data mx6q_sata_data = {
+ static inline void mx6q_init_uart(void) {
+        imx6q_add_imx_uart(0, NULL);
+        imx6q_add_imx_uart(1, NULL);
+-    imx6q_add_imx_uart(3, NULL);
++        imx6q_add_imx_uart(3, NULL);
+ }
+ 
+ /***********************************************************************
+@@ -1325,15 +1325,15 @@ static void __init mx6_board_init(void)
+ 
+ extern void __iomem *twd_base;
+ static void __init mx6_timer_init(void) {
+-       struct clk *uart_clk;
++       //struct clk *uart_clk;
+ #ifdef CONFIG_LOCAL_TIMERS
+        twd_base = ioremap(LOCAL_TWD_ADDR, SZ_256);
+        BUG_ON(!twd_base);
+ #endif
+        mx6_clocks_init(32768, 24000000, 0, 0);
+ 
+-       uart_clk = clk_get_sys("imx-uart.0", NULL);
+-       early_console_setup(UART2_BASE_ADDR, uart_clk);
++       //uart_clk = clk_get_sys("imx-uart.0", NULL);
++       //early_console_setup(UART2_BASE_ADDR, uart_clk);
+ }
+ 
+ static struct sys_timer mx6_timer = {
+diff --git a/kernel_imx/arch/arm/mach-mx6/board-mx6q_udoo.h b/kernel_imx/arch/arm/mach-mx6/board-mx6q_udoo.h
+index 9ba40c9..8968c61 100644
+--- a/kernel_imx/arch/arm/mach-mx6/board-mx6q_udoo.h
++++ b/kernel_imx/arch/arm/mach-mx6/board-mx6q_udoo.h
+@@ -23,7 +23,9 @@
+ // INTERRUPT TOUCH
+ #define MX6Q_PAD_SD2_DAT2__GPIO_1_13_47KPULLUPPED \
+                (MX6Q_PAD_SD2_DAT2__GPIO_1_13 | MUX_PAD_CTRL(PAD_CTL_PUS_47K_UP))
+-
++// usb otg selector
++#define MX6Q_PAD_EIM_WAIT__GPIO_5_0_CORRECT \
++               (IOMUX_PAD(0x0468, 0x0154, 5, 0x0000, 0, 0xB0B1))
+ // SAM3x OTG VBUS EN
+ #define MX6Q_PAD_GPIO_16__GPIO_7_11_CORRECT \
+                (IOMUX_PAD(0x0618, 0x0248, 5, 0x0000, 0, 0xB0B1))
+@@ -57,6 +59,9 @@
+ #define MX6Q_PAD_NANDF_D4__GPIO_MODE   IMX_GPIO_NR(2, 4)  
+ #define MX6Q_PAD_EIM_A19__GPIO_MODE            IMX_GPIO_NR(2, 19) 
+ 
++#define MX6Q_PAD_KEY_ROW0__GPIO_MODE           IMX_GPIO_NR(4, 7)
++#define MX6Q_PAD_KEY_COL0__GPIO_MODE           IMX_GPIO_NR(4, 6)
++
+ // TUTTI I PIN ESTERNI impostati come gpios
+ #define        MX6Q_PAD_CSI0_DAT11__GPIO_MODE          IMX_GPIO_NR(5, 29)
+ #define        MX6Q_PAD_CSI0_DAT10__GPIO_MODE          IMX_GPIO_NR(5, 28)
+@@ -235,25 +240,29 @@ static iomux_v3_cfg_t mx6qd_UDOO_pads[] = {
+        MX6Q_PAD_SD4_DAT7__GPIO_2_15,           // selezione usb sam3x modalita host o client 
+        MX6Q_PAD_CSI0_DAT19__GPIO_6_5,          // camera reset 
+        MX6Q_PAD_CSI0_DAT18__GPIO_6_4,          // Abilitazione per il modulo camera CSI, attivo alto
+-       MX6Q_PAD_DISP0_DAT0__GPIO_4_21_PULLDOWN, // ERASE Cancellazione del dispositivo SAM3X8E prima di una riprogrammazione, livello 1 attiva la cancellazione, dopo di che va rimesso in
++       //MX6Q_PAD_DISP0_DAT0__GPIO_4_21_PULLDOWN, // ERASE Cancellazione del dispositivo SAM3X8E prima di una riprogrammazione, livello 1 attiva la cancellazione, dopo di che va rimesso 
+        MX6Q_PAD_CSI0_PIXCLK__GPIO_5_18,        // input monitoring progr.seriale
+        MX6Q_PAD_CSI0_DAT17__GPIO_6_3,          // input monitoring progr.seriale
+        MX6Q_PAD_NANDF_D4__GPIO_2_4,            // spegne la 5v quando va in suspend (attivo alto ==> output basso)
+        MX6Q_PAD_EIM_A19__GPIO_2_19,            // Livello logico 1 = non protetta 0= flash protetta contro le scritture
+-       MX6Q_PAD_EIM_WAIT__GPIO_5_0,
++       MX6Q_PAD_EIM_WAIT__GPIO_5_0_CORRECT,    // usb otg selector
+ 
+        #ifdef INTERNAL_SERIAL_ENABLED
+                MX6Q_PAD_KEY_ROW0__UART4_RXD,           // UART4 - seriale tra imx6 --> sam3x
+                MX6Q_PAD_KEY_COL0__UART4_TXD,           // UART4 - seriale tra imx6 --> sam3x
+-       #endif
++        #else
++                MX6Q_PAD_KEY_ROW0__GPIO_4_7,
++                MX6Q_PAD_KEY_COL0__GPIO_4_6,
++        #endif
++
+        /* 
+        *       Pinmuxing esterno rev.4c QUAD
+        */
+ 
++       MX6Q_PAD_CSI0_DAT11__GPIO_5_29,
++               //MX6Q_PAD_CSI0_DAT11__UART1_RXD,
+        MX6Q_PAD_CSI0_DAT10__GPIO_5_28,
+                //MX6Q_PAD_CSI0_DAT10__UART1_TXD,
+-       MX6Q_PAD_CSI0_DAT11__GPIO_5_29,
+-               //MX6DL_PAD_CSI0_DAT11__UART1_RXD,
+ 
+     MX6Q_PAD_SD1_CLK__GPIO_1_20,
+                // MX6Q_PAD_SD1_CLK__USDHC1_CLK,  
+@@ -311,13 +320,13 @@ static iomux_v3_cfg_t mx6qd_UDOO_pads[] = {
+        MX6Q_PAD_EIM_D28__GPIO_3_28,
+                // MX6Q_PAD_EIM_D28__I2C1_SDA,
+        MX6Q_PAD_CSI0_DAT13__GPIO_5_31, 
+-               // MX6Q_PAD_CSI0_DAT13__UART4_RXD,
++               //MX6Q_PAD_CSI0_DAT13__UART4_RXD,
+        MX6Q_PAD_CSI0_DAT12__GPIO_5_30,
+-               // MX6Q_PAD_CSI0_DAT12__UART4_TXD,
++               //MX6Q_PAD_CSI0_DAT12__UART4_TXD,
+        MX6Q_PAD_CSI0_DAT15__GPIO_6_1,
+-               // MX6Q_PAD_CSI0_DAT15__UART5_RXD,
++               //MX6Q_PAD_CSI0_DAT15__UART5_RXD,
+        MX6Q_PAD_CSI0_DAT14__GPIO_6_0,
+-           // MX6Q_PAD_CSI0_DAT14__UART5_TXD,
++               //MX6Q_PAD_CSI0_DAT14__UART5_TXD,
+        MX6Q_PAD_CSI0_DAT16__GPIO_6_2,  
+                // MX6Q_PAD_CSI0_DAT16__UART4_RTS,
+        MX6Q_PAD_CSI0_DAT4__GPIO_5_22,
+@@ -373,10 +382,10 @@ static iomux_v3_cfg_t mx6qd_UDOO_pads[] = {
+        MX6Q_PAD_EIM_D25__GPIO_3_25,// da errore in fase di set di direzione
+                // MX6Q_PAD_EIM_D25__UART3_RXD,
+        MX6Q_PAD_KEY_ROW1__GPIO_4_9,
+-               // MX6Q_PAD_KEY_ROW1__UART5_RXD,
++               //MX6Q_PAD_KEY_ROW1__UART5_RXD,
+ 
+        MX6Q_PAD_KEY_COL1__GPIO_4_8,// da errore in fase di set di direzione
+-               // MX6Q_PAD_KEY_COL1__UART5_TXD,      
++               //MX6Q_PAD_KEY_COL1__UART5_TXD,      
+                // MX6Q_PAD_KEY_COL1__USDHC1_VSELECT,
+ 
+        MX6Q_PAD_EIM_OE__GPIO_2_25,
+@@ -411,12 +420,11 @@ static unsigned int mx6q_set_in_outputmode_low[] = {
+ #ifdef PIN_38_PER_TEST_ACCENDI_SPEGNI
+        MX6Q_PAD_EIM_A16__GPIO_MODE,
+ #endif
+-       
+ };
+ 
+ static unsigned int mx6q_set_in_outputmode_high[] = {
+        // connessioni interne
+-       MX6Q_PAD_GPIO_0__GPIO_MODE,
++       //MX6Q_PAD_GPIO_0__GPIO_MODE,
+        MX6Q_PAD_GPIO_2__GPIO_MODE,     // lvds PANEL_ON        
+        MX6Q_PAD_GPIO_4__GPIO_MODE,     // backlight lvds ****
+        MX6Q_PAD_EIM_EB2__GPIO_MODE,    // reset audio messo basso poi la pilota driver
+@@ -426,6 +434,7 @@ static unsigned int mx6q_set_in_outputmode_high[] = {
+        MX6Q_PAD_EIM_EB3__GPIO_MODE, // qualcos ethernet
+        MX6Q_PAD_NANDF_CS0__GPIO_MODE,
+        MX6Q_PAD_EIM_WAIT__GPIO_MODE,   
++       //MX6Q_PAD_DISP0_DAT0__GPIO_MODE,       // erase di arduino, il driver di pagano la mette in out e poi di nuovo in input
+ };
+ 
+ 
+@@ -434,11 +443,14 @@ static unsigned int mx6q_set_in_inputmode[] = {
+        
+        MX6Q_PAD_SD2_DAT2__GPIO_MODE,
+        MX6Q_PAD_SD3_DAT5__GPIO_MODE,
+-       MX6Q_PAD_DISP0_DAT0__GPIO_MODE, // erase di arduino, il driver di pagano la mette in out e poi di nuovo in input
+        MX6Q_PAD_DISP0_DAT5__GPIO_MODE,  // abilita in teoria la seriale su imx6 o sam3x ma usiamo solo jumper                  
+        MX6Q_PAD_CSIO_PIXCLK__GPIO_MODE,        
+        MX6Q_PAD_CSIO_DAT17__GPIO_MODE, 
+ 
++#ifndef INTERNAL_SERIAL_ENABLED        
++       MX6Q_PAD_KEY_ROW0__GPIO_MODE,
++       MX6Q_PAD_KEY_COL0__GPIO_MODE,
++#endif
+ 
+        //esterni rev c 
+        MX6Q_PAD_CSI0_DAT10__GPIO_MODE,
+diff --git a/kernel_imx/drivers/misc/udoo_ard.c b/kernel_imx/drivers/misc/udoo_ard.c
+index 4608ec9..3c4d81f 100644
+--- a/kernel_imx/drivers/misc/udoo_ard.c
++++ b/kernel_imx/drivers/misc/udoo_ard.c
+@@ -28,7 +28,8 @@
+ 
+ #define AUTH_TOKEN 0x5A5A
+ // #define MAX_MSEC_SINCE_LAST_IRQ 1000*1000*1000
+-#define MAX_MSEC_SINCE_LAST_IRQ 400 //
++#define MAX_MSEC_SINCE_LAST_IRQ 400 // 
++#define GRAY_TIME_BETWEEN_RESET 10000 // In this time we can't accept new erase/reset code 
+ 
+ static struct workqueue_struct *erase_reset_wq;
+ 
+@@ -36,6 +37,7 @@ typedef struct {
+     struct work_struct erase_reset_work;
+     int    step;
+     int    cmdcode;
++    int    erase_reset_lock;
+     unsigned long    last_int_time_in_ns;
+     unsigned long    last_int_time_in_sec;
+ } erase_reset_work_t;
+@@ -63,7 +65,7 @@ static iomux_v3_cfg_t mx6dl_disable_uart4_pads[] = {
+ };
+ 
+ 
+-static void erase_reset_wq_function( struct work_struct *work)
++static void erase_reset_wq_function( struct work_struct *work2)
+ {
+     int ret;
+ 
+@@ -92,6 +94,7 @@ static void erase_reset_wq_function( struct work_struct *work)
+             gpio_direction_input(MX6QSDL_SECO_KEYROW0__GPIO_4_7);
+     }
+ 
++#if 0
+     gpio_direction_input(MX6QSDL_SECO_ARD_ERASE);
+     gpio_set_value(MX6QSDL_SECO_ARD_RESET, 1);
+     msleep(1);
+@@ -106,7 +109,10 @@ static void erase_reset_wq_function( struct work_struct *work)
+     msleep(80);
+     gpio_set_value(MX6QSDL_SECO_ARD_RESET, 1);
+     //  kfree( (void *)work );
+-    printk("UDOO ERASE and RESET on Sam3x EXECUTED. \n");
++    printk("UDOO ERASE and RESET on Sam3x EXECUTED. [%d]\n", work->erase_reset_lock);
++    msleep(GRAY_TIME_BETWEEN_RESET);
++    work->erase_reset_lock = 0;
++#endif
+ 
+ //    msleep(30000);
+ 
+@@ -162,11 +168,17 @@ static irqreturn_t udoo_bossac_req(int irq, void *dev_id)
+         erase_reset_work->step = erase_reset_work->step + 1;
+     }
+ 
++//printk("erase_reset_work->erase_reset_lock = %d \n", erase_reset_work->erase_reset_lock);
+     if ( erase_reset_work->step == 21 ) {  // Passed authentication and code acquiring step.
+ 
+ //printk("RECEIVED CODE = 0x%04x \n", erase_reset_work->cmdcode);
+         if (erase_reset_work->cmdcode == 0xF) {
+-            retval = queue_work( erase_reset_wq, (struct work_struct *)work );
++           if (erase_reset_work->erase_reset_lock == 0) {
++               erase_reset_work->erase_reset_lock = 1;
++               retval = queue_work( erase_reset_wq, (struct work_struct *)work );
++           } else {
++               printk("Erase and reset operation already in progress. Do nothing.\n");
++           } 
+             // To do: check retval error code.
+         } else {
+ //            msleep(30000);
+@@ -206,7 +218,7 @@ static int gpio_setup(void)
+     } else {
+             gpio_direction_input(MX6QSDL_SECO_BOSSAC_DAT);
+     }
+-
++#if 0
+     ret = gpio_request(MX6QSDL_SECO_ARD_ERASE, "BOSSAC");
+     if (ret) {
+             printk(KERN_ERR "request GPIO FOR ARDUINO ERASE\n");
+@@ -222,6 +234,7 @@ static int gpio_setup(void)
+     } else {
+             gpio_direction_output(MX6QSDL_SECO_ARD_RESET, 1);
+     }
++#endif
+ 
+     return 0;
+ }
+@@ -249,6 +262,7 @@ static int udoo_ard_init(void)
+                 work->cmdcode = 0;
+                 work->last_int_time_in_ns = 0;
+                 work->last_int_time_in_sec = 0;
++                work->erase_reset_lock = 0;
+             //  retval = queue_work( erase_reset_wq, (struct work_struct *)work );
+         }
+     }
+@@ -260,8 +274,8 @@ static void udoo_ard_exit(void)
+     printk("Unloading UDOO ard driver.\n");
+     free_irq(gpio_to_irq(MX6QSDL_SECO_BOSSAC_CLK), NULL);
+ 
+-    gpio_free(MX6QSDL_SECO_ARD_RESET);
+-    gpio_free(MX6QSDL_SECO_ARD_ERASE);
++    //gpio_free(MX6QSDL_SECO_ARD_RESET);
++    //gpio_free(MX6QSDL_SECO_ARD_ERASE);
+     gpio_free(MX6QSDL_SECO_BOSSAC_CLK);
+     gpio_free(MX6QSDL_SECO_BOSSAC_DAT);
+     return;
+@@ -269,3 +283,4 @@ static void udoo_ard_exit(void)
+ 
+ module_init(udoo_ard_init);
+ module_exit(udoo_ard_exit);
+ module_exit(udoo_ard_exit);
++
+diff --git a/kernel_imx/drivers/mxc/ipu3/ipu_device.c b/kernel_imx/drivers/mxc/ipu3/ipu_device.c
+index ce34775..3acdb36 100644
+--- a/kernel_imx/drivers/mxc/ipu3/ipu_device.c
++++ b/kernel_imx/drivers/mxc/ipu3/ipu_device.c
+@@ -3138,7 +3138,8 @@ static int ipu_task_thread(void *argv)
+                int split_parent;
+                int split_child;
+ 
+-               wait_event(thread_waitq, find_task(&tsk, curr_thread_id));
++                if(wait_event_interruptible(thread_waitq, find_task(&tsk, curr_thread_id)))
++                  break;
+ 
+                if (!tsk) {
+                        pr_err("thread:%d can not find task.\n",
+diff --git a/kernel_imx/drivers/video/mxc/ldb.c b/kernel_imx/drivers/video/mxc/ldb.c
+index 1d1b7c2..e5e93b0 100644
+--- a/kernel_imx/drivers/video/mxc/ldb.c
++++ b/kernel_imx/drivers/video/mxc/ldb.c
+@@ -131,10 +131,10 @@ static struct fb_videomode ldb_modedb[] = {
+         FB_VMODE_NONINTERLACED,
+         FB_MODE_IS_DETAILED,},
+        {
+-        "LDB-WXGA2", 60, 1280, 800, 14065,
+-        40, 40,
+-        10, 3,
+-        80, 10,
++        "LDB-WXGA2", 60, 1280, 800, 14430,
++        80, 48,
++        15, 2,
++        32, 47,
+         0,
+         FB_VMODE_NONINTERLACED,
+         FB_MODE_IS_DETAILED,},
+@@ -153,7 +153,7 @@ static struct fb_videomode ldb_modedb[] = {
+         10, 2,
+         0,
+         FB_VMODE_NONINTERLACED,
+-        FB_MODE_IS_DETAILED,},
++        0,},
+ };
+ static int ldb_modedb_sz = ARRAY_SIZE(ldb_modedb);
+ 
+diff --git a/kernel_imx/drivers/video/mxc/mxc_edid.c b/kernel_imx/drivers/video/mxc/mxc_edid.c
+index 721ff88..116b3e1 100644
+--- a/kernel_imx/drivers/video/mxc/mxc_edid.c
++++ b/kernel_imx/drivers/video/mxc/mxc_edid.c
+@@ -180,6 +180,11 @@ const struct fb_videomode mxc_cea_mode[64] = {
+                FB_SYNC_HOR_HIGH_ACT | FB_SYNC_VERT_HIGH_ACT,
+                FB_VMODE_NONINTERLACED | FB_VMODE_ASPECT_16_9, 0
+        },
++       /* #48: 1280x800p@60Hz 16:10 */
++        [48] = {
++                NULL, 60, 1280, 800, 14430, 80, 48, 15, 2, 32, 47, 0,
++                FB_VMODE_NONINTERLACED, 0
++        },
+ };
+ 
+ /*
+diff --git a/kernel_imx/drivers/video/mxc/mxc_lcdif.c b/kernel_imx/drivers/video/mxc/mxc_lcdif.c
+index 5cbdc73..a580c1c 100644
+--- a/kernel_imx/drivers/video/mxc/mxc_lcdif.c
++++ b/kernel_imx/drivers/video/mxc/mxc_lcdif.c
+@@ -39,6 +39,14 @@ static struct fb_videomode lcdif_modedb[] = {
+        FB_SYNC_CLK_LAT_FALL,
+        FB_VMODE_NONINTERLACED,
+        0,},
+-        10, 3,
+-        80, 10,
++        "LDB-WXGA2", 60, 1280, 800, 14430,
++        80, 48,
++        15, 2,
++        32, 47,
+         0,
+         FB_VMODE_NONINTERLACED,
+         FB_MODE_IS_DETAILED,},
+@@ -153,7 +153,7 @@ static struct fb_videomode ldb_modedb[] = {
+         10, 2,
+         0,
+         FB_VMODE_NONINTERLACED,
+-        FB_MODE_IS_DETAILED,},
++        0,},
+ };
+ static int ldb_modedb_sz = ARRAY_SIZE(ldb_modedb);
+ 
+diff --git a/kernel_imx/drivers/video/mxc/mxc_edid.c b/kernel_imx/drivers/video/mxc/mxc_edid.c
+index 721ff88..116b3e1 100644
+--- a/kernel_imx/drivers/video/mxc/mxc_edid.c
++++ b/kernel_imx/drivers/video/mxc/mxc_edid.c
+@@ -180,6 +180,11 @@ const struct fb_videomode mxc_cea_mode[64] = {
+                FB_SYNC_HOR_HIGH_ACT | FB_SYNC_VERT_HIGH_ACT,
+                FB_VMODE_NONINTERLACED | FB_VMODE_ASPECT_16_9, 0
+        },
++       /* #48: 1280x800p@60Hz 16:10 */
++        [48] = {
++                NULL, 60, 1280, 800, 14430, 80, 48, 15, 2, 32, 47, 0,
++                FB_VMODE_NONINTERLACED, 0
++        },
+ };
+ 
+ /*
+diff --git a/kernel_imx/drivers/video/mxc/mxc_lcdif.c b/kernel_imx/drivers/video/mxc/mxc_lcdif.c
+index 5cbdc73..a580c1c 100644
+--- a/kernel_imx/drivers/video/mxc/mxc_lcdif.c
++++ b/kernel_imx/drivers/video/mxc/mxc_lcdif.c
+@@ -39,6 +39,14 @@ static struct fb_videomode lcdif_modedb[] = {
+        FB_SYNC_CLK_LAT_FALL,
+        FB_VMODE_NONINTERLACED,
+        0,},
++        {
++         "LDB-WXGA2", 60, 1280, 800, 14065,
++         40, 40,
++         10, 3,
++         80, 10,
++         0,
++         FB_VMODE_NONINTERLACED,
++         FB_MODE_IS_DETAILED,},
+ };
+ static int lcdif_modedb_sz = ARRAY_SIZE(lcdif_modedb);
+ 
+diff --git a/kernel_imx/drivers/video/mxc/mxcfb_modedb.c b/kernel_imx/drivers/video/mxc/mxcfb_modedb.c
+index acaaef2..ecc27b3 100644
+--- a/kernel_imx/drivers/video/mxc/mxcfb_modedb.c
++++ b/kernel_imx/drivers/video/mxc/mxcfb_modedb.c
+@@ -64,6 +64,10 @@ struct fb_videomode mxcfb_modedb[] = {
+         "TV-VGA", 60, 640, 480, 40574, 35, 45, 9, 1, 46, 5,
+         0, FB_VMODE_NONINTERLACED, 0,
+         },
++        {
++         NULL, 60, 1280, 800, 14430, 80, 48, 15, 2, 32, 47, 0,
+-        FB_MODE_IS_DETAILED,},
+-        FB_MODE_IS_DETAILED,},
++        0,},
+ };
+ static int ldb_modedb_sz = ARRAY_SIZE(ldb_modedb);
+ 
+diff --git a/kernel_imx/drivers/video/mxc/mxc_edid.c b/kernel_imx/drivers/video/mxc/mxc_edid.c
+index 721ff88..116b3e1 100644
+--- a/kernel_imx/drivers/video/mxc/mxc_edid.c
++++ b/kernel_imx/drivers/video/mxc/mxc_edid.c
+@@ -180,6 +180,11 @@ const struct fb_videomode mxc_cea_mode[64] = {
+                FB_SYNC_HOR_HIGH_ACT | FB_SYNC_VERT_HIGH_ACT,
+                FB_VMODE_NONINTERLACED | FB_VMODE_ASPECT_16_9, 0
+        },
++       /* #48: 1280x800p@60Hz 16:10 */
++        [48] = {
++                NULL, 60, 1280, 800, 14430, 80, 48, 15, 2, 32, 47, 0,
++                FB_VMODE_NONINTERLACED, 0
++        },
+ };
+ 
+ /*
+diff --git a/kernel_imx/drivers/video/mxc/mxc_lcdif.c b/kernel_imx/drivers/video/mxc/mxc_lcdif.c
+index 5cbdc73..a580c1c 100644
+--- a/kernel_imx/drivers/video/mxc/mxc_lcdif.c
++++ b/kernel_imx/drivers/video/mxc/mxc_lcdif.c
+@@ -39,6 +39,14 @@ static struct fb_videomode lcdif_modedb[] = {
+        FB_SYNC_CLK_LAT_FALL,
+        FB_VMODE_NONINTERLACED,
+        0,},
++        {
++         "LDB-WXGA2", 60, 1280, 800, 14065,
++         40, 40,
++         10, 3,
++         80, 10,
++         0,
++         FB_VMODE_NONINTERLACED,
++         FB_MODE_IS_DETAILED,},
+ };
+ static int lcdif_modedb_sz = ARRAY_SIZE(lcdif_modedb);
+ 
+diff --git a/kernel_imx/drivers/video/mxc/mxcfb_modedb.c b/kernel_imx/drivers/video/mxc/mxcfb_modedb.c
+index acaaef2..ecc27b3 100644
+--- a/kernel_imx/drivers/video/mxc/mxcfb_modedb.c
++++ b/kernel_imx/drivers/video/mxc/mxcfb_modedb.c
+@@ -64,6 +64,10 @@ struct fb_videomode mxcfb_modedb[] = {
+         "TV-VGA", 60, 640, 480, 40574, 35, 45, 9, 1, 46, 5,
+         0, FB_VMODE_NONINTERLACED, 0,
+         },
++        {
++         NULL, 60, 1280, 800, 14430, 80, 48, 15, 2, 32, 47, 0,
++++ b/bootable/bootloader/uboot-imx/board/freescale/mx6_udoo/mx6_udoo.c
+@@ -1734,8 +1734,8 @@ void configure_arduino_serial_programming(void)
+        u32 reg;
+        
+ #ifdef CONFIG_MX6Q
+-       mxc_iomux_v3_setup_pad(MX6Q_PAD_GPIO_0__GPIO_1_0);
+-       mxc_iomux_v3_setup_pad(MX6Q_PAD_DISP0_DAT0__GPIO_4_21);
++       //mxc_iomux_v3_setup_pad(MX6Q_PAD_GPIO_0__GPIO_1_0);
++       //mxc_iomux_v3_setup_pad(MX6Q_PAD_DISP0_DAT0__GPIO_4_21);
+        mxc_iomux_v3_setup_pad(MX6Q_PAD_KEY_COL0__GPIO_4_6);
+        mxc_iomux_v3_setup_pad(MX6Q_PAD_KEY_ROW0__GPIO_4_7);
+        mxc_iomux_v3_setup_pad(MX6Q_PAD_CSI0_DAT11__GPIO_5_29);
+diff --git a/bootable/bootloader/uboot-imx/include/configs/mx6q_udoo.h b/bootable/bootloader/uboot-imx/include/configs/mx6q_udoo.h
+index f11e8c7..876fdd8 100644
+--- a/bootable/bootloader/uboot-imx/include/configs/mx6q_udoo.h
++++ b/bootable/bootloader/uboot-imx/include/configs/mx6q_udoo.h
+@@ -166,7 +166,7 @@
+                "splashimage=0x30000000\0"                              \
+                "splashpos=m,m\0"                                       \
+                "lvds_num=1\0"                   \
+-               "bootargs=console=ttymxc1,115200 init=/init video=mxcfb0:dev=hdmi,1920x1080M@60,if=RGB24,bpp=32 video=mxcfb1:off video=mxcfb2:off fbmem=28M vmalloc=400M androidboot.consol
++               "bootargs=console=ttymxc1,115200 init=/init video=mxcfb0:dev=hdmi,1280x720M@60,if=RGB24,bpp=32 video=mxcfb1:off video=mxcfb2:off fbmem=28M vmalloc=400M androidboot.console
+ #endif
+ 
+ #ifdef OS_TYPE_LINUX
+diff --git a/kernel_imx/arch/arm/configs/imx6_udoo_android_defconfig b/kernel_imx/arch/arm/configs/imx6_udoo_android_defconfig
+index 246309a..89954eb 100644
+--- a/kernel_imx/arch/arm/configs/imx6_udoo_android_defconfig
++++ b/kernel_imx/arch/arm/configs/imx6_udoo_android_defconfig
+@@ -2347,8 +2347,8 @@ CONFIG_HID_LOGITECH=m
+ # CONFIG_LOGIWII_FF is not set
+ CONFIG_HID_MICROSOFT=m
+ CONFIG_HID_MONTEREY=m
+-# CONFIG_HID_MULTITOUCH is not set
+-# CONFIG_HID_NTRIG is not set
++CONFIG_HID_MULTITOUCH=y
++CONFIG_HID_NTRIG=y
+ # CONFIG_HID_ORTEK is not set
+ CONFIG_HID_PANTHERLORD=m
+ # CONFIG_PANTHERLORD_FF is not set
+diff --git a/kernel_imx/arch/arm/mach-mx6/board-mx6_udoo.c b/kernel_imx/arch/arm/mach-mx6/board-mx6_udoo.c
+index 684437f..97aeaf8 100644
+--- a/kernel_imx/arch/arm/mach-mx6/board-mx6_udoo.c
++++ b/kernel_imx/arch/arm/mach-mx6/board-mx6_udoo.c
+@@ -363,7 +363,7 @@ static struct ahci_platform_data mx6q_sata_data = {
+ static inline void mx6q_init_uart(void) {
+        imx6q_add_imx_uart(0, NULL);
+        imx6q_add_imx_uart(1, NULL);
+-    imx6q_add_imx_uart(3, NULL);
++        imx6q_add_imx_uart(3, NULL);
+ }
+ 
+ /***********************************************************************
+@@ -1325,15 +1325,15 @@ static void __init mx6_board_init(void)
+ 
+ extern void __iomem *twd_base;
+ static void __init mx6_timer_init(void) {
+-       struct clk *uart_clk;
++       //struct clk *uart_clk;
+ #ifdef CONFIG_LOCAL_TIMERS
+        twd_base = ioremap(LOCAL_TWD_ADDR, SZ_256);
+        BUG_ON(!twd_base);
+ #endif
+        mx6_clocks_init(32768, 24000000, 0, 0);
+ 
+-       uart_clk = clk_get_sys("imx-uart.0", NULL);
+-       early_console_setup(UART2_BASE_ADDR, uart_clk);
++       //uart_clk = clk_get_sys("imx-uart.0", NULL);
++       //early_console_setup(UART2_BASE_ADDR, uart_clk);
+ }
+ 
+ static struct sys_timer mx6_timer = {
+diff --git a/kernel_imx/arch/arm/mach-mx6/board-mx6q_udoo.h b/kernel_imx/arch/arm/mach-mx6/board-mx6q_udoo.h
+index 9ba40c9..8968c61 100644
+--- a/kernel_imx/arch/arm/mach-mx6/board-mx6q_udoo.h
++++ b/kernel_imx/arch/arm/mach-mx6/board-mx6q_udoo.h
+@@ -23,7 +23,9 @@
+ // INTERRUPT TOUCH
+ #define MX6Q_PAD_SD2_DAT2__GPIO_1_13_47KPULLUPPED \
+                (MX6Q_PAD_SD2_DAT2__GPIO_1_13 | MUX_PAD_CTRL(PAD_CTL_PUS_47K_UP))
+-
++// usb otg selector
++#define MX6Q_PAD_EIM_WAIT__GPIO_5_0_CORRECT \
++               (IOMUX_PAD(0x0468, 0x0154, 5, 0x0000, 0, 0xB0B1))
+ // SAM3x OTG VBUS EN
+ #define MX6Q_PAD_GPIO_16__GPIO_7_11_CORRECT \
+                (IOMUX_PAD(0x0618, 0x0248, 5, 0x0000, 0, 0xB0B1))
+@@ -57,6 +59,9 @@
+ #define MX6Q_PAD_NANDF_D4__GPIO_MODE   IMX_GPIO_NR(2, 4)  
+ #define MX6Q_PAD_EIM_A19__GPIO_MODE            IMX_GPIO_NR(2, 19) 
+ 
++#define MX6Q_PAD_KEY_ROW0__GPIO_MODE           IMX_GPIO_NR(4, 7)
++#define MX6Q_PAD_KEY_COL0__GPIO_MODE           IMX_GPIO_NR(4, 6)
++
+ // TUTTI I PIN ESTERNI impostati come gpios
+ #define        MX6Q_PAD_CSI0_DAT11__GPIO_MODE          IMX_GPIO_NR(5, 29)
+ #define        MX6Q_PAD_CSI0_DAT10__GPIO_MODE          IMX_GPIO_NR(5, 28)
+@@ -235,25 +240,29 @@ static iomux_v3_cfg_t mx6qd_UDOO_pads[] = {
+        MX6Q_PAD_SD4_DAT7__GPIO_2_15,           // selezione usb sam3x modalita host o client 
+        MX6Q_PAD_CSI0_DAT19__GPIO_6_5,          // camera reset 
+        MX6Q_PAD_CSI0_DAT18__GPIO_6_4,          // Abilitazione per il modulo camera CSI, attivo alto
+-       MX6Q_PAD_DISP0_DAT0__GPIO_4_21_PULLDOWN, // ERASE Cancellazione del dispositivo SAM3X8E prima di una riprogrammazione, livello 1 attiva la cancellazione, dopo di che va rimesso in
++       //MX6Q_PAD_DISP0_DAT0__GPIO_4_21_PULLDOWN, // ERASE Cancellazione del dispositivo SAM3X8E prima di una riprogrammazione, livello 1 attiva la cancellazione, dopo di che va rimesso 
+        MX6Q_PAD_CSI0_PIXCLK__GPIO_5_18,        // input monitoring progr.seriale
+        MX6Q_PAD_CSI0_DAT17__GPIO_6_3,          // input monitoring progr.seriale
+        MX6Q_PAD_NANDF_D4__GPIO_2_4,            // spegne la 5v quando va in suspend (attivo alto ==> output basso)
+        MX6Q_PAD_EIM_A19__GPIO_2_19,            // Livello logico 1 = non protetta 0= flash protetta contro le scritture
+-       MX6Q_PAD_EIM_WAIT__GPIO_5_0,
++       MX6Q_PAD_EIM_WAIT__GPIO_5_0_CORRECT,    // usb otg selector
+ 
+        #ifdef INTERNAL_SERIAL_ENABLED
+                MX6Q_PAD_KEY_ROW0__UART4_RXD,           // UART4 - seriale tra imx6 --> sam3x
+                MX6Q_PAD_KEY_COL0__UART4_TXD,           // UART4 - seriale tra imx6 --> sam3x
+-       #endif
++        #else
++                MX6Q_PAD_KEY_ROW0__GPIO_4_7,
++                MX6Q_PAD_KEY_COL0__GPIO_4_6,
++        #endif
++
+        /* 
+        *       Pinmuxing esterno rev.4c QUAD
+        */
+ 
++       MX6Q_PAD_CSI0_DAT11__GPIO_5_29,
++               //MX6Q_PAD_CSI0_DAT11__UART1_RXD,
+        MX6Q_PAD_CSI0_DAT10__GPIO_5_28,
+                //MX6Q_PAD_CSI0_DAT10__UART1_TXD,
+-       MX6Q_PAD_CSI0_DAT11__GPIO_5_29,
+-               //MX6DL_PAD_CSI0_DAT11__UART1_RXD,
+ 
+     MX6Q_PAD_SD1_CLK__GPIO_1_20,
+                // MX6Q_PAD_SD1_CLK__USDHC1_CLK,  
+@@ -311,13 +320,13 @@ static iomux_v3_cfg_t mx6qd_UDOO_pads[] = {
+        MX6Q_PAD_EIM_D28__GPIO_3_28,
+                // MX6Q_PAD_EIM_D28__I2C1_SDA,
+        MX6Q_PAD_CSI0_DAT13__GPIO_5_31, 
+-               // MX6Q_PAD_CSI0_DAT13__UART4_RXD,
++               //MX6Q_PAD_CSI0_DAT13__UART4_RXD,
+        MX6Q_PAD_CSI0_DAT12__GPIO_5_30,
+-               // MX6Q_PAD_CSI0_DAT12__UART4_TXD,
++               //MX6Q_PAD_CSI0_DAT12__UART4_TXD,
+        MX6Q_PAD_CSI0_DAT15__GPIO_6_1,
+-               // MX6Q_PAD_CSI0_DAT15__UART5_RXD,
++               //MX6Q_PAD_CSI0_DAT15__UART5_RXD,
+        MX6Q_PAD_CSI0_DAT14__GPIO_6_0,
+-           // MX6Q_PAD_CSI0_DAT14__UART5_TXD,
++               //MX6Q_PAD_CSI0_DAT14__UART5_TXD,
+        MX6Q_PAD_CSI0_DAT16__GPIO_6_2,  
+                // MX6Q_PAD_CSI0_DAT16__UART4_RTS,
+        MX6Q_PAD_CSI0_DAT4__GPIO_5_22,
+@@ -373,10 +382,10 @@ static iomux_v3_cfg_t mx6qd_UDOO_pads[] = {
+        MX6Q_PAD_EIM_D25__GPIO_3_25,// da errore in fase di set di direzione
+                // MX6Q_PAD_EIM_D25__UART3_RXD,
+        MX6Q_PAD_KEY_ROW1__GPIO_4_9,
+-               // MX6Q_PAD_KEY_ROW1__UART5_RXD,
++               //MX6Q_PAD_KEY_ROW1__UART5_RXD,
+ 
+        MX6Q_PAD_KEY_COL1__GPIO_4_8,// da errore in fase di set di direzione
+-               // MX6Q_PAD_KEY_COL1__UART5_TXD,      
++               //MX6Q_PAD_KEY_COL1__UART5_TXD,      
+                // MX6Q_PAD_KEY_COL1__USDHC1_VSELECT,
+ 
+        MX6Q_PAD_EIM_OE__GPIO_2_25,
+@@ -411,12 +420,11 @@ static unsigned int mx6q_set_in_outputmode_low[] = {
+ #ifdef PIN_38_PER_TEST_ACCENDI_SPEGNI
+        MX6Q_PAD_EIM_A16__GPIO_MODE,
+ #endif
+-       
+ };
+ 
+ static unsigned int mx6q_set_in_outputmode_high[] = {
+        // connessioni interne
+-       MX6Q_PAD_GPIO_0__GPIO_MODE,
++       //MX6Q_PAD_GPIO_0__GPIO_MODE,
+        MX6Q_PAD_GPIO_2__GPIO_MODE,     // lvds PANEL_ON        
+        MX6Q_PAD_GPIO_4__GPIO_MODE,     // backlight lvds ****
+        MX6Q_PAD_EIM_EB2__GPIO_MODE,    // reset audio messo basso poi la pilota driver
+@@ -426,6 +434,7 @@ static unsigned int mx6q_set_in_outputmode_high[] = {
+        MX6Q_PAD_EIM_EB3__GPIO_MODE, // qualcos ethernet
+        MX6Q_PAD_NANDF_CS0__GPIO_MODE,
+        MX6Q_PAD_EIM_WAIT__GPIO_MODE,   
++       //MX6Q_PAD_DISP0_DAT0__GPIO_MODE,       // erase di arduino, il driver di pagano la mette in out e poi di nuovo in input
+ };
+ 
+ 
+@@ -434,11 +443,14 @@ static unsigned int mx6q_set_in_inputmode[] = {
+        
+        MX6Q_PAD_SD2_DAT2__GPIO_MODE,
+        MX6Q_PAD_SD3_DAT5__GPIO_MODE,
+-       MX6Q_PAD_DISP0_DAT0__GPIO_MODE, // erase di arduino, il driver di pagano la mette in out e poi di nuovo in input
+        MX6Q_PAD_DISP0_DAT5__GPIO_MODE,  // abilita in teoria la seriale su imx6 o sam3x ma usiamo solo jumper                  
+        MX6Q_PAD_CSIO_PIXCLK__GPIO_MODE,        
+        MX6Q_PAD_CSIO_DAT17__GPIO_MODE, 
+ 
++#ifndef INTERNAL_SERIAL_ENABLED        
++       MX6Q_PAD_KEY_ROW0__GPIO_MODE,
++       MX6Q_PAD_KEY_COL0__GPIO_MODE,
++#endif
+ 
+        //esterni rev c 
+        MX6Q_PAD_CSI0_DAT10__GPIO_MODE,
+diff --git a/kernel_imx/drivers/misc/udoo_ard.c b/kernel_imx/drivers/misc/udoo_ard.c
+index 4608ec9..3c4d81f 100644
+--- a/kernel_imx/drivers/misc/udoo_ard.c
++++ b/kernel_imx/drivers/misc/udoo_ard.c
+@@ -28,7 +28,8 @@
+ 
+ #define AUTH_TOKEN 0x5A5A
+ // #define MAX_MSEC_SINCE_LAST_IRQ 1000*1000*1000
+-#define MAX_MSEC_SINCE_LAST_IRQ 400 //
++#define MAX_MSEC_SINCE_LAST_IRQ 400 // 
++#define GRAY_TIME_BETWEEN_RESET 10000 // In this time we can't accept new erase/reset code 
+ 
+ static struct workqueue_struct *erase_reset_wq;
+ 
+@@ -36,6 +37,7 @@ typedef struct {
+     struct work_struct erase_reset_work;
+     int    step;
+     int    cmdcode;
++    int    erase_reset_lock;
+     unsigned long    last_int_time_in_ns;
+     unsigned long    last_int_time_in_sec;
+ } erase_reset_work_t;
+@@ -63,7 +65,7 @@ static iomux_v3_cfg_t mx6dl_disable_uart4_pads[] = {
+ };
+ 
+ 
+-static void erase_reset_wq_function( struct work_struct *work)
++static void erase_reset_wq_function( struct work_struct *work2)
+ {
+     int ret;
+ 
+@@ -92,6 +94,7 @@ static void erase_reset_wq_function( struct work_struct *work)
+             gpio_direction_input(MX6QSDL_SECO_KEYROW0__GPIO_4_7);
+     }
+ 
++#if 0
+     gpio_direction_input(MX6QSDL_SECO_ARD_ERASE);
+     gpio_set_value(MX6QSDL_SECO_ARD_RESET, 1);
+     msleep(1);
+@@ -106,7 +109,10 @@ static void erase_reset_wq_function( struct work_struct *work)
+     msleep(80);
+     gpio_set_value(MX6QSDL_SECO_ARD_RESET, 1);
+     //  kfree( (void *)work );
+-    printk("UDOO ERASE and RESET on Sam3x EXECUTED. \n");
++    printk("UDOO ERASE and RESET on Sam3x EXECUTED. [%d]\n", work->erase_reset_lock);
++    msleep(GRAY_TIME_BETWEEN_RESET);
++    work->erase_reset_lock = 0;
++#endif
+ 
+ //    msleep(30000);
+ 
+@@ -162,11 +168,17 @@ static irqreturn_t udoo_bossac_req(int irq, void *dev_id)
+         erase_reset_work->step = erase_reset_work->step + 1;
+     }
+ 
++//printk("erase_reset_work->erase_reset_lock = %d \n", erase_reset_work->erase_reset_lock);
+     if ( erase_reset_work->step == 21 ) {  // Passed authentication and code acquiring step.
+ 
+ //printk("RECEIVED CODE = 0x%04x \n", erase_reset_work->cmdcode);
+         if (erase_reset_work->cmdcode == 0xF) {
+-            retval = queue_work( erase_reset_wq, (struct work_struct *)work );
++           if (erase_reset_work->erase_reset_lock == 0) {
++               erase_reset_work->erase_reset_lock = 1;
++               retval = queue_work( erase_reset_wq, (struct work_struct *)work );
++           } else {
++               printk("Erase and reset operation already in progress. Do nothing.\n");
++           } 
+             // To do: check retval error code.
+         } else {
+ //            msleep(30000);
+@@ -206,7 +218,7 @@ static int gpio_setup(void)
+     } else {
+             gpio_direction_input(MX6QSDL_SECO_BOSSAC_DAT);
+     }
+-
++#if 0
+     ret = gpio_request(MX6QSDL_SECO_ARD_ERASE, "BOSSAC");
+     if (ret) {
+             printk(KERN_ERR "request GPIO FOR ARDUINO ERASE\n");
+@@ -222,6 +234,7 @@ static int gpio_setup(void)
+     } else {
+             gpio_direction_output(MX6QSDL_SECO_ARD_RESET, 1);
+     }
++#endif
+ 
+     return 0;
+ }
+@@ -249,6 +262,7 @@ static int udoo_ard_init(void)
+                 work->cmdcode = 0;
+                 work->last_int_time_in_ns = 0;
+                 work->last_int_time_in_sec = 0;
++                work->erase_reset_lock = 0;
+             //  retval = queue_work( erase_reset_wq, (struct work_struct *)work );
+         }
+     }
+@@ -260,8 +274,8 @@ static void udoo_ard_exit(void)
+     printk("Unloading UDOO ard driver.\n");
+     free_irq(gpio_to_irq(MX6QSDL_SECO_BOSSAC_CLK), NULL);
+ 
+-    gpio_free(MX6QSDL_SECO_ARD_RESET);
+-    gpio_free(MX6QSDL_SECO_ARD_ERASE);
++    //gpio_free(MX6QSDL_SECO_ARD_RESET);
++    //gpio_free(MX6QSDL_SECO_ARD_ERASE);
+     gpio_free(MX6QSDL_SECO_BOSSAC_CLK);
+     gpio_free(MX6QSDL_SECO_BOSSAC_DAT);
+     return;
+@@ -269,3 +283,4 @@ static void udoo_ard_exit(void)
+ 
+ module_init(udoo_ard_init);
+ module_exit(udoo_ard_exit);
++
+diff --git a/kernel_imx/drivers/mxc/ipu3/ipu_device.c b/kernel_imx/drivers/mxc/ipu3/ipu_device.c
+index ce34775..3acdb36 100644
+--- a/kernel_imx/drivers/mxc/ipu3/ipu_device.c
++++ b/kernel_imx/drivers/mxc/ipu3/ipu_device.c
+@@ -3138,7 +3138,8 @@ static int ipu_task_thread(void *argv)
+                int split_parent;
+                int split_child;
+ 
+-               wait_event(thread_waitq, find_task(&tsk, curr_thread_id));
++                if(wait_event_interruptible(thread_waitq, find_task(&tsk, curr_thread_id)))
++                  break;
+ 
+                if (!tsk) {
+                        pr_err("thread:%d can not find task.\n",
+diff --git a/kernel_imx/drivers/video/mxc/ldb.c b/kernel_imx/drivers/video/mxc/ldb.c
+index 1d1b7c2..e5e93b0 100644
+--- a/kernel_imx/drivers/video/mxc/ldb.c
++++ b/kernel_imx/drivers/video/mxc/ldb.c
+@@ -131,10 +131,10 @@ static struct fb_videomode ldb_modedb[] = {
+         FB_VMODE_NONINTERLACED,
+         FB_MODE_IS_DETAILED,},
+        {
+-        "LDB-WXGA2", 60, 1280, 800, 14065,
+-        40, 40,
+-        10, 3,
+-        80, 10,
++        "LDB-WXGA2", 60, 1280, 800, 14430,
++        80, 48,
++        15, 2,
++        32, 47,
+         0,
+         FB_VMODE_NONINTERLACED,
+         FB_MODE_IS_DETAILED,},
+@@ -153,7 +153,7 @@ static struct fb_videomode ldb_modedb[] = {
+         10, 2,
+         0,
+         FB_VMODE_NONINTERLACED,
+-        FB_MODE_IS_DETAILED,},
++        0,},
+ };
+ static int ldb_modedb_sz = ARRAY_SIZE(ldb_modedb);
+ 
+diff --git a/kernel_imx/drivers/video/mxc/mxc_edid.c b/kernel_imx/drivers/video/mxc/mxc_edid.c
+index 721ff88..116b3e1 100644
+--- a/kernel_imx/drivers/video/mxc/mxc_edid.c
++++ b/kernel_imx/drivers/video/mxc/mxc_edid.c
+@@ -180,6 +180,11 @@ const struct fb_videomode mxc_cea_mode[64] = {
+                FB_SYNC_HOR_HIGH_ACT | FB_SYNC_VERT_HIGH_ACT,
+                FB_VMODE_NONINTERLACED | FB_VMODE_ASPECT_16_9, 0
+        },
++       /* #48: 1280x800p@60Hz 16:10 */
++        [48] = {
++                NULL, 60, 1280, 800, 14430, 80, 48, 15, 2, 32, 47, 0,
++                FB_VMODE_NONINTERLACED, 0
++        },
+ };
+ 
+ /*
+diff --git a/kernel_imx/drivers/video/mxc/mxc_lcdif.c b/kernel_imx/drivers/video/mxc/mxc_lcdif.c
+index 5cbdc73..a580c1c 100644
+--- a/kernel_imx/drivers/video/mxc/mxc_lcdif.c
++++ b/kernel_imx/drivers/video/mxc/mxc_lcdif.c
+@@ -39,6 +39,14 @@ static struct fb_videomode lcdif_modedb[] = {
+        FB_SYNC_CLK_LAT_FALL,
+        FB_VMODE_NONINTERLACED,
+        0,},
++        {
++         "LDB-WXGA2", 60, 1280, 800, 14065,
++         40, 40,
++         10, 3,
++         80, 10,
++         0,
++         FB_VMODE_NONINTERLACED,
++         FB_MODE_IS_DETAILED,},
+ };
+ static int lcdif_modedb_sz = ARRAY_SIZE(lcdif_modedb);
+ 
+diff --git a/kernel_imx/drivers/video/mxc/mxcfb_modedb.c b/kernel_imx/drivers/video/mxc/mxcfb_modedb.c
+index acaaef2..ecc27b3 100644
+--- a/kernel_imx/drivers/video/mxc/mxcfb_modedb.c
++++ b/kernel_imx/drivers/video/mxc/mxcfb_modedb.c
+@@ -64,6 +64,10 @@ struct fb_videomode mxcfb_modedb[] = {
+         "TV-VGA", 60, 640, 480, 40574, 35, 45, 9, 1, 46, 5,
+         0, FB_VMODE_NONINTERLACED, 0,
+         },
++        {
++         NULL, 60, 1280, 800, 14430, 80, 48, 15, 2, 32, 47, 0,
++         FB_VMODE_NONINTERLACED, 0
++        },
+ };
+ 
+ int mxcfb_modedb_sz = ARRAY_SIZE(mxcfb_modedb);
+diff --git a/kernel_imx/drivers/video/mxc_hdmi.c b/kernel_imx/drivers/video/mxc_hdmi.c
+index bffac86..8c0f868 100644
+--- a/kernel_imx/drivers/video/mxc_hdmi.c
++++ b/kernel_imx/drivers/video/mxc_hdmi.c
+@@ -94,9 +94,9 @@
+  * in HDMI Initialization Step B
+  */
+ static const struct fb_videomode vga_mode = {
+-       /* 640x480 @ 60 Hz, 31.5 kHz hsync */
+-       NULL, 60, 640, 480, 39721, 48, 16, 33, 10, 96, 2, 0,
+-       FB_VMODE_NONINTERLACED | FB_VMODE_ASPECT_4_3, FB_MODE_IS_VESA,
++       /* 1280x800 @ 60 Hz, 31.5 kHz hsync */
++       NULL, 60, 1280, 800, 14430, 80, 48, 15, 2, 32, 47, 0,
++       FB_VMODE_NONINTERLACED, FB_MODE_IS_DETAILED,
+ };
+ 
+ static const struct fb_videomode xga_mode = {
+(END)
