@@ -56,7 +56,7 @@ As a note, don't add the Android SDK to your path. It will cause your terminal w
 
 ## Downloading the Source
 
-The Android source code is located in an [archive](http://udoo.org/download/files/Sources/) hosted by Udoo.
+Android source code for [Udoo archive](http://udoo.org/download/files/Sources/) and [Radxa](http://wiki.radxa.com/Rock2/Android/develop).
 
     cd ~/Downloads
     wget http://download.udoo.org/files/Sources/UDOO_Android_4.3_Source_v2.0.tar.gz
