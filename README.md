@@ -61,6 +61,7 @@ The Android source code is located in an [archive](http://udoo.org/download/file
     cd ~/Downloads
     wget http://download.udoo.org/files/Sources/UDOO_Android_4.3_Source_v2.0.tar.gz
     wget http://udoo.org/download/files/Sources/UDOO_Android_4.4.2_Source_v1.0.tar.gz
+    wget http://dl.radxa.com/rock2/source/radxa_rock2_square_android4.4.2_sdk.tar.xz
     mkdir ~/Documents/android-source
     
 Dowload the patch
