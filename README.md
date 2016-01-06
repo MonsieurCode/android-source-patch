@@ -230,19 +230,9 @@ Here's the DPI setting from Udoo's init.rc file. Set the density to 160dpi, defa
 
     setprop ro.sf.lcd_density 160
 
-## Fix Touch
+## Check Touch
 
-    usb 2-1.2: new full speed USB device number 11 using fsl-ehci
-    usb 2-1.2: device descriptor read/64, error -32
-    usb 2-1.2: device descriptor read/64, error -32
-    usb 2-1.2: new full speed USB device number 12 using fsl-ehci
-    usb 2-1.2: device descriptor read/64, error -32
-    usb 2-1.2: device descriptor read/64, error -32
-    usb 2-1.2: new full speed USB device number 13 using fsl-ehci
-    usb 2-1.2: device not accepting address 13, error -32
-    usb 2-1.2: new full speed USB device number 14 using fsl-ehci
-    usb 2-1.2: device not accepting address 14, error -32
-    hub 2-1:1.0: unable to enumerate USB device on port 2
+    getevent
 
 ## Build Kernel
 
