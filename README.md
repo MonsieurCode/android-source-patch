@@ -110,7 +110,7 @@ Add an entry to kernel/drivers/video/mxc_edid.c.
         },
     }
 
-Replace the 640x800 entry in kernel/drivers/video/mxc_hdmi.c.
+Replace the 640x480 entry in kernel/drivers/video/mxc_hdmi.c.
 
     static const struct fb_videomode vga_mode = {
         /* 1280x800 @ 60 Hz, 31.5 kHz hsync */
