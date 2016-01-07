@@ -614,15 +614,7 @@ static const struct hid_device_id mt_devices[] = {
 
 	/* ATMEL panels */
 	{ .driver_data = MT_CLS_DEFAULT, HID_USB_DEVICE(USB_VENDOR_ID_ATMEL,
-    		0x07d3) },
-    	{ .driver_data = MT_CLS_DEFAULT, HID_USB_DEVICE(USB_VENDOR_ID_ATMEL,
-    		0x07d4) },
-	{ .driver_data = MT_CLS_DEFAULT, HID_USB_DEVICE(USB_VENDOR_ID_ATMEL,
-    		0x07d6) },			
-
-	/* AUO panels */
-    	{ .driver_data = MT_CLS_DEFAULT, HID_USB_DEVICE(USB_VENDOR_ID_AUO,
-    		USB_DEVICE_ID_G101EVN01_0) },
+    		USB_DEVICE_ID_ATMEL_212C) },			
 
 	/* Cando panels */
 	{ .driver_data = MT_CLS_DUAL_INRANGE_CONTACTNUMBER,
@@ -638,14 +630,10 @@ static const struct hid_device_id mt_devices[] = {
 		HID_USB_DEVICE(USB_VENDOR_ID_CANDO,
 			USB_DEVICE_ID_CANDO_MULTI_TOUCH_15_6) },
 			
-	/* Chalkboard Electronics 7" */
-    	{ .driver_data = MT_CLS_DEFAULT, HID_USB_DEVICE(USB_VENDOR_ID_MICROCHIP,0xF724) },
-    	
-    	/* Chalkboard Electronics 10" */
-    	{ .driver_data = MT_CLS_DEFAULT, HID_USB_DEVICE(USB_VENDOR_ID_NTRIG,0x07D3) },
-
-    	/* Chalkboard Electronics 14" */
-    	{ .driver_data = MT_CLS_DEFAULT, HID_USB_DEVICE(USB_VENDOR_ID_DWAV,0xA107) },
+    	/* D-WAV panels */
+    	{ .driver_data = MT_CLS_DEFAULT, 
+		HID_USB_DEVICE(USB_VENDOR_ID_DWAV,
+			USB_DEVICE_ID_DWAV_EGALAX_MULTITOUCH_A107) },
 
 	/* Chunghwa Telecom touch panels */
 	{  .driver_data = MT_CLS_DEFAULT,
@@ -727,6 +715,11 @@ static const struct hid_device_id mt_devices[] = {
 	{ .driver_data = MT_CLS_CONFIDENCE_MINUS_ONE,
 		HID_USB_DEVICE(USB_VENDOR_ID_LUMIO,
 			USB_DEVICE_ID_CRYSTALTOUCH_DUAL) },
+
+	/* Microchip */
+    	{ .driver_data = MT_CLS_DEFAULT, 
+		HID_USB_DEVICE(USB_VENDOR_ID_MICROCHIP, 
+			USB_DEVICE_ID_MICROCHIP_F724) },
 
 	/* MosArt panels */
 	{ .driver_data = MT_CLS_CONFIDENCE_MINUS_ONE,
