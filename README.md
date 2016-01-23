@@ -240,6 +240,10 @@ Here's the DPI setting from Udoo's init.rc file. Set the density to 160dpi, defa
 
 ## Pull Kernel Configuration
 
+    General setup
+        [*] Kernel .config support
+            [*] Enable access to .config through /proc/config.gz
+
     adb remount
     adb pull /proc/config.gz
 
