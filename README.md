@@ -257,21 +257,3 @@ If you attempt to push the complete source code to this repository, you will get
 9. [How to use our new 10-inch integrated LCD](http://www.chalk-elec.com/?p=2060)
 10. [Multitouch Compatibility Table](http://lii-enac.fr/en/architecture/linux-input/multitouch-devices.html)
 11. [The Linux Kernel](https://www.youtube.com/watch?v=XAo1QCQXODo)
-
-## Addendum: Setup a native Mac OS build environment
-
-You can create a case-sensitive filesystem within your existing Mac OS environment using a disk image. To create the image, launch Disk Utility and select "New Image". A size of 25GB is the minimum to complete the build; larger numbers are more future-proof. Using sparse images saves space while allowing to grow later as the need arises. Be sure to select "case sensitive, journaled" as the volume format.
-
-You can also create it from a shell with the following command:
-
-    hdiutil create -type SPARSE -fs 'Case-sensitive Journaled HFS+' -size 40g ~/android.dmg
-
-Go to https://github.com/phracker/MacOSX-SDKs, get MacOSX10.10.sdk and MacOSX10.9.sdk folders and copy them into
-
-    /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs
-    
-Setup [JENV](http://www.jenv.be/) to use multiple Java Versions
-
-    brew install jenv
-    
-Additional help should be found [here](http://tryge.com/2013/06/15/build-android-from-source-macosx/).
