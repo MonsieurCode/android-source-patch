@@ -217,6 +217,7 @@ You'll know this step has succeed when the Monsieur logo shows on reboot.
 
 ## Build Kernel
 
+    make -C kernel_imx imx6_udoo_android_defconfig
     make -C kernel_imx menuconfig
     make bootimage
 
