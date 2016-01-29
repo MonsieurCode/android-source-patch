@@ -210,25 +210,6 @@ You'll know this step has succeed when the Monsieur logo shows on reboot.
 
     setenv bootargs console=ttymxc1,115200 init=/init video=mxcfb0:dev=hdmi,1280x800M@60,if=RGB24,bpp=32 video=mxcfb1:off video=mxcfb2:off fbmem=28M vmalloc=400M androidboot.console=ttymxc1 androidboot.hardware=freescale mem=1024M
     saveenv
-    
-## Fix Resolution
-
-You may run into a 640 x 480 resolution. Changing the kernel resolution and setting the environment boot arguments may not be not enough. There is a problem in reading the EDID code from HDMI monitor. Follow this [guide](http://www.udoo.org/docs/Troubleshooting/How_Can_I_Solve_My_HDMI_Issues) to resolve the issue. Namely, you need to find a valid /etc/edid.txt file and copy it to the filesystem.
-
-Interestingly, you can override the screen's size and density.
-
-    adb shell wm size 1280x800
-    adb shell wm size reset
-    adb shell wm density 160
-    adb shell wm reset
-    
-Unfortunately, this doesn't address the physical size issue. That's a kernel issue.
-
-## Fix Pixel Density
-
-Here's the DPI setting from Udoo's init.rc file. Set the density to 160dpi, default 128dpi is not good.
-
-    setprop ro.sf.lcd_density 160
 
 ## Check Touch
 
