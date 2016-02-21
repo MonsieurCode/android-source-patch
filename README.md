@@ -234,6 +234,14 @@ ADB Shell
 
     adb remount
     adb pull /proc/config.gz
+    
+## Make Monsieur Only Launcher
+
+    adb shell mv /system/priv-app/Launcher2.apk /system/priv-app/Launcher2.apk.bak
+    
+## Make Monsieur System App
+
+    adb shell cp /data/app/co.monsieur.android.machine.apk /system/app/co.monsieur.android.machine.apk
 
 ## Congratulations
 
