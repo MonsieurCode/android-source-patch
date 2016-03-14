@@ -1,4 +1,4 @@
-menu "Device Drivers!"
+menu "Device Drivers"
 
 source "drivers/base/Kconfig"
 
