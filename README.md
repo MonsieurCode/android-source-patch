@@ -201,7 +201,7 @@ Here is the complete IDC.
 You'll know this step has succeed when the Monsieur logo shows on reboot.
 
     adb remount
-    adb push udoo-kitkat-diff/system /system
+    adb push android-source-patch/udoo/system /system
     adb reboot
 
 ![Monsieur Logo on Boot](https://slack-files.com/files-tmb/T02FPMKLD-F06RGJJ6L-b4bb3dab55/boot_1024.png)
