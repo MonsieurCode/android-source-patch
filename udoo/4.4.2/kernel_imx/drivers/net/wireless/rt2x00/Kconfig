@@ -101,14 +101,6 @@ config RT2800PCI_RT53XX
          rt2800pci driver.
          Supported chips: RT5390
 
-config RT2800USB_RT55XX
-       bool "rt2800usb - Include support for rt55xx devices (EXPERIMENTAL)"
-       default y
-       ---help---
-         This adds support for rt55xx wireless chipset family to the
-         rt2800usb driver.
-         Supported chips: RT5572
-
 endif
 
 config RT2500USB
@@ -178,7 +170,15 @@ config RT2800USB_RT53XX
          This adds support for rt53xx wireless chipset family to the
          rt2800pci driver.
          Supported chips: RT5370
-
+         
+config RT2800USB_RT55XX
+       bool "rt2800usb - Include support for rt55xx devices (EXPERIMENTAL)"
+       default y
+       ---help---
+         This adds support for rt55xx wireless chipset family to the
+         rt2800usb driver.
+         Supported chips: RT5572
+         
 config RT2800USB_UNKNOWN
 	bool "rt2800usb - Include support for unknown (USB) devices"
 	default n
