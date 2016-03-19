@@ -1,9 +1,0 @@
-# system.prop for jb-x86
-poweroff.doubleclick=1
-#media.stagefright.use-nuplayer=1
-ro.telephony.default_network=11
-rild.libpath=/system/lib/libaltair-ril.so
-rild.libargs=-d /dev/ttyACM0
-# for VZW enable lteOnCdmaDevice
-#telephony.lteOnCdmaDevice=1 
-
