@@ -243,13 +243,6 @@ ADB Shell
 
 If all steps were followed correctly, you should have successfully built an Udoo Android Kitkat system image with multi-touch capabilities.
 
-## Known Issues
-If you attempt to push the complete source code to this repository, you will get the following error.
-
-    compressing objects: 100% (3963/3963), done.
-    error: pack-objects died of signal 13
-    error: failed to push some refs to 'git@github.com:MonsieurCode/udoo-source.git' 
-
 ## Helpful Links 
 
 1. [UDOO compile Android 4.2.2 from sources](http://elinux.org/UDOO_compile_Android_4.2.2_from_sources)
