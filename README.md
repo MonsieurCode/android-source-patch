@@ -60,6 +60,15 @@ Apply the patch
 
 [Add Touchscreen Drivers](http://www.chalk-elec.com/?p=2028)
 
+If your system already has this “hid-multitouch” driver available as a kernel module, then you can easy add multi-touch support by adding the following commands to your /etc/rc.local file (before “exit” statement):
+
+*W* – is USB bus number of touchscreen USB, can be figured out by “lsusb” command
+*X* and *Y* – are VID and PID of touchscreen USB, also can be figured out by “lsusb” command
+*Z* – is 1 for 7″ and 10″ panels, and 259 for 14″ and 15.6″ panels
+
+    busybox modprobe hid-multitouch
+    echo W X Y Z > /sys/module/hid_multitouch/drivers/hid\:hid-multitouch/new_id
+
     static const struct hid_device_id mt_devices[] = {
         
         /* AUO 10" */
