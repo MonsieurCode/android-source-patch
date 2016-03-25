@@ -2,6 +2,10 @@
 
 This repository contains any modifications to the original Udoo Android source code. **This repository does NOT include the entire UDOO Android KitKat source code.** You will need to download the [complete source code archive](http://udoo.org/download/files/Sources/), unzip it, and merge the changes here at build time. For generic Android Source building instructions, click [here](http://source.android.com/source/building.html).
 
+# Download Virtual Box
+
+https://www.virtualbox.org/wiki/Downloads
+
 ## Download and Install Ubuntu
 
 [Ubuntu 14.04](http://www.ubuntu.com/download)
