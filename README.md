@@ -28,19 +28,7 @@ https://www.virtualbox.org/wiki/Downloads
 
 Install required packages - Ubuntu 14.04
 
-    sudo apt-get install git-core gnupg flex bison gperf libsdl1.2-dev libesd0-dev libwxgtk2.8-dev squashfs-tools build-essential zip curl libncurses5-dev zlib1g-dev pngcrush schedtool libxml2 libxml2-utils xsltproc lzop libc6-dev schedtool g++-multilib lib32z1-dev lib32ncurses5-dev lib32readline-gplv2-dev gcc-multilib libswitch-perl
-   
-Install ARM toolchain and building kernel related pacakges
-
-    sudo apt-get install lzop libncurses5-dev
-   
-Install libraries for other tools
-
-    sudo apt-get install libssl1.0.0 libssl-dev u-boot-tools uuid-dev liblzo2-dev libswitch-perl
-   
-## Install ADB
-
-    sudo apt-get install android-tools-adb
+    sudo apt-get install git-core gnupg flex bison gperf libsdl1.2-dev libesd0-dev libwxgtk2.8-dev squashfs-tools build-essential zip curl libncurses5-dev zlib1g-dev pngcrush schedtool libxml2 libxml2-utils xsltproc lzop libc6-dev schedtool g++-multilib lib32z1-dev lib32ncurses5-dev lib32readline-gplv2-dev gcc-multilib libswitch-perl libssl1.0.0 libssl-dev u-boot-tools uuid-dev liblzo2-dev android-tools-adb
 
 As a note, don't add the Android SDK to your path. It will cause your terminal window to crash.
 
