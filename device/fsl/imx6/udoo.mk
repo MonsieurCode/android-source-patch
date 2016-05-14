@@ -21,9 +21,6 @@ PRODUCT_COPY_FILES += \
 
 # Monsieur 
 PRODUCT_COPY_FILES += \
-	device/fsl/monsieur/app/adbEthernet.apk:system/app/adbEthernet.apk \
-	device/fsl/monsieur/app/fccSpeedTest.apk:system/app/fccSpeedTest.apk \
-	device/fsl/monsieur/app/terminalEmulator.apk:system/app/terminalEmulator.apk \
 	device/fsl/monsieur/media/bootanimation.zip:system/media/bootanimation.zip \
 	device/fsl/monsieur/usr/idc/Vendor_03eb_Product_212c.idc:system/usr/idc/Vendor_03eb_Product_212c.idc \
 	device/fsl/monsieur/usr/idc/Vendor_04d8_Product_f723.idc:system/usr/idc/Vendor_04d8_Product_f723.idc \
