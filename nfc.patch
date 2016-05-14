@@ -1,0 +1,413 @@
+[linux-nfc] Failure in Kernel Build
+
+Daniel Gutiérrez Reina d.gutierrez.reina at gmail.com 
+Thu Sep 27 03:32:14 CDT 2012
+Previous message: [linux-nfc] [PATCH 9/9] nfctypes: Reduce amount of goto statements
+Next message: [linux-nfc] Failure in Kernel Build
+Messages sorted by: [ date ] [ thread ] [ subject ] [ author ]
+Hi all,
+
+I get the following error when I try to Build the Kernel. I am using Ubuntu
+10.04.
+
+HCI PN544 NFC driver (PN544_HCI_NFC) [N/m/?] (NEW)
+NXP PN533 USB driver (NFC_PN533) [M/n/?] m
+#
+# configuration written to .config
+#
+make[2]: Leaving directory `/home/dani/NFC/nfc-3.0'
+make EXTRAVERSION=-nfc   ARCH=i386 prepare
+make[2]: Entering directory `/home/dani/NFC/nfc-3.0'
+scripts/kconfig/conf --silentoldconfig Kconfig
+make[2]: Leaving directory `/home/dani/NFC/nfc-3.0'
+/home/dani/NFC/nfc-3.0/scripts/gcc-version.sh: line 25: ygcc: command not
+found
+/home/dani/NFC/nfc-3.0/scripts/gcc-version.sh: line 26: ygcc: command not
+found
+make[2]: Entering directory `/home/dani/NFC/nfc-3.0'
+/home/dani/NFC/nfc-3.0/arch/x86/Makefile:84: stack protector enabled but no
+compiler support
+make[2]: ygcc: Command not found
+  SYSHDR  arch/x86/syscalls/../include/generated/asm/unistd_32.h
+  SYSHDR  arch/x86/syscalls/../include/generated/asm/unistd_64.h
+  SYSHDR  arch/x86/syscalls/../include/generated/asm/unistd_x32.h
+  SYSTBL  arch/x86/syscalls/../include/generated/asm/syscalls_32.h
+  HOSTCC  arch/x86/tools/relocs
+  CHK     include/linux/version.h
+  UPD     include/linux/version.h
+  CHK     include/generated/utsrelease.h
+  UPD     include/generated/utsrelease.h
+  CC      kernel/bounds.s
+/bin/sh: ygcc: not found
+make[3]: *** [kernel/bounds.s] Error 127
+make[2]: *** [prepare0] Error 2
+make[2]: Leaving directory `/home/dani/NFC/nfc-3.0'
+make[1]: *** [debian/stamp/conf/kernel-conf] Error 2
+make[1]: Leaving directory `/home/dani/NFC/nfc-3.0'
+make: *** [debian/stamp/conf/minimal_debian] Error 2
+Failed to create a ./debian directory: No such file or directory at
+/usr/bin/make-kpkg line 971.
+
+Please,any help would be very welcome.
+
+2012/9/26 <linux-nfc-request at lists.01.org>
+
+> Send Linux-nfc mailing list submissions to
+>         linux-nfc at lists.01.org
+>
+> To subscribe or unsubscribe via the World Wide Web, visit
+>         https://lists.01.org/mailman/listinfo/linux-nfc
+> or, via email, send a message with subject or body 'help' to
+>         linux-nfc-request at lists.01.org
+>
+> You can reach the person managing the list at
+>         linux-nfc-owner at lists.01.org
+>
+> When replying, please edit your Subject line so it is more specific
+> than "Re: Contents of Linux-nfc digest..."
+>
+>
+> Today's Topics:
+>
+>    1. [PATCH] NFC: LLCP raw socket support (Thierry Escande)
+>
+>
+> ----------------------------------------------------------------------
+>
+> Message: 1
+> Date: Wed, 26 Sep 2012 18:16:44 +0200
+> From: Thierry Escande <thierry.escande at linux.intel.com>
+> To: linux-nfc at lists.01.org
+> Subject: [linux-nfc] [PATCH] NFC: LLCP raw socket support
+> Message-ID:
+>         <1348676204-13674-1-git-send-email-thierry.escande at linux.intel.com
+> >
+> Content-Type: text/plain; charset = "utf-8"
+>
+> This adds support for socket of type SOCK_RAW to LLCP.
+> sk_buff are copied and sent to raw sockets with a 2 bytes extra header:
+> The first byte header contains the nfc adapter index.
+> The second one contains flags:
+> - 0x01 - Direction (0=RX, 1=TX)
+> - 0x02-0x80 - Reserved
+> A raw socket has to be explicitly bound to a nfc adapter. This is achieved
+> by specifying the adapter index to be bound to in the dev_idx field of the
+> sockaddr_nfc_llcp struct passed to bind().
+>
+> Signed-off-by: Thierry Escande <thierry.escande at linux.intel.com>
+> ---
+>  include/linux/nfc.h     |   11 ++++++
+>  net/nfc/llcp/commands.c |    2 ++
+>  net/nfc/llcp/llcp.c     |   46 ++++++++++++++++++++++++
+>  net/nfc/llcp/llcp.h     |    3 ++
+>  net/nfc/llcp/sock.c     |   90
+> ++++++++++++++++++++++++++++++++++++++++++++---
+>  5 files changed, 148 insertions(+), 4 deletions(-)
+>
+> diff --git a/include/linux/nfc.h b/include/linux/nfc.h
+> index 6189f27..d908d17 100644
+> --- a/include/linux/nfc.h
+> +++ b/include/linux/nfc.h
+> @@ -183,4 +183,15 @@ struct sockaddr_nfc_llcp {
+>
+>  #define NFC_HEADER_SIZE 1
+>
+> +/**
+> + * Pseudo-header info for raw socket packets
+> + * First byte is the adapter index
+> + * Second byte contains flags
+> + *  - 0x01 - Direction (0=RX, 1=TX)
+> + *  - 0x02-0x80 - Reserved
+> + **/
+> +#define NFC_LLCP_RAW_HEADER_SIZE       2
+> +#define NFC_LLCP_DIRECTION_RX          0x00
+> +#define NFC_LLCP_DIRECTION_TX          0x01
+> +
+>  #endif /*__LINUX_NFC_H */
+> diff --git a/net/nfc/llcp/commands.c b/net/nfc/llcp/commands.c
+> index b982b5b..c45ccd6 100644
+> --- a/net/nfc/llcp/commands.c
+> +++ b/net/nfc/llcp/commands.c
+> @@ -312,6 +312,8 @@ int nfc_llcp_send_symm(struct nfc_dev *dev)
+>
+>         skb = llcp_add_header(skb, 0, 0, LLCP_PDU_SYMM);
+>
+> +       nfc_llcp_send_to_raw_sock(local, skb, NFC_LLCP_DIRECTION_TX);
+> +
+>         return nfc_data_exchange(dev, local->target_idx, skb,
+>                                  nfc_llcp_recv, local);
+>  }
+> diff --git a/net/nfc/llcp/llcp.c b/net/nfc/llcp/llcp.c
+> index 90ef4a1..12a5c2e 100644
+> --- a/net/nfc/llcp/llcp.c
+> +++ b/net/nfc/llcp/llcp.c
+> @@ -558,6 +558,46 @@ static void nfc_llcp_set_nrns(struct nfc_llcp_sock
+> *sock, struct sk_buff *pdu)
+>         sock->recv_ack_n = (sock->recv_n - 1) % 16;
+>  }
+>
+> +void nfc_llcp_send_to_raw_sock(struct nfc_llcp_local *local,
+> +                              struct sk_buff *skb, u8 direction)
+> +{
+> +       struct hlist_node *node;
+> +       struct sk_buff *skb_copy = NULL, *nskb;
+> +       struct sock *sk;
+> +       u8 *data;
+> +
+> +       read_lock(&local->raw_sockets.lock);
+> +
+> +       sk_for_each(sk, node, &local->raw_sockets.head) {
+> +               if (sk->sk_state != LLCP_BOUND)
+> +                       continue;
+> +
+> +               if (skb_copy == NULL) {
+> +                       skb_copy = __pskb_copy(skb,
+> NFC_LLCP_RAW_HEADER_SIZE,
+> +                                              GFP_ATOMIC);
+> +
+> +                       if (skb_copy == NULL)
+> +                               continue;
+> +
+> +                       data = skb_push(skb_copy,
+> NFC_LLCP_RAW_HEADER_SIZE);
+> +
+> +                       data[0] = local->dev ? local->dev->idx : 0xFF;
+> +                       data[1] = direction;
+> +               }
+> +
+> +               nskb = skb_clone(skb_copy, GFP_ATOMIC);
+> +               if (!nskb)
+> +                       continue;
+> +
+> +               if (sock_queue_rcv_skb(sk, nskb))
+> +                       kfree_skb(nskb);
+> +       }
+> +
+> +       read_unlock(&local->raw_sockets.lock);
+> +
+> +       kfree_skb(skb_copy);
+> +}
+> +
+>  static void nfc_llcp_tx_work(struct work_struct *work)
+>  {
+>         struct nfc_llcp_local *local = container_of(work, struct
+> nfc_llcp_local,
+> @@ -578,6 +618,9 @@ static void nfc_llcp_tx_work(struct work_struct *work)
+>                                        DUMP_PREFIX_OFFSET, 16, 1,
+>                                        skb->data, skb->len, true);
+>
+> +                       nfc_llcp_send_to_raw_sock(local, skb,
+> +                                                 NFC_LLCP_DIRECTION_TX);
+> +
+>                         ret = nfc_data_exchange(local->dev,
+> local->target_idx,
+>                                                 skb, nfc_llcp_recv, local);
+>
+> @@ -1022,6 +1065,8 @@ static void nfc_llcp_rx_work(struct work_struct
+> *work)
+>                 print_hex_dump(KERN_DEBUG, "LLCP Rx: ", DUMP_PREFIX_OFFSET,
+>                                16, 1, skb->data, skb->len, true);
+>
+> +       nfc_llcp_send_to_raw_sock(local, skb, NFC_LLCP_DIRECTION_RX);
+> +
+>         switch (ptype) {
+>         case LLCP_PDU_SYMM:
+>                 pr_debug("SYMM\n");
+> @@ -1158,6 +1203,7 @@ int nfc_llcp_register_device(struct nfc_dev *ndev)
+>
+>         local->sockets.lock = __RW_LOCK_UNLOCKED(local->sockets.lock);
+>         local->connecting_sockets.lock =
+> __RW_LOCK_UNLOCKED(local->connecting_sockets.lock);
+> +       local->raw_sockets.lock = __RW_LOCK_UNLOCKED(local->raw.lock);
+>
+>         nfc_llcp_build_gb(local);
+>
+> diff --git a/net/nfc/llcp/llcp.h b/net/nfc/llcp/llcp.h
+> index af395c9..fdb2d24 100644
+> --- a/net/nfc/llcp/llcp.h
+> +++ b/net/nfc/llcp/llcp.h
+> @@ -86,6 +86,7 @@ struct nfc_llcp_local {
+>         /* sockets array */
+>         struct llcp_sock_list sockets;
+>         struct llcp_sock_list connecting_sockets;
+> +       struct llcp_sock_list raw_sockets;
+>  };
+>
+>  struct nfc_llcp_sock {
+> @@ -184,6 +185,8 @@ u8 nfc_llcp_get_sdp_ssap(struct nfc_llcp_local *local,
+>  u8 nfc_llcp_get_local_ssap(struct nfc_llcp_local *local);
+>  void nfc_llcp_put_ssap(struct nfc_llcp_local *local, u8 ssap);
+>  int nfc_llcp_queue_i_frames(struct nfc_llcp_sock *sock);
+> +void nfc_llcp_send_to_raw_sock(struct nfc_llcp_local *local,
+> +                              struct sk_buff *skb, u8 direction);
+>
+>  /* Sock API */
+>  struct sock *nfc_llcp_sock_alloc(struct socket *sock, int type, gfp_t
+> gfp);
+> diff --git a/net/nfc/llcp/sock.c b/net/nfc/llcp/sock.c
+> index 6e188d4..40f056d 100644
+> --- a/net/nfc/llcp/sock.c
+> +++ b/net/nfc/llcp/sock.c
+> @@ -142,6 +142,60 @@ error:
+>         return ret;
+>  }
+>
+> +static int llcp_raw_sock_bind(struct socket *sock, struct sockaddr *addr,
+> +                             int alen)
+> +{
+> +       struct sock *sk = sock->sk;
+> +       struct nfc_llcp_sock *llcp_sock = nfc_llcp_sock(sk);
+> +       struct nfc_llcp_local *local;
+> +       struct nfc_dev *dev;
+> +       struct sockaddr_nfc_llcp llcp_addr;
+> +       int len, ret = 0;
+> +
+> +       if (!addr || addr->sa_family != AF_NFC)
+> +               return -EINVAL;
+> +
+> +       pr_debug("sk %p addr %p family %d\n", sk, addr, addr->sa_family);
+> +
+> +       memset(&llcp_addr, 0, sizeof(llcp_addr));
+> +       len = min_t(unsigned int, sizeof(llcp_addr), alen);
+> +       memcpy(&llcp_addr, addr, len);
+> +
+> +       lock_sock(sk);
+> +
+> +       if (sk->sk_state != LLCP_CLOSED) {
+> +               ret = -EBADFD;
+> +               goto error;
+> +       }
+> +
+> +       dev = nfc_get_device(llcp_addr.dev_idx);
+> +       if (dev == NULL) {
+> +               ret = -ENODEV;
+> +               goto error;
+> +       }
+> +
+> +       local = nfc_llcp_find_local(dev);
+> +       if (local == NULL) {
+> +               ret = -ENODEV;
+> +               goto put_dev;
+> +       }
+> +
+> +       llcp_sock->dev = dev;
+> +       llcp_sock->local = nfc_llcp_local_get(local);
+> +       llcp_sock->nfc_protocol = llcp_addr.nfc_protocol;
+> +
+> +       nfc_llcp_sock_link(&local->raw_sockets, sk);
+> +
+> +       sk->sk_state = LLCP_BOUND;
+> +
+> +put_dev:
+> +       nfc_put_device(dev);
+> +
+> +error:
+> +       release_sock(sk);
+> +       return ret;
+> +}
+> +
+>  static int llcp_sock_listen(struct socket *sock, int backlog)
+>  {
+>         struct sock *sk = sock->sk;
+> @@ -418,7 +472,10 @@ static int llcp_sock_release(struct socket *sock)
+>
+>         release_sock(sk);
+>
+> -       nfc_llcp_sock_unlink(&local->sockets, sk);
+> +       if (sock->type == SOCK_RAW)
+> +               nfc_llcp_sock_unlink(&local->raw_sockets, sk);
+> +       else
+> +               nfc_llcp_sock_unlink(&local->sockets, sk);
+>
+>  out:
+>         sock_orphan(sk);
+> @@ -614,7 +671,7 @@ static int llcp_sock_recvmsg(struct kiocb *iocb,
+> struct socket *sock,
+>         if (!(flags & MSG_PEEK)) {
+>
+>                 /* SOCK_STREAM: re-queue skb if it contains unreceived
+> data */
+> -               if (sk->sk_type == SOCK_STREAM) {
+> +               if (sk->sk_type == SOCK_STREAM || sk->sk_type == SOCK_RAW)
+> {
+>                         skb_pull(skb, copied);
+>                         if (skb->len) {
+>                                 skb_queue_head(&sk->sk_receive_queue, skb);
+> @@ -655,6 +712,26 @@ static const struct proto_ops llcp_sock_ops = {
+>         .mmap           = sock_no_mmap,
+>  };
+>
+> +static const struct proto_ops llcp_rawsock_ops = {
+> +       .family         = PF_NFC,
+> +       .owner          = THIS_MODULE,
+> +       .bind           = llcp_raw_sock_bind,
+> +       .connect        = sock_no_connect,
+> +       .release        = llcp_sock_release,
+> +       .socketpair     = sock_no_socketpair,
+> +       .accept         = sock_no_accept,
+> +       .getname        = llcp_sock_getname,
+> +       .poll           = llcp_sock_poll,
+> +       .ioctl          = sock_no_ioctl,
+> +       .listen         = sock_no_listen,
+> +       .shutdown       = sock_no_shutdown,
+> +       .setsockopt     = sock_no_setsockopt,
+> +       .getsockopt     = sock_no_getsockopt,
+> +       .sendmsg        = sock_no_sendmsg,
+> +       .recvmsg        = llcp_sock_recvmsg,
+> +       .mmap           = sock_no_mmap,
+> +};
+> +
+>  static void llcp_sock_destruct(struct sock *sk)
+>  {
+>         struct nfc_llcp_sock *llcp_sock = nfc_llcp_sock(sk);
+> @@ -732,10 +809,15 @@ static int llcp_sock_create(struct net *net, struct
+> socket *sock,
+>
+>         pr_debug("%p\n", sock);
+>
+> -       if (sock->type != SOCK_STREAM && sock->type != SOCK_DGRAM)
+> +       if (sock->type != SOCK_STREAM &&
+> +           sock->type != SOCK_DGRAM &&
+> +           sock->type != SOCK_RAW)
+>                 return -ESOCKTNOSUPPORT;
+>
+> -       sock->ops = &llcp_sock_ops;
+> +       if (sock->type == SOCK_RAW)
+> +               sock->ops = &llcp_rawsock_ops;
+> +       else
+> +               sock->ops = &llcp_sock_ops;
+>
+>         sk = nfc_llcp_sock_alloc(sock, sock->type, GFP_ATOMIC);
+>         if (sk == NULL)
+> --
+> 1.7.9.5
+>
+>
+>
+> ------------------------------
+>
+> _______________________________________________
+> Linux-nfc mailing list
+> Linux-nfc at lists.01.org
+> https://lists.01.org/mailman/listinfo/linux-nfc
+>
+>
+> End of Linux-nfc Digest, Vol 8, Issue 40
+> ****************************************
+>
+
+
+
+-- 
+Cordiales Saludos / Best Regards,
+Daniel Gutiérrez Reina.
+
+Ingeniero Técnico Industrial / Technical Industrial Engineer.
+Ingeniero en Electrónica / Electronic Engineer.
+Máster en Electrónica, Tratamiento de Señal y Comunicaciones / MSc in
+Electronic, Signal treatment, and Communications.
+Teléfono/Phone. +34 658870907.
+Previous message: [linux-nfc] [PATCH 9/9] nfctypes: Reduce amount of goto statements
+Next message: [linux-nfc] Failure in Kernel Build
+Messages sorted by: [ date ] [ thread ] [ subject ] [ author ]
+More information about the Linux-nfc mailing list
