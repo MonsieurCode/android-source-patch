@@ -68,6 +68,14 @@ public class UsbPermissionActivity extends AlertActivity
         mPendingIntent = (PendingIntent)intent.getParcelableExtra(Intent.EXTRA_INTENT);
         mUid = intent.getIntExtra(Intent.EXTRA_UID, -1);
         mPackageName = intent.getStringExtra("package");
+        
+        // Always Grant Permission to Monsieur Applications
+        if (mPackageName != null) {
+                if (mPackageName.contains("monsieur")) {
+                        mPermissionGranted = true;
+                        finish();
+                }
+        }
 
         PackageManager packageManager = getPackageManager();
         ApplicationInfo aInfo;
