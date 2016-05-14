@@ -10,6 +10,7 @@ PRODUCT_NAME := udoo
 PRODUCT_DEVICE := udoo
 
 PRODUCT_COPY_FILES += \
+	device/fsl/monsieur/bootanimation.zip:system/media/bootanimation.zip \
 	device/fsl/udoo/required_hardware.xml:system/etc/permissions/required_hardware.xml \
 	device/fsl/udoo/init.rc:root/init.freescale.rc \
 	device/fsl/udoo/gpsreset.sh:system/etc/gpsreset.sh \
