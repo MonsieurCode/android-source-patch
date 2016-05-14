@@ -24,7 +24,7 @@ config NFC_PN533
 	  Say Y here to compile support for PN533 devices into the
 	  kernel or say M to compile it as module (pn533).
 
-config PN544_NFC
+config NFC_PN544
 	tristate "PN544 NFC driver"
 	depends on I2C
 	select CRC_CCITT
