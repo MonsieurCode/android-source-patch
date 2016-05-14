@@ -10,7 +10,6 @@ PRODUCT_NAME := udoo
 PRODUCT_DEVICE := udoo
 
 PRODUCT_COPY_FILES += \
-	device/fsl/monsieur/bootanimation.zip:system/media/bootanimation.zip \
 	device/fsl/udoo/required_hardware.xml:system/etc/permissions/required_hardware.xml \
 	device/fsl/udoo/init.rc:root/init.freescale.rc \
 	device/fsl/udoo/gpsreset.sh:system/etc/gpsreset.sh \
@@ -18,11 +17,16 @@ PRODUCT_COPY_FILES += \
 	device/fsl/udoo/audio_effects.conf:system/vendor/etc/audio_effects.conf \
 	device/fsl/udoo/fstab.freescale:root/fstab.freescale \
 	device/fsl/udoo/input/sitronix-i2c-touch-mt.idc:system/usr/idc/sitronix-i2c-touch-mt.idc \
-	device/fsl/udoo/input/Vendor_03eb_Product_212c.idc:system/usr/idc/Vendor_03eb_Product_212c.idc \
-	device/fsl/udoo/input/Vendor_04d8_Product_f723.idc:system/usr/idc/Vendor_04d8_Product_f723.idc \
-	device/fsl/udoo/input/Vendor_04d8_Product_f724.idc:system/usr/idc/Vendor_04d8_Product_f724.idc \
 	device/fsl/udoo/input/Vendor_0596_Product_0001.idc:system/usr/idc/Vendor_0596_Product_0001.idc \
-	device/fsl/udoo/input/Vendor_0eef_Product_a107.idc:system/usr/idc/Vendor_0eef_Product_a107.idc
+
+# Monsieur 
+PRODUCT_COPY_FILES += \
+	device/fsl/monsieur/media/bootanimation.zip:system/media/bootanimation.zip \
+	device/fsl/monsieur/usr/idc/Vendor_03eb_Product_212c.idc:system/usr/idc/Vendor_03eb_Product_212c.idc \
+	device/fsl/monsieur/usr/idc/Vendor_04d8_Product_f723.idc:system/usr/idc/Vendor_04d8_Product_f723.idc \
+	device/fsl/monsieur/usr/idc/Vendor_04d8_Product_f724.idc:system/usr/idc/Vendor_04d8_Product_f724.idc \
+	device/fsl/monsieur/usr/idc/Vendor_0eef_Product_a107.idc:system/usr/idc/Vendor_0eef_Product_a107.idc \
+	device/fsl/monsieur/usr/idc/Vendor_1b96_Product_0007.idc:system/usr/idc/Vendor_1b96_Product_0007.idc
 
 #Superuser installation
 PRODUCT_COPY_FILES += \
