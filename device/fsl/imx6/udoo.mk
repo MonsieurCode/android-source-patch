@@ -21,12 +21,17 @@ PRODUCT_COPY_FILES += \
 
 # Monsieur 
 PRODUCT_COPY_FILES += \
+	device/fsl/monsieur/app/adbEthernet.apk:system/app/adbEthernet.apk \
+	device/fsl/monsieur/app/fccSpeedTest.apk:system/app/fccSpeedTest.apk \
+	device/fsl/monsieur/app/terminalEmulator.apk:system/app/terminalEmulator.apk \
 	device/fsl/monsieur/media/bootanimation.zip:system/media/bootanimation.zip \
 	device/fsl/monsieur/usr/idc/Vendor_03eb_Product_212c.idc:system/usr/idc/Vendor_03eb_Product_212c.idc \
 	device/fsl/monsieur/usr/idc/Vendor_04d8_Product_f723.idc:system/usr/idc/Vendor_04d8_Product_f723.idc \
 	device/fsl/monsieur/usr/idc/Vendor_04d8_Product_f724.idc:system/usr/idc/Vendor_04d8_Product_f724.idc \
 	device/fsl/monsieur/usr/idc/Vendor_0eef_Product_a107.idc:system/usr/idc/Vendor_0eef_Product_a107.idc \
-	device/fsl/monsieur/usr/idc/Vendor_1b96_Product_0007.idc:system/usr/idc/Vendor_1b96_Product_0007.idc
+	device/fsl/monsieur/usr/idc/Vendor_1b96_Product_0007.idc:system/usr/idc/Vendor_1b96_Product_0007.idc \
+	device/fsl/monsieur/xbin/bossac:system/xbin/bossac \
+	device/fsl/monsieur/xbin/monsieur-arduino-due.bin:system/xbin/monsieur-arduino-due.bin
 
 #Superuser installation
 PRODUCT_COPY_FILES += \
