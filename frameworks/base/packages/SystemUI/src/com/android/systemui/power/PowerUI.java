@@ -53,7 +53,7 @@ public class PowerUI extends SystemUI {
     Handler mHandler = new Handler();
 
     int mBatteryLevel = 100;
-    int mBatteryStatus = BatteryManager.BATTERY_STATUS_UNKNOWN;
+    int mBatteryStatus = BatteryManager.BATTERY_STATUS_CHARGING;
     int mPlugType = 0;
     int mInvalidCharger = 0;
 
@@ -121,7 +121,7 @@ public class PowerUI extends SystemUI {
                 mBatteryLevel = intent.getIntExtra(BatteryManager.EXTRA_LEVEL, 100);
                 final int oldBatteryStatus = mBatteryStatus;
                 mBatteryStatus = intent.getIntExtra(BatteryManager.EXTRA_STATUS,
-                        BatteryManager.BATTERY_STATUS_UNKNOWN);
+                        BatteryManager.BATTERY_STATUS_CHARGING);
                 final int oldPlugType = mPlugType;
                 mPlugType = intent.getIntExtra(BatteryManager.EXTRA_PLUGGED, 1);
                 final int oldInvalidCharger = mInvalidCharger;
@@ -158,7 +158,7 @@ public class PowerUI extends SystemUI {
 
                 if (!plugged
                         && (bucket < oldBucket || oldPlugged)
-                        && mBatteryStatus != BatteryManager.BATTERY_STATUS_UNKNOWN
+                        && mBatteryStatus != BatteryManager.BATTERY_STATUS_CHARGING
                         && bucket < 0) {
                     showLowBatteryWarning();
 
