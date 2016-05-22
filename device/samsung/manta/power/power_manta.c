@@ -47,7 +47,7 @@ static void sysfs_write(const char *path, char *s)
 
     if (fd < 0) {
         strerror_r(errno, buf, sizeof(buf));
-        ALOGE("Error opening %s: %s\n", path, buf);
+        // ALOGE("Error opening %s: %s\n", path, buf);
         return;
     }
 
