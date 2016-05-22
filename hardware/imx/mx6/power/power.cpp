@@ -42,7 +42,7 @@ static void getcpu_gov(char *s, int size)
     int fd = open(GOV_PATH, O_RDONLY);
 
     if (fd < 0) {
-        ALOGE("Error opening %s: %s\n", GOV_PATH, strerror(errno));
+        // ALOGE("Error opening %s: %s\n", GOV_PATH, strerror(errno));
         return;
     }
 
