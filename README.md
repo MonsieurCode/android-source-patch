@@ -98,8 +98,6 @@ Replace the 640x480 entry in kernel/drivers/video/mxc_hdmi.c.
 
 Navigate to Device Drivers > HID > Special Drivers. **Make sure HID Multitouch panels are included which corresponds to device.internal = 1 in your Input Device Configuration (IDC).** Alternatively, a modularized feature would correspond to device.internal = 0. IDCs will be explained in detail later. 
     
-![Kernel Configuration](https://slack-files.com/files-tmb/T02FPMKLD-F0EH0P1UH-7b67cf73f9/kernel_configuration_special_hid_drivers_720.png)
-
 ## Build U-Boot
 
     . setup udoo-eng
@@ -175,8 +173,6 @@ You'll know this step has succeed when the Monsieur logo shows on reboot.
     adb remount
     adb push udoo-quad-kitkat-patch/root/ /
     adb reboot
-
-![Monsieur Logo on Boot](https://slack-files.com/files-tmb/T02FPMKLD-F06RGJJ6L-b4bb3dab55/boot_1024.png)
 
 ## Boot Udoo on 10" 1280x800 HDMI Screen
 
