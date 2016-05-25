@@ -5,7 +5,7 @@
     . setup udoo-eng
     make -C kernel_imx imx6_udoo_android_defconfig
     make
-    bootable/bootloader/u-boot/compile.sh
+    bootable/bootloader/uboot-imx/compile.sh
     sudo -E ./make_sd.sh /dev/sdb
 
 # Description
