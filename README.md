@@ -12,6 +12,17 @@
 
 This repository contains any modifications to the original Udoo Android source code. **This repository does NOT include the entire UDOO Android KitKat source code.** You will need to download the [complete source code archive](http://udoo.org/download/files/Sources/), unzip it, and merge the changes here at build time. For generic Android Source building instructions, click [here](http://source.android.com/source/building.html).
 
+# Large Files
+
+    device/lge/hammerhead-kernel/vmlinux.bz2
+    external/chromium-trace/trace-viewer/test_data/theverge_trace.json
+    external/eclipse-basebuilder/src/eclipse-sourceBuild-srcIncluded-3.6.2.zip
+    frameworks/base/media/tests/contents/media_api/videoeditor/H264_BP_640x480_15fps_384kbps_60_0.mp4
+    prebuilts/eclipse/deltapack/eclipse-3.7.2-delta-pack.zip
+    prebuilts/eclipse/deltapack/eclipse-4.2.2-delta-pack.zip
+    prebuilts/eclipse/platform/org.eclipse.platform-3.7.2.zip
+    prebuilts/qemu-kernel/x86/vmlinux-vbox
+
 # Download Virtual Box
 
 https://www.virtualbox.org/wiki/Downloads
