@@ -1,5 +1,15 @@
 # udoo-quad-kitkat-patch
 
+# Quick Start
+
+    . setup udoo-eng
+    make -C kernel_imx imx6_udoo_android_defconfig
+    make
+    bootable/bootloader/u-boot/compile.sh
+    sudo -E ./make_sd.sh /dev/sdc
+
+# Description
+
 This repository contains any modifications to the original Udoo Android source code. **This repository does NOT include the entire UDOO Android KitKat source code.** You will need to download the [complete source code archive](http://udoo.org/download/files/Sources/), unzip it, and merge the changes here at build time. For generic Android Source building instructions, click [here](http://source.android.com/source/building.html).
 
 # Download Virtual Box
@@ -167,12 +177,6 @@ Here is the complete IDC.
     keyboard.builtIn = 1
     cursor.mode = navigation
     cursor.orientationAware = 1
-
-You'll know this step has succeed when the Monsieur logo shows on reboot.
-
-    adb remount
-    adb push udoo-quad-kitkat-patch/root/ /
-    adb reboot
 
 ## Boot Udoo on 10" 1280x800 HDMI Screen
 
