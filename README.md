@@ -37,7 +37,7 @@ As a note, don't add the Android SDK to your path. It will cause your terminal w
 Android source code for [Udoo](http://udoo.org/download/files/Sources/) and [Radxa](http://wiki.radxa.com/Rock2/Android/develop).
 # Download
 
-    wget https://drive.google.com/open?id=0B9oMfppL-n1zR1FrZkRMak90a1U -O ~/Documents/udoo-quad-kitkat.tar.gz
+    wget http://www.udoo.org/download/files/Sources/UDOO_Android_4.4.2_Source_v1.0.tar.gz -O ~/Documents/udoo-quad-kitkat.tar.gz
     tar zxvf ~/Documents/udoo-quad-kitkat.tar.gz
     mv ~/Documents/4.4.2 ~/Documents/udoo-quad-kitkat
     git clone https://github.com/MonsieurCode/udoo-quad-kitkat-patch/
