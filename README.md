@@ -2,21 +2,6 @@
 
 This repository contains any modifications to the original Udoo Android source code. **This repository does NOT include the entire UDOO Android KitKat source code.** You will need to download the [complete source code archive](http://udoo.org/download/files/Sources/), unzip it, and merge the changes here at build time. For generic Android Source building instructions, click [here](http://source.android.com/source/building.html).
 
-# Download
-
-    wget https://drive.google.com/open?id=0B9oMfppL-n1zR1FrZkRMak90a1U -O ~/Documents/udoo-quad-kitkat.tar.gz
-    tar zxvf ~/Documents/udoo-quad-kitkat.tar.gz
-    mv ~/Documents/4.4.2 ~/Documents/udoo-quad-kitkat
-
-# Make
-
-    cd ~/Documents/udoo-quad-kit
-    . setup udoo-eng
-    make -C kernel_imx imx6_udoo_android_defconfig
-    make
-    bootable/bootloader/uboot-imx/compile.sh
-    sudo -E ./make_sd.sh /dev/sdb
-
 # Download Virtual Box
 
 https://www.virtualbox.org/wiki/Downloads
@@ -50,14 +35,21 @@ As a note, don't add the Android SDK to your path. It will cause your terminal w
 ## Downloading the Source
 
 Android source code for [Udoo](http://udoo.org/download/files/Sources/) and [Radxa](http://wiki.radxa.com/Rock2/Android/develop).
+# Download
 
-    cd ~/Downloads
-    wget http://udoo.org/download/files/Sources/UDOO_Android_4.4.2_Source_v1.0.tar.gz
-    mkdir ~/Documents/udoo-quad-kitkat
-    
-Dowload the patch
+    wget https://drive.google.com/open?id=0B9oMfppL-n1zR1FrZkRMak90a1U -O ~/Documents/udoo-quad-kitkat.tar.gz
+    tar zxvf ~/Documents/udoo-quad-kitkat.tar.gz
+    mv ~/Documents/4.4.2 ~/Documents/udoo-quad-kitkat
+    git clone https://github.com/MonsieurCode/udoo-quad-kitkat-patch/
 
-    git clone git@github.com:MonsieurCode/udoo-quad-kitkat-patch.git
+# Make
+
+    cd ~/Documents/udoo-quad-kit
+    . setup udoo-eng
+    make -C kernel_imx imx6_udoo_android_defconfig
+    make
+    bootable/bootloader/uboot-imx/compile.sh
+    sudo -E ./make_sd.sh /dev/sdb
 
 Apply the patch
 
