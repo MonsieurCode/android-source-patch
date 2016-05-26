@@ -224,7 +224,7 @@ ADB Shell
 
 If all steps were followed correctly, you should have successfully built an Udoo Android Kitkat system image with multi-touch capabilities.
 
-## Helpful Links 
+## References 
 
 1. [UDOO compile Android 4.2.2 from sources](http://elinux.org/UDOO_compile_Android_4.2.2_from_sources)
 2. [Build Android for Radxa Rock Pro](http://radxa.com/Rock/Android_Build)
