@@ -18,6 +18,17 @@ on init
     symlink /mnt/shell/emulated/0 /storage/emulated/legacy
 
 on boot
+    
+    # Set permission for Bossac
+    chmod 666 /dev/ttymxc3
+    sleep 1
+    chmod 666 /sys/class/gpio/gpio117/direction
+    sleep 1
+    chmod 666 /sys/class/gpio/gpio117/value
+    sleep 1
+    chmod 666 /sys/class/gpio/gpio0/direction
+    sleep 1
+    chmod 666 /sys/class/gpio/gpio0/value
 
     # Set permission for IIM node
     symlink /dev/mxs_viim /dev/mxc_mem
