@@ -18,7 +18,6 @@ on init
     symlink /mnt/shell/emulated/0 /storage/emulated/legacy
 
 on boot
-    
     # Set permission for Bossac
     chmod 666 /dev/ttymxc3
     sleep 1
