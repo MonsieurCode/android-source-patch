@@ -76,4 +76,6 @@ PRODUCT_PACKAGES += 	\
 	lsusb		\
 	SimpleExplorer	\
 	adbWireless	\
+	Bartender	\
+	Waitress	\
 	Superuser
