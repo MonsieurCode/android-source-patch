@@ -77,5 +77,7 @@ PRODUCT_PACKAGES += 	\
 	SimpleExplorer	\
 	adbWireless	\
 	Bartender	\
+	SpeedTest	\
+	Terminal	\
 	Waitress	\
 	Superuser
