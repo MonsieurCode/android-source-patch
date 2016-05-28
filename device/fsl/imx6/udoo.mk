@@ -78,6 +78,5 @@ PRODUCT_PACKAGES += 	\
 	adbWireless	\
 	Bartender	\
 	SpeedTest	\
-	Terminal	\
 	Waitress	\
 	Superuser
