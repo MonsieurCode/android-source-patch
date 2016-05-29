@@ -5,7 +5,8 @@
 <apns version="8">
     
     <apn carrier="LTE - Verizon Internet" 
-        mcc="311" mnc="480" 
+        mcc="311" 
+        mnc="480" 
         apn="VZWINTERNET" 
         type="default,dun" 
         protocol="IPV4V6" 
@@ -14,15 +15,18 @@
         />
         
     <apn carrier="LTE - Verizon CBS" 
-        mcc="311" mnc="480" 
-        apn="VZWAPP"type="cbs" 
+        mcc="311" 
+        mnc="480" 
+        apn="VZWAPP"
+        type="cbs" 
         protocol="IPV4V6" 
         roaming_protocol="IPV4V6" 
         bearer="14"
         />
         
     <apn carrier="LTE - Verizon IMS" 
-        mcc="311" mnc="480" 
+        mcc="311" 
+        mnc="480" 
         apn="VZWIMS" 
         type="ims" 
         protocol="IPV4V6" 
