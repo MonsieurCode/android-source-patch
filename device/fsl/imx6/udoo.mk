@@ -28,8 +28,7 @@ PRODUCT_COPY_FILES += \
 	device/fsl/monsieur/usr/idc/Vendor_0eef_Product_a107.idc:system/usr/idc/Vendor_0eef_Product_a107.idc \
 	device/fsl/monsieur/usr/idc/Vendor_1b96_Product_0007.idc:system/usr/idc/Vendor_1b96_Product_0007.idc \
 	device/fsl/monsieur/xbin/bossac:system/xbin/bossac \
-	device/fsl/monsieur/xbin/monsieur-arduino-due.bin:system/xbin/monsieur-arduino-due.bin \
-	device/fsl/monsieur/etc/apns-conf_verizon.xml:system/etc/apns-conf.xml
+	device/fsl/monsieur/xbin/monsieur-arduino-due.bin:system/xbin/monsieur-arduino-due.bin
 
 #Superuser installation
 PRODUCT_COPY_FILES += \
