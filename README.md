@@ -55,28 +55,6 @@ Apply the patch
 
     rsync -a -P ~/Documents/udoo-quad-kitkat-patch/ ~/Documents/udoo-quad-kitkat/
 
-## Modify Kernel [HID](http://lii-enac.fr/en/architecture/linux-input/multitouch-devices.html) Source to Enable Touch
-
-[Add Touchscreen Drivers](http://www.chalk-elec.com/?p=2028)
-
-    static const struct hid_device_id mt_devices[] = {
-        
-        /* AUO 10" */
-        { .driver_data = MT_CLS_DEFAULT, HID_USB_DEVICE(0x27C6,0x07D3) }, 
-        
-        /* Chalkboard Electronics 7" */
-        { .driver_data = MT_CLS_DEFAULT, HID_USB_DEVICE(0x04D8,0xF724) },
-        
-        /* Chalkboard Electronics 10" */
-        { .driver_data = MT_CLS_DEFAULT, HID_USB_DEVICE(0x1B96,0x07D3) },
-        
-        /* Chalkboard Electronics 14" */
-        { .driver_data = MT_CLS_DEFAULT, HID_USB_DEVICE(0x0EEF,0xA107) },
-        
-        // ...
-        
-    }
-
 ## Configure Kernel (This is very important!)
 
     . setup udoo-eng
@@ -167,3 +145,4 @@ If all steps were followed correctly, you should have successfully built an Udoo
 9. [How to use our new 10-inch integrated LCD](http://www.chalk-elec.com/?p=2060)
 10. [Multitouch Compatibility Table](http://lii-enac.fr/en/architecture/linux-input/multitouch-devices.html)
 11. [The Linux Kernel](https://www.youtube.com/watch?v=XAo1QCQXODo)
+12. [Add Touchscreen Drivers](http://www.chalk-elec.com/?p=2028)
