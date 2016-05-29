@@ -70,7 +70,6 @@ PRODUCT_PACKAGES += 	\
 	rfkill 		\
 	iwconfig 	\
 	iwlist 		\
-	BluetoothLeGatt \
 	Camera2 	\
 	setotg 		\
 	lsusb		\
