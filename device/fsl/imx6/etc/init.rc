@@ -294,6 +294,11 @@ on early-boot
     setrlimit 8 67108864 67108864
 
 on boot
+# Verizon Modem
+    ro.telephony.default_network=11
+    rild.libpath=/system/lib/libaltair-ril.so
+    rild.libargs=-d /dev/ttyACM0
+
 # Set permission for Bossac
     chmod 666 /dev/ttymxc3
     sleep 1
