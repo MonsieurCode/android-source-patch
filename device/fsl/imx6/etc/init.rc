@@ -704,8 +704,7 @@ service iprenew_bt-pan /system/bin/dhcpcd -n
 service ril-daemon /system/bin/rild
     class main
     socket rild stream 660 root radio
-    socket rild-debug stream 660 radio system
-    socket rild-ppp stream 660 radio system
+    socket rild-debug stream 660 radio system socket altair_at_socket stream 660 radio system
     user root
     group radio cache inet misc audio sdcard_rw log
 
