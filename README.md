@@ -55,29 +55,24 @@ Apply the patch
 
     rsync -a -P ~/Documents/udoo-quad-kitkat-patch/ ~/Documents/udoo-quad-kitkat/
 
-## Configure Kernel (This is very important!)
+## Configure Udoo Build
 
     . setup udoo-eng
-    cd udoo-quad-kitkat/udoo/4.4.2/kernel_imx
-    make menuconfig
+
+## Configure Kernel (This is very important!)
+
+    make -C kernel_imx imx6_udoo_android_defconfig
+    
+## Build Android System Image
+
+    time make -j2
     
 ## Build U-Boot
 
-    . setup udoo-eng
-    cd android-source/udoo/4.4.2/bootable/bootloader/uboot-imx
-    ./compile.sh -c
-    ./compile.sh
-
-## Build Android System Image
-
-Build everything with make. GNU make can handle parallel tasks with a -jN argument, and it's common to use a number of tasks N that's between 1 and 2 times the number of hardware threads on the computer being used for the build. For example, on a dual-E5520 machine (2 CPUs, 4 cores per CPU, 2 threads per core), the fastest builds are made with commands between make -j16 and make -j32.
-
-    . setup udoo-eng
-    time make -j2
+    bootable/bootloader/uboot-imx/compile.sh -c
 
 ## Make SD Card
 
-    croot
     sudo -E ./make_sd.sh /dev/sdc
 
 Connect a serial cable to the Udoo and your computer. [Establish a connection](http://www.udoo.org/tutorial/connecting-via-serial-cable/).
@@ -107,12 +102,6 @@ Run Minicom
 ## Check Touch
 
     getevent
-
-## Build Kernel
-
-    make -C kernel_imx imx6_udoo_android_defconfig
-    make -C kernel_imx menuconfig
-    make bootimage
 
 ## Pull Kernel Configuration
 
