@@ -75,7 +75,12 @@ PRODUCT_PACKAGES += 	\
 	lsusb		\
 	SimpleExplorer	\
 	adbWireless	\
+	Superuser
+
+# Monsieur
+PRODUCT_PACKAGES += 	\
+	rild		\
+	libaltair-ril	\
 	Bartender	\
 	SpeedTest	\
-	Waitress	\
-	Superuser
+	Waitress
