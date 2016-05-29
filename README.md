@@ -102,8 +102,6 @@ Replace the 640x480 entry in kernel/drivers/video/mxc_hdmi.c.
     . setup udoo-eng
     cd udoo-quad-kitkat/udoo/4.4.2/kernel_imx
     make menuconfig
-
-Navigate to Device Drivers > HID > Special Drivers. **Make sure HID Multitouch panels are included which corresponds to device.internal = 1 in your Input Device Configuration (IDC).** Alternatively, a modularized feature would correspond to device.internal = 0. IDCs will be explained in detail later. 
     
 ## Build U-Boot
 
@@ -143,38 +141,6 @@ Run Minicom
     setenv bootargs console=ttymxc1,115200 init=/init video=mxcfb0:dev=ldb,1366x768M@60,if=RGB24,bpp=32 video=mxcfb1:off video=mxcfb2:off fbmem=28M vmalloc=400M androidboot.console=ttymxc1 androidboot.hardware=freescale mem=1024M
     saveenv
 
-## Push System Files to Android Filesystem
-
-**All built-in touch devices should have input device configuration files.** 
-
-Touch screens are touch devices that are associated with a display such that the user has the impression of directly manipulating items on screen.
-
-It is important to ensure that the value of the device.internal property is set correctly for all internal input devices.
-
-    touch.deviceType = touchScreen
-
-This property specifies whether the input device is an internal built-in component as opposed to an externally attached (most likely removable) peripheral.
-
-If the value is 0, the device is external.
-If the value is 1, the device is internal.
-If the value is not specified, the default value is 0 for all devices on the USB (BUS_USB) or Bluetooth (BUS_BLUETOOTH) bus, 1 otherwise.
-
-**We set our screen to be included/internal in the kernel configuration step.**
-
-    device.internal = 1
-
-Here is the complete IDC.
-
-    touch.deviceType = touchScreen
-    touch.orientationAware = 1
-    device.internal = 1
-    keyboard.layout = qwerty
-    keyboard.characterMap = qwerty2
-    keyboard.orientationAware = 1
-    keyboard.builtIn = 1
-    cursor.mode = navigation
-    cursor.orientationAware = 1
-
 ## Boot Udoo on 10" 1280x800 HDMI Screen
 
     setenv bootargs console=ttymxc1,115200 init=/init video=mxcfb0:dev=hdmi,1280x800M@60,if=RGB24,bpp=32 video=mxcfb1:off video=mxcfb2:off fbmem=28M vmalloc=400M androidboot.console=ttymxc1 androidboot.hardware=freescale mem=1024M
@@ -203,14 +169,6 @@ ADB Shell
 
     adb remount
     adb pull /proc/config.gz
-    
-## Make Monsieur Only Launcher
-
-    adb shell mv /system/priv-app/Launcher2.apk /system/priv-app/Launcher2.apk.bak
-    
-## Make Monsieur System App
-
-    adb shell cp /data/app/co.monsieur.android.machine.apk /system/app/co.monsieur.android.machine.apk
 
 ## Congratulations
 
