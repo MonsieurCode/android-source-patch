@@ -294,6 +294,17 @@ on early-boot
     setrlimit 8 67108864 67108864
 
 on boot
+# Set permission for Bossac
+    chmod 666 /dev/ttymxc3
+    sleep 1
+    chmod 666 /sys/class/gpio/gpio117/direction
+    sleep 1
+    chmod 666 /sys/class/gpio/gpio117/value
+    sleep 1
+    chmod 666 /sys/class/gpio/gpio0/direction
+    sleep 1
+    chmod 666 /sys/class/gpio/gpio0/value
+
 # basic network init
     ifup lo
     hostname localhost
