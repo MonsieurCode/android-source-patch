@@ -81,6 +81,5 @@ PRODUCT_PACKAGES += 	\
 PRODUCT_PACKAGES += 	\
 	rild		\
 	libaltair-ril	\
-	Bartender	\
 	SpeedTest	\
 	Waitress
