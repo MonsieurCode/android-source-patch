@@ -54,6 +54,7 @@ Android source code for [Udoo](http://udoo.org/download/files/Sources/) and [Rad
     make clean
     ./compile.sh
     croot
+    chmod 755 ./make_sd.sh
     sudo -E ./make_sd.sh /dev/sdb
 
 Apply the patch
