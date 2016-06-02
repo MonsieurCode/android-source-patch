@@ -46,9 +46,14 @@ Android source code for [Udoo](http://udoo.org/download/files/Sources/) and [Rad
 
     cd ~/Documents/udoo-quad-kit
     . setup udoo-eng
-    make -C kernel_imx imx6_udoo_android_defconfig
+    cd kernel_imx
+    make imx6_udoo_android_defconfig
     make
-    bootable/bootloader/uboot-imx/compile.sh
+    croot
+    cd bootable/bootloader/uboot-imx
+    make clean
+    ./compile.sh
+    croot
     sudo -E ./make_sd.sh /dev/sdb
 
 Apply the patch
