@@ -41,9 +41,7 @@ Android source code for [Udoo](http://udoo.org/download/files/Sources/) and [Rad
     tar zxvf ~/Documents/udoo-quad-kitkat.tar.gz
     mv ~/Documents/4.4.2 ~/Documents/udoo-quad-kitkat
     git clone https://github.com/MonsieurCode/udoo-quad-kitkat-patch/
-
-# Make
-
+    rsync -a -P ~/Documents/udoo-quad-kitkat-patch/ ~/Documents/udoo-quad-kitkat/
     cd ~/Documents/udoo-quad-kit
     . setup udoo-eng
     cd kernel_imx
@@ -56,30 +54,6 @@ Android source code for [Udoo](http://udoo.org/download/files/Sources/) and [Rad
     croot
     chmod 755 ./make_sd.sh
     sudo -E ./make_sd.sh /dev/sdb
-
-Apply the patch
-
-    rsync -a -P ~/Documents/udoo-quad-kitkat-patch/ ~/Documents/udoo-quad-kitkat/
-
-## Configure Udoo Build
-
-    . setup udoo-eng
-
-## Configure Kernel (This is very important!)
-
-    make -C kernel_imx imx6_udoo_android_defconfig
-    
-## Build Android System Image
-
-    time make -j2
-    
-## Build U-Boot
-
-    bootable/bootloader/uboot-imx/compile.sh -c
-
-## Make SD Card
-
-    sudo -E ./make_sd.sh /dev/sdc
 
 Connect a serial cable to the Udoo and your computer. [Establish a connection](http://www.udoo.org/tutorial/connecting-via-serial-cable/).
 
