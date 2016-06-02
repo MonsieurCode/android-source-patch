@@ -30,9 +30,6 @@ Install required packages - Ubuntu 14.04
 
     sudo apt-get install git-core gnupg flex bison gperf libsdl1.2-dev libesd0-dev libwxgtk2.8-dev squashfs-tools build-essential zip curl libncurses5-dev zlib1g-dev pngcrush schedtool libxml2 libxml2-utils xsltproc lzop libc6-dev schedtool g++-multilib lib32z1-dev lib32ncurses5-dev lib32readline-gplv2-dev gcc-multilib libswitch-perl libssl1.0.0 libssl-dev u-boot-tools uuid-dev liblzo2-dev android-tools-adb
 
-## Downloading the Source
-
-Android source code for [Udoo](http://udoo.org/download/files/Sources/) and [Radxa](http://wiki.radxa.com/Rock2/Android/develop).
 # Download
 
     wget http://www.udoo.org/download/files/Sources/UDOO_Android_4.4.2_Source_v1.0.tar.gz -O ~/Documents/udoo-quad-kitkat.tar.gz
