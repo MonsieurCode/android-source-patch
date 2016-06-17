@@ -34,9 +34,15 @@ Install required packages - Ubuntu 14.04
 
     wget http://www.udoo.org/download/files/Sources/UDOO_Android_4.4.2_Source_v1.0.tar.gz -O ~/Documents/udoo-quad-kitkat.tar.gz
     tar zxvf ~/Documents/udoo-quad-kitkat.tar.gz
+
+# Apply Patch
+
     mv ~/Documents/4.4.2 ~/Documents/udoo-quad-kitkat
     git clone https://github.com/MonsieurCode/udoo-quad-kitkat-patch/
     rsync -a -P ~/Documents/udoo-quad-kitkat-patch/ ~/Documents/udoo-quad-kitkat/
+
+# Build
+
     cd ~/Documents/udoo-quad-kit
     . setup udoo-eng
     cd kernel_imx
@@ -46,9 +52,13 @@ Install required packages - Ubuntu 14.04
     cd bootable/bootloader/uboot-imx
     make clean
     ./compile.sh
+    
+# Make SD Card
+
     croot
     chmod 755 ./make_sd.sh
     sudo -E ./make_sd.sh /dev/sdb
+
 
 Connect a serial cable to the Udoo and your computer. [Establish a connection](http://www.udoo.org/tutorial/connecting-via-serial-cable/).
 
