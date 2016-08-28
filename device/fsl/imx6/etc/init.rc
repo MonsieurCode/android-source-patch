@@ -297,6 +297,8 @@ on boot
 # Set permission for Bossac
     chmod 666 /dev/ttymxc3
     sleep 1
+    # /system/xbin/bossac -i --port=ttymxc3 -e -w -v -b -R -Ufalse /system/xbin/monsieur-arduino-due.bin
+    sleep 1
     chmod 666 /sys/class/gpio/gpio117/direction
     sleep 1
     chmod 666 /sys/class/gpio/gpio117/value
