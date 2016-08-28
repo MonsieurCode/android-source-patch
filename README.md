@@ -43,7 +43,7 @@ Install required packages - Ubuntu 14.04
 
 # Build
 
-    cd ~/Documents/udoo-quad-kit
+    cd ~/Documents/udoo-quad-kitkat
     . setup udoo-eng
     cd kernel_imx
     make imx6_udoo_android_defconfig
